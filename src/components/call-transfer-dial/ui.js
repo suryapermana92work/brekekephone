@@ -196,7 +196,9 @@ const st = StyleSheet.create({
 
 const pure = Component =>
   class Pure extends PureComponent {
-    render = () => <Component {...this.props} />;
+    render() {
+      return <Component {...this.props} />;
+    }
   };
 
 const MainNavbar = pure(p => (

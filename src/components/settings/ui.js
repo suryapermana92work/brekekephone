@@ -137,7 +137,9 @@ const st = {
 
 const pure = Component =>
   class extends PureComponent {
-    render = () => <Component {...this.props} />;
+    render() {
+      return <Component {...this.props} />;
+    }
   };
 
 const Divider = pure(({ children }) => (
@@ -241,7 +243,9 @@ const StatusSwitch = pure(p => (
 ));
 
 class CustomTextInput extends PureComponent {
-  render = () => <TextInput {...this.props} onBlur={this.onBlur} />;
+  render() {
+    return <TextInput {...this.props} onBlur={this.onBlur} />;
+  }
 
   onBlur = () => {
     const { onSubmitEditing } = this.props;

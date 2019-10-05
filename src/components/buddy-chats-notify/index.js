@@ -25,7 +25,9 @@ class View extends Component {
     uc: PropTypes.object.isRequired,
   };
 
-  render = () => <UI />;
+  render() {
+    return <UI />;
+  }
 }
 
 export default createModelView(mapGetter)(View);

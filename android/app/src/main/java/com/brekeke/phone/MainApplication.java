@@ -12,6 +12,7 @@ import com.facebook.soloader.SoLoader;
 import com.loudspeaker.LoudSpeakerPackage;
 import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage;
 import com.oney.WebRTCModule.WebRTCModulePackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.rnfs.RNFSPackage;
 import com.zxcpoiu.incallmanager.InCallManagerPackage;
 import io.github.elyx0.reactnativedocumentpicker.DocumentPickerPackage;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
               new KCKeepAwakePackage(),
               new LoudSpeakerPackage(),
               new MainReactPackage(),
+              new AsyncStoragePackage(),
               new ReactNativeExceptionHandlerPackage(),
               new ReactVideoPackage(),
               new RNCameraPackage(),

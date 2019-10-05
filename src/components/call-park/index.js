@@ -33,16 +33,18 @@ class View extends Component {
     selectedPark: null,
   };
 
-  render = () => (
-    <UI
-      call={this.props.call}
-      parks={this.props.parks}
-      selectedPark={this.state.selectedPark}
-      selectPark={this.selectPark}
-      park={this.park}
-      back={routerUtils.goToCallsManage}
-    />
-  );
+  render() {
+    return (
+      <UI
+        call={this.props.call}
+        parks={this.props.parks}
+        selectedPark={this.state.selectedPark}
+        selectPark={this.selectPark}
+        park={this.park}
+        back={routerUtils.goToCallsManage}
+      />
+    );
+  }
 
   selectPark = selectedPark => {
     this.setState({ selectedPark });

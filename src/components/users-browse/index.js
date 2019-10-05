@@ -33,17 +33,19 @@ class View extends Component {
     ucUserById: {},
   };
 
-  render = () => (
-    <UI
-      searchText={this.props.searchText}
-      userIds={this.getMatchUserIds()}
-      resolveUser={this.resolveUser}
-      callVoice={this.callVoice}
-      callVideo={this.callVideo}
-      chat={routerUtils.goToBuddyChatsRecent}
-      setSearchText={this.setSearchText}
-    />
-  );
+  render() {
+    return (
+      <UI
+        searchText={this.props.searchText}
+        userIds={this.getMatchUserIds()}
+        resolveUser={this.resolveUser}
+        callVoice={this.callVoice}
+        callVideo={this.callVideo}
+        chat={routerUtils.goToBuddyChatsRecent}
+        setSearchText={this.setSearchText}
+      />
+    );
+  }
 
   isMatchUser = id => {
     if (!id) {

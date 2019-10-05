@@ -37,23 +37,25 @@ class View extends Component {
     target: '',
   };
 
-  render = () => (
-    <UI
-      call={this.props.call}
-      attended={this.state.attended}
-      target={this.state.target}
-      matchIds={this.getMatchIds()}
-      resolveMatch={this.resolveMatch}
-      selectMatch={this.selectMatch}
-      setAttended={this.setAttended}
-      setTarget={this.setTarget}
-      transfer={this.transfer}
-      back={routerUtils.goToCallsManage}
-      transferAttended={this.transferAttended}
-      transferBlind={this.transferBlind}
-      transferAttendedForVideo={this.transferAttendedForVideo}
-    />
-  );
+  render() {
+    return (
+      <UI
+        call={this.props.call}
+        attended={this.state.attended}
+        target={this.state.target}
+        matchIds={this.getMatchIds()}
+        resolveMatch={this.resolveMatch}
+        selectMatch={this.selectMatch}
+        setAttended={this.setAttended}
+        setTarget={this.setTarget}
+        transfer={this.transfer}
+        back={routerUtils.goToCallsManage}
+        transferAttended={this.transferAttended}
+        transferBlind={this.transferBlind}
+        transferAttendedForVideo={this.transferAttendedForVideo}
+      />
+    );
+  }
 
   setAttended = attended => {
     this.setState({ attended });

@@ -25,15 +25,17 @@ class View extends Component {
     pbx: PropTypes.object.isRequired,
   };
 
-  render = () => (
-    <UI
-      call={this.props.call}
-      back={routerUtils.goToCallsManage}
-      join={this.join}
-      stop={this.stop}
-      hangup={this.hangup}
-    />
-  );
+  render() {
+    return (
+      <UI
+        call={this.props.call}
+        back={routerUtils.goToCallsManage}
+        join={this.join}
+        stop={this.stop}
+        hangup={this.hangup}
+      />
+    );
+  }
 
   hangup = () => {
     const { sip } = this.context;

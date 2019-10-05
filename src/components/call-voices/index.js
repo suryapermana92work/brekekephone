@@ -21,14 +21,16 @@ const mapGetter = getter => state => ({
 });
 
 class View extends Component {
-  render = () => (
-    <UI
-      incomingCallIds={this.props.incomingCallIds}
-      outgoingCallIds={this.props.outgoingCallIds}
-      answeredCallIds={this.props.answeredCallIds}
-      resolveCall={this.resolveCall}
-    />
-  );
+  render() {
+    return (
+      <UI
+        incomingCallIds={this.props.incomingCallIds}
+        outgoingCallIds={this.props.outgoingCallIds}
+        answeredCallIds={this.props.answeredCallIds}
+        resolveCall={this.resolveCall}
+      />
+    );
+  }
 
   resolveCall = id => this.props.callById[id];
 }

@@ -5,7 +5,8 @@ import { createStore } from 'redux';
 import { combineModels, ModelProvider } from 'redux-model';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
-import storage from 'redux-persist/lib/storage';
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 import './-polyfill';
 import Routes from './Routes';
@@ -18,7 +19,7 @@ const { getter, action, reduce } = combineModels(models);
 const persistedReducers = ['profiles', 'recentCalls'];
 const persistConfig = {
   key: 'brekeke-phone',
-  storage,
+  storage: AsyncStorage,
   whitelist: persistedReducers,
   version: '3.0.0',
 };

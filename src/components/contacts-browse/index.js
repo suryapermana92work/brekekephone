@@ -39,7 +39,7 @@ class View extends Component {
     this.loadContacts.flush();
   }
 
-  render = () => {
+  render() {
     return (
       <UI
         hasPrevPage={routerUtils.getQuery().offset >= numberOfContactsPerPage}
@@ -69,7 +69,7 @@ class View extends Component {
         create={this.create}
       />
     );
-  };
+  }
 
   resolveContact = id => this.state.contactById[id];
 

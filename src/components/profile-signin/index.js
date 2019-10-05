@@ -19,15 +19,17 @@ class View extends Component {
     pbxPassword: this.props.profile ? this.props.profile.pbxPassword : '',
   };
 
-  render = () => (
-    <UI
-      profile={this.props.profile}
-      pbxPassword={this.state.pbxPassword}
-      setPbxPassword={this.setPbxPassword}
-      back={routerUtils.goToProfilesManage}
-      signin={this.signin}
-    />
-  );
+  render() {
+    return (
+      <UI
+        profile={this.props.profile}
+        pbxPassword={this.state.pbxPassword}
+        setPbxPassword={this.setPbxPassword}
+        back={routerUtils.goToProfilesManage}
+        signin={this.signin}
+      />
+    );
+  }
 
   setPbxPassword = pbxPassword => {
     this.setState({ pbxPassword });

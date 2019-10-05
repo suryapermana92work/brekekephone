@@ -10,7 +10,9 @@ class IncomingItem extends Component {
     InCall.stopRingtone();
   }
 
-  render = () => null;
+  render() {
+    return null;
+  }
 }
 
 const IncomingList = p =>
@@ -25,7 +27,9 @@ class OutgoingItem extends Component {
     InCall.stopRingback();
   }
 
-  render = () => null;
+  render() {
+    return null;
+  }
 }
 
 const OutgoingList = p =>

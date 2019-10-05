@@ -14,13 +14,15 @@ class View extends Component {
     sip: PropTypes.object.isRequired,
   };
 
-  render = () => (
-    <UI
-      call={this.props.call}
-      back={routerUtils.goToCallsManage}
-      sendKey={this.sendKey}
-    />
-  );
+  render() {
+    return (
+      <UI
+        call={this.props.call}
+        back={routerUtils.goToCallsManage}
+        sendKey={this.sendKey}
+      />
+    );
+  }
 
   sendKey = key => {
     const { sip } = this.context;

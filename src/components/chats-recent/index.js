@@ -16,17 +16,19 @@ const mapGetter = getter => state => ({
 });
 
 class View extends Component {
-  render = () => (
-    <UI
-      buddyIds={this.props.buddyIds}
-      buddyById={this.props.buddyById}
-      groupIds={this.props.groupIds}
-      groupById={this.props.groupById}
-      selectBuddy={routerUtils.goToBuddyChatsRecent}
-      selectGroup={routerUtils.goToChatGroupsRecent}
-      createGroup={routerUtils.goToChatGroupsCreate}
-    />
-  );
+  render() {
+    return (
+      <UI
+        buddyIds={this.props.buddyIds}
+        buddyById={this.props.buddyById}
+        groupIds={this.props.groupIds}
+        groupById={this.props.groupById}
+        selectBuddy={routerUtils.goToBuddyChatsRecent}
+        selectGroup={routerUtils.goToChatGroupsRecent}
+        createGroup={routerUtils.goToChatGroupsCreate}
+      />
+    );
+  }
 }
 
 export default createModelView(mapGetter)(View);

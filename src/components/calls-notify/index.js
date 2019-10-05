@@ -40,14 +40,16 @@ class View extends Component {
     sip.answerSession(id, { videoEnabled });
   };
 
-  render = () => (
-    <UI
-      callIds={this.props.callIds}
-      resolveCall={this.resolveCall}
-      accept={this.accept}
-      reject={this.reject}
-    />
-  );
+  render() {
+    return (
+      <UI
+        callIds={this.props.callIds}
+        resolveCall={this.resolveCall}
+        accept={this.accept}
+        reject={this.reject}
+      />
+    );
+  }
 }
 
 export default createModelView(mapGetter, mapAction)(View);

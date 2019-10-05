@@ -33,23 +33,25 @@ class View extends Component {
     video: false,
   };
 
-  render = () => (
-    <UI
-      target={this.state.target}
-      matchIds={this.getMatchIds()}
-      video={this.state.video}
-      resolveMatch={this.resolveMatch}
-      setTarget={this.setTarget}
-      selectMatch={this.selectMatch}
-      setVideo={this.setVideo}
-      create={this.create}
-      calls={routerUtils.goToCallsManage}
-      recent={routerUtils.goToCallsRecent}
-      callVoice={this.callVoice}
-      callVideo={this.callVideo}
-      parkingIds={this.props.parkingIds}
-    />
-  );
+  render() {
+    return (
+      <UI
+        target={this.state.target}
+        matchIds={this.getMatchIds()}
+        video={this.state.video}
+        resolveMatch={this.resolveMatch}
+        setTarget={this.setTarget}
+        selectMatch={this.selectMatch}
+        setVideo={this.setVideo}
+        create={this.create}
+        calls={routerUtils.goToCallsManage}
+        recent={routerUtils.goToCallsRecent}
+        callVoice={this.callVoice}
+        callVideo={this.callVideo}
+        parkingIds={this.props.parkingIds}
+      />
+    );
+  }
 
   setTarget = target => {
     this.setState({ target });

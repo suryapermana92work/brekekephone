@@ -3,6 +3,9 @@ import { setJSExceptionHandler } from 'react-native-exception-handler';
 import Alert from './alert';
 
 const onGlobalJSError = err => {
+  if (!err) {
+    return;
+  }
   Alert.alert(
     `Error: ${err.name}`,
     err.message,

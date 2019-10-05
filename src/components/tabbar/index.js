@@ -10,18 +10,20 @@ const mapGetter = getter => state => ({
 });
 
 class View extends Component {
-  render = () => (
-    <UI
-      chatsEnabled={this.props.chatsEnabled}
-      pressCallsManage={routerUtils.goToCallsManage}
-      pressCallsCreate={routerUtils.goToCallsCreate}
-      pressSettings={routerUtils.goToSettings}
-      pressUsers={routerUtils.goToUsersBrowse}
-      pressChats={routerUtils.goToChatsRecent}
-      pressBooks={routerUtils.goToPhonebooksBrowse}
-      runningIds={this.props.runningIds}
-    />
-  );
+  render() {
+    return (
+      <UI
+        chatsEnabled={this.props.chatsEnabled}
+        pressCallsManage={routerUtils.goToCallsManage}
+        pressCallsCreate={routerUtils.goToCallsCreate}
+        pressSettings={routerUtils.goToSettings}
+        pressUsers={routerUtils.goToUsersBrowse}
+        pressChats={routerUtils.goToChatsRecent}
+        pressBooks={routerUtils.goToPhonebooksBrowse}
+        runningIds={this.props.runningIds}
+      />
+    );
+  }
 }
 
 export default createModelView(mapGetter)(View);

@@ -157,7 +157,9 @@ const st = StyleSheet.create({
 
 const pure = Component =>
   class extends PureComponent {
-    render = () => <Component {...this.props} />;
+    render() {
+      return <Component {...this.props} />;
+    }
   };
 
 const Navbar = pure(p => (
@@ -306,7 +308,7 @@ const Parks = pure(p => (
         style={st.parkNumber}
         placeholder="Type park number"
         blurOnSubmit={false}
-        keyboardType="text"
+        keyboardType="default"
         value={p.adding}
         onChangeText={p.setAdding}
         onSubmitEditing={p.submitAdding}

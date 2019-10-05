@@ -39,9 +39,11 @@ class View extends Component {
     });
   }
 
-  render = () => (
-    <UI toastIds={this.props.toastIds} resolveToast={this.resolveToast} />
-  );
+  render() {
+    return (
+      <UI toastIds={this.props.toastIds} resolveToast={this.resolveToast} />
+    );
+  }
 
   resolveToast = toast => this.props.toastById[toast];
 }

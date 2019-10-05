@@ -27,19 +27,21 @@ class View extends Component {
     this.loadBooks();
   }
 
-  render = () => (
-    <UI
-      loading={this.state.loading}
-      books={this.state.books}
-      selectBook={b =>
-        routerUtils.goToContactsBrowse({
-          book: b.name,
-          shared: b.shared,
-        })
-      }
-      create={() => routerUtils.goToContactsCreate()}
-    />
-  );
+  render() {
+    return (
+      <UI
+        loading={this.state.loading}
+        books={this.state.books}
+        selectBook={b =>
+          routerUtils.goToContactsBrowse({
+            book: b.name,
+            shared: b.shared,
+          })
+        }
+        create={() => routerUtils.goToContactsCreate()}
+      />
+    );
+  }
 
   loadBooks() {
     const { pbx } = this.context;
@@ -56,9 +58,9 @@ class View extends Component {
     this.setState({ books, loading: false });
   };
 
-  onLoadFailure = function(err) {
+  onLoadFailure = err => {
     console.error(err);
-    err && this.props.showToast(err.message);
+    return err && this.props.showToast(err.message);
   };
 }
 

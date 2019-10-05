@@ -33,17 +33,19 @@ class View extends Component {
     selectedBuddy: {},
   };
 
-  render = () => (
-    <UI
-      groupName={this.props.group.name}
-      buddies={this.props.buddyIds.filter(this.isNotMember)}
-      selectedBuddy={this.state.selectedBuddy}
-      resolveBuddy={this.resolveBuddy}
-      toggleBuddy={this.toggleBuddy}
-      invite={this.invite}
-      back={this.back}
-    />
-  );
+  render() {
+    return (
+      <UI
+        groupName={this.props.group.name}
+        buddies={this.props.buddyIds.filter(this.isNotMember)}
+        selectedBuddy={this.state.selectedBuddy}
+        resolveBuddy={this.resolveBuddy}
+        toggleBuddy={this.toggleBuddy}
+        invite={this.invite}
+        back={this.back}
+      />
+    );
+  }
 
   isNotMember = buddy => !this.props.group.members.includes(buddy);
 

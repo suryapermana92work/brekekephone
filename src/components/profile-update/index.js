@@ -26,26 +26,28 @@ class View extends Component {
     this.state.pbxPhoneIndex = this.state.pbxPhoneIndex || '4';
   }
 
-  render = () => (
-    <UI
-      profile={this.state}
-      setPBXHostname={this.setPBXHostname}
-      setPBXPort={this.setPBXPort}
-      setPBXTenant={this.setPBXTenant}
-      setPBXUsername={this.setPBXUsername}
-      setPBXPassword={this.setPBXPassword}
-      setPBXPhoneIndex={this.setPBXPhoneIndex}
-      setPBXTurnEnabled={this.setPBXTurnEnabled}
-      setAddingPark={this.setAddingPark}
-      submitAddingPark={this.submitAddingPark}
-      setUCEnabled={this.setUCEnabled}
-      setUCHostname={this.setUCHostname}
-      setUCPort={this.setUCPort}
-      removePark={this.removePark}
-      save={this.save}
-      back={routerUtils.goToProfilesManage}
-    />
-  );
+  render() {
+    return (
+      <UI
+        profile={this.state}
+        setPBXHostname={this.setPBXHostname}
+        setPBXPort={this.setPBXPort}
+        setPBXTenant={this.setPBXTenant}
+        setPBXUsername={this.setPBXUsername}
+        setPBXPassword={this.setPBXPassword}
+        setPBXPhoneIndex={this.setPBXPhoneIndex}
+        setPBXTurnEnabled={this.setPBXTurnEnabled}
+        setAddingPark={this.setAddingPark}
+        submitAddingPark={this.submitAddingPark}
+        setUCEnabled={this.setUCEnabled}
+        setUCHostname={this.setUCHostname}
+        setUCPort={this.setUCPort}
+        removePark={this.removePark}
+        save={this.save}
+        back={routerUtils.goToProfilesManage}
+      />
+    );
+  }
 
   setPBXHostname = pbxHostname => {
     this.setState({ pbxHostname });

@@ -53,15 +53,17 @@ class Mini extends Component {
     });
   }
 
-  render = () => (
-    <View
-      ref={this.setViewRef}
-      style={st.mini}
-      {...this.panResponder.panHandlers}
-    >
-      <Video sourceObject={this.props.sourceObject} />
-    </View>
-  );
+  render() {
+    return (
+      <View
+        ref={this.setViewRef}
+        style={st.mini}
+        {...this.panResponder.panHandlers}
+      >
+        <Video sourceObject={this.props.sourceObject} />
+      </View>
+    );
+  }
 
   setViewRef = view => {
     this.view = view;
@@ -103,15 +105,17 @@ class Full extends Component {
     });
   }
 
-  render = () => (
-    <View
-      ref={this.setViewRef}
-      style={st.full}
-      {...this.panResponder.panHandlers}
-    >
-      <Video sourceObject={this.props.sourceObject} />
-    </View>
-  );
+  render() {
+    return (
+      <View
+        ref={this.setViewRef}
+        style={st.full}
+        {...this.panResponder.panHandlers}
+      >
+        <Video sourceObject={this.props.sourceObject} />
+      </View>
+    );
+  }
 
   setViewRef = view => {
     this.view = view;
@@ -133,7 +137,7 @@ class Full extends Component {
 class Control extends Component {
   state = { full: false };
 
-  render = () => {
+  render() {
     if (!this.props.enabled) {
       return null;
     }
@@ -143,7 +147,7 @@ class Control extends Component {
     }
 
     return <Mini {...this.props} onDoubleTap={this.toggleFull} />;
-  };
+  }
 
   toggleFull = () => {
     this.setState({

@@ -29,17 +29,19 @@ class View extends Component {
     callById: {},
   };
 
-  render = () => (
-    <UI
-      callIds={this.props.callIds}
-      resolveCall={this.resolveCall}
-      removeCall={this.props.removeCall}
-      callBack={this.callBack}
-      gotoCallsManage={routerUtils.goToCallsManage}
-      gotoCallsCreate={routerUtils.goToCallsCreate}
-      parkingIds={this.props.parkingIds}
-    />
-  );
+  render() {
+    return (
+      <UI
+        callIds={this.props.callIds}
+        resolveCall={this.resolveCall}
+        removeCall={this.props.removeCall}
+        callBack={this.callBack}
+        gotoCallsManage={routerUtils.goToCallsManage}
+        gotoCallsCreate={routerUtils.goToCallsCreate}
+        parkingIds={this.props.parkingIds}
+      />
+    );
+  }
 
   resolveCall = id => this.props.callById[id];
 

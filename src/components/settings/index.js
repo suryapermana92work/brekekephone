@@ -38,21 +38,23 @@ class View extends Component {
     });
   }
 
-  render = () => (
-    <UI
-      profile={this.props.profile}
-      chatOffline={this.state.chatOffline}
-      chatOnline={this.state.chatOnline}
-      chatBusy={this.state.chatBusy}
-      chatMood={this.state.chatMood}
-      setChatOnline={this.setChatOnline}
-      setChatOffline={this.setChatOffline}
-      setChatBusy={this.setChatBusy}
-      setChatMood={this.setChatMood}
-      submitChatMood={this.submitChatMood}
-      signout={routerUtils.goToProfilesManage}
-    />
-  );
+  render() {
+    return (
+      <UI
+        profile={this.props.profile}
+        chatOffline={this.state.chatOffline}
+        chatOnline={this.state.chatOnline}
+        chatBusy={this.state.chatBusy}
+        chatMood={this.state.chatMood}
+        setChatOnline={this.setChatOnline}
+        setChatOffline={this.setChatOffline}
+        setChatBusy={this.setChatBusy}
+        setChatMood={this.setChatMood}
+        submitChatMood={this.submitChatMood}
+        signout={routerUtils.goToProfilesManage}
+      />
+    );
+  }
 
   onSetChatStatusSuccess = () => {
     const me = this.context.uc.me();
