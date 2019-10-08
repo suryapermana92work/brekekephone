@@ -29,7 +29,7 @@ class View extends Component {
   };
 
   state = {
-    target: '',
+    target: ``,
     video: false,
   };
 
@@ -64,11 +64,11 @@ class View extends Component {
     const userId = id && id.toLowerCase();
 
     let pbxUserName;
-    const pbxUser = pbxUserById[id] || { name: '' };
+    const pbxUser = pbxUserById[id] || { name: `` };
     if (pbxUser) {
       pbxUserName = pbxUser.name.toLowerCase();
     } else {
-      pbxUserName = '';
+      pbxUserName = ``;
     }
 
     return userId.includes(searchTextLC) || pbxUserName.includes(searchTextLC);
@@ -99,7 +99,7 @@ class View extends Component {
   create = match => {
     const { target, video } = this.state;
     if (!target.trim()) {
-      this.props.showToast('No target');
+      this.props.showToast(`No target`);
       return;
     }
 
@@ -113,7 +113,7 @@ class View extends Component {
 
   call = (target, bVideoEnabled) => {
     if (!target.trim()) {
-      this.props.showToast('No target');
+      this.props.showToast(`No target`);
       return;
     }
 

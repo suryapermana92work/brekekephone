@@ -14,8 +14,8 @@ const st = {
   signout: {
     flex: 1,
     backgroundColor: std.color.shade3,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
   },
   signoutMessage: {
     fontFamily: std.font.text,
@@ -29,8 +29,8 @@ const st = {
   },
   navbar: {
     backgroundColor: std.color.shade1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: `center`,
+    justifyContent: `center`,
     paddingVertical: std.gap.sm,
     borderColor: std.color.shade4,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -57,8 +57,8 @@ const st = {
     flex: 1,
   },
   field: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: `row`,
+    alignItems: `center`,
     padding: std.gap.lg,
     backgroundColor: std.color.shade0,
     borderColor: std.color.shade4,
@@ -81,19 +81,19 @@ const st = {
     fontSize: std.textSize.md,
     color: std.color.shade5,
     lineHeight: std.textSize.md + std.gap.md * 2,
-    marginLeft: 'auto',
+    marginLeft: `auto`,
   },
   switch: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 'auto',
+    flexDirection: `row`,
+    alignItems: `center`,
+    marginLeft: `auto`,
   },
   switchItemActive: {
     backgroundColor: std.color.action,
     borderColor: std.color.action,
   },
   switchItemNormal: {
-    alignItems: 'center',
+    alignItems: `center`,
     width: rem(64),
     backgroundColor: std.color.shade0,
     borderColor: std.color.action,
@@ -131,7 +131,7 @@ const st = {
     paddingRight: 0,
     paddingLeft: std.gap.md,
     height: std.textSize.md + std.gap.md * 2,
-    textAlign: 'right',
+    textAlign: `right`,
   },
 };
 
@@ -144,7 +144,7 @@ const pure = Component =>
 
 const Divider = pure(({ children }) => (
   <View style={st.divider}>
-    <Text style={st.dividerTitle}>{children || ''}</Text>
+    <Text style={st.dividerTitle}>{children || ``}</Text>
   </View>
 ));
 
@@ -155,29 +155,29 @@ const PBXProfile = pure(p => (
     <Divider>PBX</Divider>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Hostname</Text>
-      <Text style={st.fieldValueText}>{p.hostname || ''}</Text>
+      <Text style={st.fieldValueText}>{p.hostname || ``}</Text>
     </View>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Port</Text>
-      <Text style={st.fieldValueText}>{p.port || ''}</Text>
+      <Text style={st.fieldValueText}>{p.port || ``}</Text>
     </View>
     {p.tenant && (
       <View style={st.field}>
         <Text style={st.fieldLabelNormal}>Tenant</Text>
-        <Text style={st.fieldValueText}>{p.tenant || ''}</Text>
+        <Text style={st.fieldValueText}>{p.tenant || ``}</Text>
       </View>
     )}
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Username</Text>
-      <Text style={st.fieldValueText}>{p.username || ''}</Text>
+      <Text style={st.fieldValueText}>{p.username || ``}</Text>
     </View>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Phone</Text>
-      <Text style={st.fieldValueText}>Phone {p.phoneIndex || ''}</Text>
+      <Text style={st.fieldValueText}>Phone {p.phoneIndex || ``}</Text>
     </View>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>TURN enabled</Text>
-      <Text style={st.fieldValueText}>{p.turnEnabled ? 'YES' : 'NO'}</Text>
+      <Text style={st.fieldValueText}>{p.turnEnabled ? `YES` : `NO`}</Text>
     </View>
   </NopParent>
 ));
@@ -187,11 +187,11 @@ const UCProfile = pure(p => (
     <Divider>UC</Divider>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Hostname</Text>
-      <Text style={st.fieldValueText}>{p.hostname || ''}</Text>
+      <Text style={st.fieldValueText}>{p.hostname || ``}</Text>
     </View>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Port</Text>
-      <Text style={st.fieldValueText}>{p.port || ''}</Text>
+      <Text style={st.fieldValueText}>{p.port || ``}</Text>
     </View>
   </NopParent>
 ));
@@ -249,7 +249,7 @@ class CustomTextInput extends PureComponent {
 
   onBlur = () => {
     const { onSubmitEditing } = this.props;
-    if (typeof onSubmitEditing === 'function') {
+    if (typeof onSubmitEditing === `function`) {
       onSubmitEditing();
     }
   };
@@ -274,7 +274,7 @@ const Chat = pure(p => (
       <CustomTextInput
         style={st.fieldInput}
         selectTextOnFocus={true}
-        value={typeof p.mood === 'string' ? p.mood : ''}
+        value={typeof p.mood === `string` ? p.mood : ``}
         onChangeText={p.setMood}
         onSubmitEditing={p.submitMood}
       />

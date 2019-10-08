@@ -2,20 +2,20 @@ import immutable from 'immutable';
 import pickProps from 'lodash/pick';
 import { createModel } from 'redux-model';
 
-const allowedToCreateProps = ['id', 'name', 'inviter', 'jointed', 'members'];
+const allowedToCreateProps = [`id`, `name`, `inviter`, `jointed`, `members`];
 const propDefault = { members: [] };
 const validateCreatingGroup = group => ({
   ...propDefault,
   ...pickProps(group, allowedToCreateProps),
 });
 
-const allowedToUpdateProps = ['name', 'jointed', 'members'];
+const allowedToUpdateProps = [`name`, `jointed`, `members`];
 const validateUpdatingGroup = group => pickProps(group, allowedToUpdateProps);
 
 const uniqArray = arr => Array.from(new Set(arr));
 
 export default createModel({
-  prefix: 'chatGroups',
+  prefix: `chatGroups`,
   origin: {
     idsByOrder: [],
     detailMapById: {},
@@ -28,7 +28,7 @@ export default createModel({
     clearAll: () => ({ idsByOrder: [], detailMapById: {} }),
     create: (prevState, group) =>
       immutable.on(prevState)(
-        immutable.fset('idsByOrder', idsByOrder =>
+        immutable.fset(`idsByOrder`, idsByOrder =>
           uniqArray([group.id, ...idsByOrder]),
         ),
         immutable.vset(
@@ -45,10 +45,10 @@ export default createModel({
       ),
     remove: (prevState, id) =>
       immutable.on(prevState)(
-        immutable.fset('idsByOrder', idsByOrder =>
+        immutable.fset(`idsByOrder`, idsByOrder =>
           idsByOrder.filter(_ => _ !== id),
         ),
-        immutable.fset('detailMapById', ({ [id]: removed, ...rest }) => rest),
+        immutable.fset(`detailMapById`, ({ [id]: removed, ...rest }) => rest),
       ),
   },
 });

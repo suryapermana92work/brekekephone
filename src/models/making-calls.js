@@ -1,7 +1,7 @@
 import { createModel } from 'redux-model';
 
 export default createModel({
-  prefix: 'parkingCalls',
+  prefix: `parkingCalls`,
   origin: [],
   getter: {
     idsByOrder: state => state,

@@ -26,7 +26,7 @@ class View extends Component {
   };
 
   static defaultProps = {
-    searchText: '',
+    searchText: ``,
     pbxUserIds: [],
     pbxUserById: {},
     ucUserIds: [],
@@ -62,7 +62,7 @@ class View extends Component {
     if (pbxUser) {
       pbxUserName = pbxUser.name;
     } else {
-      pbxUserName = '';
+      pbxUserName = ``;
     }
 
     let ucUserName;
@@ -70,7 +70,7 @@ class View extends Component {
     if (ucUser) {
       ucUserName = ucUser.name;
     } else {
-      ucUserName = '';
+      ucUserName = ``;
     }
 
     return (

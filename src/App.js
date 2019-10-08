@@ -1,3 +1,6 @@
+import './polyfill';
+
+import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import { Router } from 'react-router';
@@ -6,22 +9,19 @@ import { combineModels, ModelProvider } from 'redux-model';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import AsyncStorage from '@react-native-community/async-storage';
-
-import './-polyfill';
-import Routes from './Routes';
 import APIProvider from './apis';
 import { history } from './mobx/routerStore';
 import * as models from './models';
+import Routes from './Routes';
 
 const { getter, action, reduce } = combineModels(models);
 
-const persistedReducers = ['profiles', 'recentCalls'];
+const persistedReducers = [`profiles`, `recentCalls`];
 const persistConfig = {
-  key: 'brekeke-phone',
+  key: `brekeke-phone`,
   storage: AsyncStorage,
   whitelist: persistedReducers,
-  version: '3.0.0',
+  version: `3.0.0`,
 };
 const storeReducer = persistReducer(persistConfig, reduce);
 const store = createStore(storeReducer);

@@ -2,7 +2,7 @@ import immutable from 'immutable';
 import pickProps from 'lodash/pick';
 import { createModel } from 'redux-model';
 
-const allowedChatProps = ['id', 'created', 'text', 'file', 'creator'];
+const allowedChatProps = [`id`, `created`, `text`, `file`, `creator`];
 const validateChat = chat => pickProps(chat, allowedChatProps);
 const uniqArray = arr => Array.from(new Set(arr));
 const reduceChatsToMapById = chats =>
@@ -10,7 +10,7 @@ const reduceChatsToMapById = chats =>
 const mapChatsToIds = chats => chats.map(({ id }) => id);
 
 export default createModel({
-  prefix: 'buddyChats',
+  prefix: `buddyChats`,
   origin: {
     buddyIdsByRecent: [],
     idsMapByBuddy: {},
@@ -29,8 +29,8 @@ export default createModel({
     }),
     appendByBuddy: (s, buddy, chats = []) =>
       immutable.on(s)(
-        immutable.fset('buddyIdsByRecent', ids => uniqArray([buddy, ...ids])),
-        immutable.fset('detailMapById', map => ({
+        immutable.fset(`buddyIdsByRecent`, ids => uniqArray([buddy, ...ids])),
+        immutable.fset(`detailMapById`, map => ({
           ...map,
           ...reduceChatsToMapById(chats.map(validateChat)),
         })),
@@ -41,8 +41,8 @@ export default createModel({
       ),
     prependByBuddy: (s, buddy, chats = []) =>
       immutable.on(s)(
-        immutable.fset('buddyIdsByRecent', ids => uniqArray([buddy, ...ids])),
-        immutable.fset('detailMapById', map => ({
+        immutable.fset(`buddyIdsByRecent`, ids => uniqArray([buddy, ...ids])),
+        immutable.fset(`detailMapById`, map => ({
           ...map,
           ...reduceChatsToMapById(chats.map(validateChat)),
         })),

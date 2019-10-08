@@ -2,7 +2,7 @@ import immutable from 'immutable';
 import pickProps from 'lodash/pick';
 import { createModel } from 'redux-model';
 
-const allowedCreatedProps = ['id', 'name'];
+const allowedCreatedProps = [`id`, `name`];
 const propDefault = {
   callingTalkers: [],
   ringingTalkers: [],
@@ -18,7 +18,7 @@ const reduceUsersToMapById = users =>
 const mapUsersToIds = users => users.map(({ id }) => id);
 
 export default createModel({
-  prefix: 'pbxUsers',
+  prefix: `pbxUsers`,
   origin: {
     idsByOrder: [],
     detailMapById: {},

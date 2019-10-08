@@ -11,12 +11,12 @@ const onGlobalJSError = err => {
     err.message,
     [
       {
-        text: 'Cancel',
+        text: `Cancel`,
         onPress: () => {},
-        style: 'cancel',
+        style: `cancel`,
       },
       {
-        text: 'OK',
+        text: `OK`,
         onPress: () => {},
       },
     ],

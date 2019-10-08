@@ -1,16 +1,16 @@
-import { PushNotificationIOS } from 'react-native';
+import { AppState, PushNotificationIOS } from 'react-native';
 import VoipPushNotification from 'react-native-voip-push-notification';
 
 import parseCustomNoti from './pushNotification-parse';
 
-let voipApnsToken = '';
+let voipApnsToken = ``;
 export const getPnToken = () => {
   return Promise.resolve(voipApnsToken);
 };
 
 export const registerPn = () => {
-  VoipPushNotification.addEventListener('register', onVoipRegister);
-  VoipPushNotification.addEventListener('notification', onVoipNotification);
+  VoipPushNotification.addEventListener(`register`, onVoipRegister);
+  VoipPushNotification.addEventListener(`notification`, onVoipNotification);
   VoipPushNotification.requestPermissions();
 };
 
@@ -20,14 +20,14 @@ const onVoipRegister = token => {
 
 const onVoipNotification = noti => {
   const n = parseCustomNoti(noti);
-  if (!n) {
+  if (!n || AppState.currentState === `active`) {
     return;
   }
   //
   const alertBody = n.body || JSON.stringify(n);
   const isCall = /call/i.test(alertBody);
-  const alertAction = isCall ? 'Answer' : 'View';
-  const soundName = isCall ? 'incallmanager_ringtone.mp3' : undefined;
+  const alertAction = isCall ? `Answer` : `View`;
+  const soundName = isCall ? `incallmanager_ringtone.mp3` : undefined;
   //
   PushNotificationIOS.getApplicationIconBadgeNumber(n => {
     n = (n || 0) + 1;

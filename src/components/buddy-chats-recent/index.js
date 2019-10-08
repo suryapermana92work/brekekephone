@@ -44,18 +44,18 @@ const mapAction = action => emit => ({
 });
 
 const monthName = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
+  `Jan`,
+  `Feb`,
+  `Mar`,
+  `Apr`,
+  `May`,
+  `Jun`,
+  `Jul`,
+  `Aug`,
+  `Sep`,
+  `Oct`,
+  `Nov`,
+  `Dec`,
 ];
 
 const isToday = time => {
@@ -67,17 +67,17 @@ const isToday = time => {
 
 const formatTime = time => {
   // Convert yyyy-MM-dd hh:mm:ss to iso date
-  time = time.replace(' ', 'T') + 'Z';
+  time = time.replace(` `, `T`) + `Z`;
   time = new Date(time);
 
   const hour = time
     .getHours()
     .toString()
-    .padStart(2, '0');
+    .padStart(2, `0`);
   const min = time
     .getMinutes()
     .toString()
-    .padStart(2, '0');
+    .padStart(2, `0`);
 
   if (isToday(time)) return `${hour}:${min}`;
 
@@ -110,7 +110,7 @@ class View extends Component {
   state = {
     loadingRecent: false,
     loadingMore: false,
-    editingText: '',
+    editingText: ``,
   };
 
   componentDidMount() {
@@ -202,7 +202,7 @@ class View extends Component {
     console.error(err);
     this.setState({ loadingRecent: false });
     const { showToast } = this.props;
-    showToast('Failed to get recent chats');
+    showToast(`Failed to get recent chats`);
   };
 
   loadMore = () => {
@@ -233,7 +233,7 @@ class View extends Component {
     console.error(err);
     this.setState({ loadingMore: false });
     const { showToast } = this.props;
-    showToast('Failed to get more chats');
+    showToast(`Failed to get more chats`);
   };
 
   setEditingText = editingText => {
@@ -260,11 +260,11 @@ class View extends Component {
   };
   onSubmitEditingTextSuccess = chat => {
     this.props.appendChats(this.props.buddy.id, [chat]);
-    this.setState({ editingText: '' });
+    this.setState({ editingText: `` });
   };
   onSubmitEditingTextFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to send the message');
+    this.props.showToast(`Failed to send the message`);
   };
 
   acceptFile = file => {

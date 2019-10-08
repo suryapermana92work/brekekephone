@@ -3,25 +3,25 @@ import pickProps from 'lodash/pick';
 import { createModel } from 'redux-model';
 
 const allowedToCreateProps = [
-  'id',
-  'name',
-  'avatar',
-  'offline',
-  'online',
-  'idle',
-  'busy',
-  'mood',
+  `id`,
+  `name`,
+  `avatar`,
+  `offline`,
+  `online`,
+  `idle`,
+  `busy`,
+  `mood`,
 ];
 const validateCreatingUser = user => pickProps(user, allowedToCreateProps);
 
 const allowedToUpdateProps = [
-  'name',
-  'avatar',
-  'offline',
-  'online',
-  'idle',
-  'busy',
-  'mood',
+  `name`,
+  `avatar`,
+  `offline`,
+  `online`,
+  `idle`,
+  `busy`,
+  `mood`,
 ];
 const validateUpdatingUser = user => pickProps(user, allowedToUpdateProps);
 
@@ -30,7 +30,7 @@ const reduceUsersToMapById = users =>
 const mapUsersToIds = users => users.map(({ id }) => id);
 
 export default createModel({
-  prefix: 'ucUsers',
+  prefix: `ucUsers`,
   origin: {
     idsByOrder: [],
     detailMapById: {},

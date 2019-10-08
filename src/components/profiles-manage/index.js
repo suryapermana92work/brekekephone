@@ -93,13 +93,13 @@ class View extends Component {
       //
       pbxHostname: host,
       pbxPort: port,
-      pbxPassword: '',
-      pbxPhoneIndex: '4',
+      pbxPassword: ``,
+      pbxPhoneIndex: `4`,
       pbxTurnEnabled: false,
       parks: [],
       ucEnabled: false,
-      ucHostname: '',
-      ucPort: '',
+      ucHostname: ``,
+      ucPort: ``,
       //
       accessToken: _wn,
     };
@@ -155,7 +155,7 @@ class View extends Component {
     }
     if (!u.pbxPassword && !u.accessToken) {
       routerUtils.goToProfileUpdate(u.id);
-      this.props.showToast('The profile password is empty');
+      this.props.showToast(`The profile password is empty`);
       return true;
     }
     this.props.setAuthProfile(u);

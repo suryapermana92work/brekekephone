@@ -16,7 +16,7 @@ const mapAction = action => emit => ({
 
 class View extends Component {
   state = {
-    pbxPassword: this.props.profile ? this.props.profile.pbxPassword : '',
+    pbxPassword: this.props.profile ? this.props.profile.pbxPassword : ``,
   };
 
   render() {

@@ -62,7 +62,7 @@ class View extends Component {
 
   onJoinFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to join the transfer');
+    this.props.showToast(`Failed to join the transfer`);
   };
 
   stop = () => {
@@ -85,7 +85,7 @@ class View extends Component {
 
   onStopFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to stop the transfer');
+    this.props.showToast(`Failed to stop the transfer`);
   };
 }
 

@@ -11,17 +11,17 @@ import { rem, std } from '../../styleguide';
 
 const st = {
   main: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: `row`,
+    justifyContent: `space-around`,
+    alignItems: `center`,
     backgroundColor: std.color.shade1,
     borderColor: std.color.shade4,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   tab: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     flex: 1,
   },
   tabIcon: {
@@ -37,8 +37,8 @@ const st = {
 
   navbar: {
     backgroundColor: std.color.shade1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: `center`,
+    justifyContent: `center`,
     paddingVertical: std.gap.sm,
     borderColor: std.color.shade4,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -50,18 +50,18 @@ const st = {
     color: std.color.shade9,
   },
   navbarLeftOpt: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
+    alignItems: `center`,
+    justifyContent: `center`,
+    position: `absolute`,
     left: std.gap.lg,
     top: 0,
     bottom: 0,
     paddingRight: std.gap.lg,
   },
   navbarRightOpt: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
+    alignItems: `center`,
+    justifyContent: `center`,
+    position: `absolute`,
     right: std.gap.lg,
     top: 0,
     bottom: 0,
@@ -80,18 +80,18 @@ const st = {
     marginBottom: std.gap.lg,
   },
   controlCall: {
-    alignItems: 'center',
+    alignItems: `center`,
     paddingVertical: std.gap.md,
   },
   controlOpts: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: `row`,
+    flexWrap: `wrap`,
+    justifyContent: `center`,
+    alignItems: `center`,
   },
   controlOpt: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     width: std.iconSize.md * 2,
     height: std.iconSize.md * 2,
     borderRadius: std.iconSize.md,
@@ -129,8 +129,8 @@ const st = {
     backgroundColor: std.color.shade3,
   },
   call: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: `row`,
+    alignItems: `center`,
     paddingLeft: std.gap.lg,
     paddingVertical: std.gap.sm,
     backgroundColor: std.color.shade0,
@@ -139,7 +139,7 @@ const st = {
     flex: 1,
   },
   callSelected: {
-    position: 'absolute',
+    position: `absolute`,
     left: 0,
     top: 0,
     bottom: 0,
@@ -215,14 +215,14 @@ const st = {
     borderRadius: std.iconSize.md,
     borderColor: std.color.shade4,
     borderWidth: StyleSheet.hairlineWidth,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     marginRight: std.gap.lg,
   },
 };
 
 const Callbar = function(p) {
-  const bVisible = p.activecallid && p.pathname !== '/auth/calls/manage';
+  const bVisible = p.activecallid && p.pathname !== `/auth/calls/manage`;
 
   return (
     <View style={st.main}>
@@ -278,7 +278,7 @@ const RunningItem = p => (
     {p.activecall.answered &&
       !p.activecall.holding &&
       !p.activecall.loudspeaker &&
-      Platform.OS !== 'web' && (
+      Platform.OS !== `web` && (
         <Button style={st.callOpt} onPress={p.onOpenLoudSpeaker}>
           <Text style={st.optIconAction}>icon_volume_2</Text>
         </Button>
@@ -286,7 +286,7 @@ const RunningItem = p => (
     {p.activecall.answered &&
       !p.activecall.holding &&
       p.activecall.loudspeaker &&
-      Platform.OS !== 'web' && (
+      Platform.OS !== `web` && (
         <Button style={st.callOpt} onPress={p.onCloseLoudSpeaker}>
           <Text style={st.optIconAction}>icon_volume_1</Text>
         </Button>

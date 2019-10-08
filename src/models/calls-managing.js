@@ -1,7 +1,7 @@
 import { createModel } from 'redux-model';
 
 export default createModel({
-  prefix: 'callsManaging',
+  prefix: `callsManaging`,
   origin: {
     selectedId: null,
   },

@@ -68,7 +68,7 @@ class View extends Component {
 
   onSetChatStatusFailure = () => {
     const { showToast } = this.props;
-    showToast('Failed to change chat status');
+    showToast(`Failed to change chat status`);
   };
 
   setChatOffline = () => {

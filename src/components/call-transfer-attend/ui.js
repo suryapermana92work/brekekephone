@@ -12,8 +12,8 @@ const st = StyleSheet.create({
   noCall: {
     flex: 1,
     backgroundColor: std.color.shade3,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
   },
   noCallMessage: {
     fontFamily: std.font.text,
@@ -27,8 +27,8 @@ const st = StyleSheet.create({
   },
   navbar: {
     backgroundColor: std.color.shade1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: `center`,
+    justifyContent: `center`,
     paddingVertical: std.gap.sm,
     borderColor: std.color.shade4,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -40,9 +40,9 @@ const st = StyleSheet.create({
     color: std.color.shade9,
   },
   navbarLeftOpt: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
+    alignItems: `center`,
+    justifyContent: `center`,
+    position: `absolute`,
     left: std.gap.lg,
     top: 0,
     bottom: 0,
@@ -84,8 +84,8 @@ const st = StyleSheet.create({
   },
   opt: {
     backgroundColor: std.color.shade0,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: `row`,
+    alignItems: `center`,
     padding: std.gap.lg,
     borderColor: std.color.shade4,
     borderBottomWidth: StyleSheet.hairlineWidth,

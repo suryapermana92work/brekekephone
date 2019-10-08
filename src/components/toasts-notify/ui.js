@@ -8,7 +8,7 @@ const st = StyleSheet.create({
     width: rem(320),
     backgroundColor: std.color.notice,
     marginBottom: std.gap.lg,
-    alignSelf: 'flex-start',
+    alignSelf: `flex-start`,
     borderTopRightRadius: std.gap.md,
     borderBottomRightRadius: std.gap.md,
     shadowColor: std.color.shade9,

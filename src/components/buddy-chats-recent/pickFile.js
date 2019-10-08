@@ -11,11 +11,11 @@ ImagePicker.AlbumListView.autoConvertPath = true;
 
 const actionSheetOptions = {
   options: [
-    'Select from photo library',
-    'Take a new photo',
-    'Take a new video',
-    'More...',
-    'Cancel',
+    `Select from photo library`,
+    `Take a new photo`,
+    `Take a new video`,
+    `More...`,
+    `Cancel`,
   ],
   destructiveButtonIndex: 4,
   cancelButtonIndex: 4,
@@ -83,7 +83,7 @@ const pickFile = async cb => {
     p
       .split(/[\\/]/g)
       .pop()
-      .replace(/\?.+$/, '');
+      .replace(/\?.+$/, ``);
   let name = file.fileName || file.filename || file.name || getName(uri);
   let size = file.fileSize || file.filesize || file.size || 0;
   //
@@ -100,21 +100,21 @@ const pickFile = async cb => {
   //
   // Fix name has no extension
   let ext = name
-    .split('.')
+    .split(`.`)
     .pop()
-    .replace(/\?.+$/, '');
+    .replace(/\?.+$/, ``);
   // Fix ios no extension
   // TODO not so accuracy, just work around
-  if (Platform.OS === 'ios' && ext === name) {
+  if (Platform.OS === `ios` && ext === name) {
     switch (file.type) {
-      case 'image':
-        ext = 'jpg';
+      case `image`:
+        ext = `jpg`;
         break;
-      case 'video':
-        ext = 'mp4';
+      case `video`:
+        ext = `mp4`;
         break;
-      case 'audio':
-        ext = 'mp3';
+      case `audio`:
+        ext = `mp3`;
         break;
       default:
         break;
@@ -123,7 +123,7 @@ const pickFile = async cb => {
   }
   // Add extension to the file name
   if (!name.toLowerCase().endsWith(ext.toLowerCase())) {
-    name = name + '.' + ext;
+    name = name + `.` + ext;
   }
   //
   //

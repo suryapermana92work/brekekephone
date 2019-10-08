@@ -1,9 +1,9 @@
 import { createModel } from 'redux-model';
 
 export default createModel({
-  prefix: 'usersBrowsing',
+  prefix: `usersBrowsing`,
   origin: {
-    searchText: '',
+    searchText: ``,
   },
   getter: {
     searchText: s => s.searchText,

@@ -22,16 +22,16 @@ const st = StyleSheet.create({
   },
   navbar: {
     backgroundColor: std.color.shade1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     paddingVertical: std.gap.sm,
     borderColor: std.color.shade4,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   navbarBack: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
+    justifyContent: `center`,
+    alignItems: `center`,
+    position: `absolute`,
     left: std.gap.lg,
     top: 0,
     bottom: 0,
@@ -50,9 +50,9 @@ const st = StyleSheet.create({
     color: std.color.shade9,
   },
   navbarSave: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
+    justifyContent: `center`,
+    alignItems: `center`,
+    position: `absolute`,
     right: std.gap.lg,
     top: 0,
     bottom: 0,
@@ -74,8 +74,8 @@ const st = StyleSheet.create({
     color: std.color.shade5,
   },
   field: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: `row`,
+    alignItems: `center`,
     padding: std.gap.lg,
     backgroundColor: std.color.shade0,
     borderColor: std.color.shade4,
@@ -95,14 +95,14 @@ const st = StyleSheet.create({
     paddingVertical: 0,
     paddingHorizontal: 0,
     height: std.textSize.md + std.gap.md * 2,
-    textAlign: 'right',
+    textAlign: `right`,
   },
   pickerNative: {
     flex: 1,
     height: std.textSize.md + std.gap.md * 2,
   },
   pickerNativeText: {
-    textAlign: 'right',
+    textAlign: `right`,
     fontFamily: std.font.text,
     fontSize: std.textSize.md,
     color: std.color.shade9,
@@ -126,15 +126,15 @@ const st = StyleSheet.create({
         fontFamily: std.font.text,
         fontSize: std.textSize.md,
         color: std.color.shade9,
-        appearance: 'none',
-        backgroundColor: 'white',
-        borderStyle: 'none',
-        direction: 'rtl',
+        appearance: `none`,
+        backgroundColor: `white`,
+        borderStyle: `none`,
+        direction: `rtl`,
       },
     }),
   },
   fieldSwitch: {
-    marginLeft: 'auto',
+    marginLeft: `auto`,
   },
   parkNumber: {
     flex: 1,
@@ -202,7 +202,7 @@ const PhoneIndexPickerWeb = p => {
 };
 
 export const PhoneIndexPicker =
-  Platform.OS === 'web' ? PhoneIndexPickerWeb : PhoneIndexPickerNative;
+  Platform.OS === `web` ? PhoneIndexPickerWeb : PhoneIndexPickerNative;
 
 const pure = Component =>
   class extends PureComponent {
@@ -319,7 +319,7 @@ const UC = pure(p => (
       <Text style={st.fieldLabel}>Hostname</Text>
       <TextInput
         style={st.fieldValueTextInput}
-        placeholder={p.enabled ? 'Required' : 'Optional'}
+        placeholder={p.enabled ? `Required` : `Optional`}
         keyboardType="default"
         value={p.hostname}
         onChangeText={p.setHostname}
@@ -330,7 +330,7 @@ const UC = pure(p => (
       <Text style={st.fieldLabel}>Port</Text>
       <TextInput
         style={st.fieldValueTextInput}
-        placeholder={p.enabled ? 'Required' : 'Optional'}
+        placeholder={p.enabled ? `Required` : `Optional`}
         keyboardType="numeric"
         value={p.port}
         onChangeText={p.setPort}

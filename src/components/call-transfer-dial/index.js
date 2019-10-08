@@ -34,7 +34,7 @@ class View extends Component {
 
   state = {
     attended: true,
-    target: '',
+    target: ``,
   };
 
   render() {
@@ -76,7 +76,7 @@ class View extends Component {
     if (pbxUser) {
       pbxUserName = pbxUser.name.toLowerCase();
     } else {
-      pbxUserName = '';
+      pbxUserName = ``;
     }
 
     return userId.includes(searchTextLC) || pbxUserName.includes(searchTextLC);
@@ -103,7 +103,7 @@ class View extends Component {
   transfer = () => {
     const target = this.state.target;
     if (!target.trim()) {
-      this.props.showToast('No target');
+      this.props.showToast(`No target`);
       return;
     }
 
@@ -135,13 +135,13 @@ class View extends Component {
 
   onTransferFailure = err => {
     console.error(err);
-    this.props.showToast('Failed target transfer the call');
+    this.props.showToast(`Failed target transfer the call`);
   };
 
   transferBlind = () => {
     const target = this.state.target;
     if (!target.trim()) {
-      this.props.showToast('No target');
+      this.props.showToast(`No target`);
       return;
     }
 
@@ -158,7 +158,7 @@ class View extends Component {
   transferAttended = () => {
     const target = this.state.target;
     if (!target.trim()) {
-      this.props.showToast('No target');
+      this.props.showToast(`No target`);
       return;
     }
 
@@ -187,13 +187,13 @@ class View extends Component {
 
   onTransferAttendedForVideoFailure = err => {
     console.error(err);
-    this.props.showToast('Failed target transfer the call');
+    this.props.showToast(`Failed target transfer the call`);
   };
 
   transferAttendedForVideo = () => {
     const target = this.state.target;
     if (!target.trim()) {
-      this.props.showToast('No target');
+      this.props.showToast(`No target`);
       return;
     }
 

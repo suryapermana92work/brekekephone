@@ -3,7 +3,7 @@ import omitProps from 'lodash/omit';
 import pickProps from 'lodash/pick';
 import { createModel } from 'redux-model';
 
-const allowedChatProps = ['id', 'created', 'text', 'file', 'creator'];
+const allowedChatProps = [`id`, `created`, `text`, `file`, `creator`];
 const validateChat = chat => pickProps(chat, allowedChatProps);
 const uniqArray = arr => Array.from(new Set(arr));
 const reduceChatsToMapById = chats =>
@@ -11,7 +11,7 @@ const reduceChatsToMapById = chats =>
 const mapChatsToIds = chats => chats.map(({ id }) => id);
 
 export default createModel({
-  prefix: 'groupChats',
+  prefix: `groupChats`,
   origin: {
     groupIdsByRecent: [],
     idsMapByGroup: {},
@@ -30,21 +30,21 @@ export default createModel({
     }),
     clearByGroup: (prevState, group) =>
       immutable.on(prevState)(
-        immutable.fset('groupIdsByRecent', ids =>
+        immutable.fset(`groupIdsByRecent`, ids =>
           ids.filter(id => id !== group),
         ),
-        immutable.fset('detailMapById', map =>
+        immutable.fset(`detailMapById`, map =>
           omitProps(map, prevState.idsMapByGroup[group]),
         ),
         immutable.fset(
-          'idsMapByGroup',
+          `idsMapByGroup`,
           map => ({ [group]: removed, ...rest }) => rest,
         ),
       ),
     appendByGroup: (prevState, group, chats) =>
       immutable.on(prevState)(
-        immutable.fset('groupIdsByRecent', ids => uniqArray([group, ...ids])),
-        immutable.fset('detailMapById', map => ({
+        immutable.fset(`groupIdsByRecent`, ids => uniqArray([group, ...ids])),
+        immutable.fset(`detailMapById`, map => ({
           ...map,
           ...reduceChatsToMapById(chats.map(validateChat)),
         })),
@@ -55,8 +55,8 @@ export default createModel({
       ),
     prependByGroup: (prevState, group, chats) =>
       immutable.on(prevState)(
-        immutable.fset('groupIdsByRecent', ids => uniqArray([group, ...ids])),
-        immutable.fset('detailMapById', map => ({
+        immutable.fset(`groupIdsByRecent`, ids => uniqArray([group, ...ids])),
+        immutable.fset(`detailMapById`, map => ({
           ...map,
           ...reduceChatsToMapById(chats.map(validateChat)),
         })),

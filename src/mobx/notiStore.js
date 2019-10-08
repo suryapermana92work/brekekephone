@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { observable, action, runInAction } from 'mobx';
+import { action, observable, runInAction } from 'mobx';
 import shortid from 'shortid';
 
 class NotiStore {
@@ -16,26 +16,26 @@ class NotiStore {
     while (this.notiArr.length > 20) {
       this.notiArr.pop();
     }
-    AsyncStorage.set('NotiStore.notiArr', JSON.stringify(this.notiArr));
+    AsyncStorage.set(`NotiStore.notiArr`, JSON.stringify(this.notiArr));
   };
   @action markAsRead = id => {
     const n = this.notiArr.find(n => n.id === id);
     if (n) {
       n.read = true;
-      AsyncStorage.set('NotiStore.notiArr', JSON.stringify(this.notiArr));
+      AsyncStorage.set(`NotiStore.notiArr`, JSON.stringify(this.notiArr));
     }
   };
   loadNotiFromStorage = async () => {
     let arr = null;
     try {
-      arr = await AsyncStorage.get('NotiStore.notiArr');
+      arr = await AsyncStorage.get(`NotiStore.notiArr`);
       arr = JSON.parse(arr);
     } catch (err) {
       arr = null;
     }
     if (!Array.isArray(arr)) {
       arr = [];
-      await AsyncStorage.set('NotiStore.notiArr', JSON.stringify(arr));
+      await AsyncStorage.set(`NotiStore.notiArr`, JSON.stringify(arr));
     }
     runInAction(() => {
       this.notiArr = arr;

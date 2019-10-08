@@ -1,9 +1,9 @@
+import * as UCClient from 'brekekejs/lib/ucclient';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createModelView } from 'redux-model';
 import createId from 'shortid';
 
-import * as UCClient from 'brekekejs/lib/ucclient';
 import * as routerUtils from '../../mobx/routerStore';
 import UI, { UC_CONNECT_STATES } from './ui';
 
@@ -19,7 +19,7 @@ class View extends React.Component {
 
   componentDidMount() {
     this._setStateForLifecycle(UC_CONNECT_STATES.NONE, false);
-    this.context.uc.on('connection-stopped', this.onConnectionStopped);
+    this.context.uc.on(`connection-stopped`, this.onConnectionStopped);
     if (this.needToAutoAuth()) {
       this.auth();
     }
@@ -30,7 +30,7 @@ class View extends React.Component {
     }
   }
   componentWillUnmount() {
-    this.context.uc.off('connection-stopped', this.onConnectionStopped);
+    this.context.uc.off(`connection-stopped`, this.onConnectionStopped);
     this.context.uc.disconnect();
     this._setStateForLifecycle(UC_CONNECT_STATES.NONE, false);
     this.props.onStopped();
@@ -117,7 +117,7 @@ class View extends React.Component {
     });
   };
   onLoadUnreadChatsFailure = err => {
-    this.props.showToast('Failed to load unread chats');
+    this.props.showToast(`Failed to load unread chats`);
     if (err && err.message) {
       this.props.showToast(err.message);
     }

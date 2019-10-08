@@ -3,40 +3,40 @@ import pick from 'lodash/pick';
 import { createModel } from 'redux-model';
 
 const allowedToCreateFields = [
-  'id',
-  'pbxHostname',
-  'pbxPort',
-  'pbxTenant',
-  'pbxUsername',
-  'pbxPassword',
-  'pbxPhoneIndex',
-  'pbxTurnEnabled',
-  'parks',
-  'ucEnabled',
-  'ucHostname',
-  'ucPort',
-  'accessToken',
+  `id`,
+  `pbxHostname`,
+  `pbxPort`,
+  `pbxTenant`,
+  `pbxUsername`,
+  `pbxPassword`,
+  `pbxPhoneIndex`,
+  `pbxTurnEnabled`,
+  `parks`,
+  `ucEnabled`,
+  `ucHostname`,
+  `ucPort`,
+  `accessToken`,
 ];
 const validateCreatingData = data => pick(data, allowedToCreateFields);
 
 const allowedToUpdateFields = [
-  'pbxHostname',
-  'pbxPort',
-  'pbxTenant',
-  'pbxUsername',
-  'pbxPassword',
-  'pbxPhoneIndex',
-  'pbxTurnEnabled',
-  'parks',
-  'ucEnabled',
-  'ucHostname',
-  'ucPort',
-  'accessToken',
+  `pbxHostname`,
+  `pbxPort`,
+  `pbxTenant`,
+  `pbxUsername`,
+  `pbxPassword`,
+  `pbxPhoneIndex`,
+  `pbxTurnEnabled`,
+  `parks`,
+  `ucEnabled`,
+  `ucHostname`,
+  `ucPort`,
+  `accessToken`,
 ];
 const validateUpdatingData = data => pick(data, allowedToUpdateFields);
 
 export default createModel({
-  prefix: 'profiles',
+  prefix: `profiles`,
   origin: {
     idsByOrder: [],
     detailMapById: {},
@@ -48,7 +48,7 @@ export default createModel({
   action: {
     create: (prevState, profile) =>
       immutable.on(prevState)(
-        immutable.fset('idsByOrder', ids => [...ids, profile.id]),
+        immutable.fset(`idsByOrder`, ids => [...ids, profile.id]),
         immutable.vset(
           `detailMapById.${profile.id}`,
           validateCreatingData(profile),
@@ -63,8 +63,8 @@ export default createModel({
       ),
     remove: (prevState, id) =>
       immutable.on(prevState)(
-        immutable.fset('idsByOrder', ids => ids.filter(_id => _id !== id)),
-        immutable.fset('detailMapById', ({ [id]: removed, ...rest }) => rest),
+        immutable.fset(`idsByOrder`, ids => ids.filter(_id => _id !== id)),
+        immutable.fset(`detailMapById`, ({ [id]: removed, ...rest }) => rest),
       ),
   },
 });

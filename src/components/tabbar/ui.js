@@ -11,17 +11,17 @@ import { rem, std } from '../../styleguide';
 
 const st = {
   main: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: `row`,
+    justifyContent: `space-around`,
+    alignItems: `center`,
     backgroundColor: std.color.shade1,
     borderColor: std.color.shade4,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   tab: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     flex: 1,
   },
   tabIcon: {

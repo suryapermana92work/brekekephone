@@ -18,18 +18,18 @@ const mapAction = action => emit => ({
 
 class View extends Component {
   state = {
-    pbxHostname: '',
-    pbxPort: '',
-    pbxTenant: '',
-    pbxUsername: '',
-    pbxPassword: '',
-    pbxPhoneIndex: '4',
+    pbxHostname: ``,
+    pbxPort: ``,
+    pbxTenant: ``,
+    pbxUsername: ``,
+    pbxPassword: ``,
+    pbxPhoneIndex: `4`,
     pbxTurnEnabled: false,
     ucEnabled: false,
-    ucHostname: '',
-    ucPort: '',
+    ucHostname: ``,
+    ucPort: ``,
     parks: [],
-    addingPark: '',
+    addingPark: ``,
   };
 
   render() {
@@ -132,13 +132,13 @@ class View extends Component {
     }
 
     if (/[^a-z0-9_]/.test(addingPark)) {
-      this.props.showToast('Invalid park number');
+      this.props.showToast(`Invalid park number`);
       return;
     }
 
     this.setState({
       parks: [addingPark, ...parks.filter(_ => _ !== addingPark)],
-      addingPark: '',
+      addingPark: ``,
     });
   };
 
@@ -157,16 +157,16 @@ class View extends Component {
 
   save = () => {
     if (this.missingRequired()) {
-      this.props.showToast('Missing required fields');
+      this.props.showToast(`Missing required fields`);
       return;
     }
 
     if (!validateHostname(this.state.pbxHostname)) {
-      this.props.showToast('Host name is invalid');
+      this.props.showToast(`Host name is invalid`);
       return;
     }
     if (!validatePort(this.state.pbxPort)) {
-      this.props.showToast('Port is invalid');
+      this.props.showToast(`Port is invalid`);
       return;
     }
 

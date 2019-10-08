@@ -44,18 +44,18 @@ const mapAction = action => emit => ({
 });
 
 const monthName = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
+  `Jan`,
+  `Feb`,
+  `Mar`,
+  `Apr`,
+  `May`,
+  `Jun`,
+  `Jul`,
+  `Aug`,
+  `Sep`,
+  `Oct`,
+  `Nov`,
+  `Dec`,
 ];
 
 const isToday = time => {
@@ -70,11 +70,11 @@ const formatTime = time => {
   const hour = time
     .getHours()
     .toString()
-    .padStart(2, '0');
+    .padStart(2, `0`);
   const min = time
     .getMinutes()
     .toString()
-    .padStart(2, '0');
+    .padStart(2, `0`);
   if (isToday(time)) return `${hour}:${min}`;
 
   const month = monthName[time.getMonth()];
@@ -104,10 +104,10 @@ class View extends Component {
   };
 
   state = {
-    target: '',
+    target: ``,
     loadingRecent: false,
     loadingMore: false,
-    editingText: '',
+    editingText: ``,
   };
 
   componentDidMount() {
@@ -196,7 +196,7 @@ class View extends Component {
     console.error(err);
     this.setState({ loadingRecent: false });
     const { showToast } = this.props;
-    showToast('Failed to get recent chats');
+    showToast(`Failed to get recent chats`);
   };
 
   loadMore = () => {
@@ -224,7 +224,7 @@ class View extends Component {
 
   onLoadMoreFailure = err => {
     const { showToast } = this.props;
-    showToast('Failed to get more chats');
+    showToast(`Failed to get more chats`);
     console.error(err);
     this.setState({ loadingMore: false });
   };
@@ -253,11 +253,11 @@ class View extends Component {
   };
   onSubmitEditingTextSuccess = chat => {
     this.props.appendChats(this.props.group.id, [chat]);
-    this.setState({ editingText: '' });
+    this.setState({ editingText: `` });
   };
   onSubmitEditingTextFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to send the message');
+    this.props.showToast(`Failed to send the message`);
   };
 
   leave = () => {
@@ -281,7 +281,7 @@ class View extends Component {
     const { showToast } = this.props;
 
     console.error(err);
-    showToast('Failed to leave the group');
+    showToast(`Failed to leave the group`);
   };
 
   invite = () => {
@@ -299,8 +299,8 @@ class View extends Component {
   callVoiceConference = () => {
     const { group } = this.props;
     let target = group.id;
-    if (!target.startsWith('uc')) {
-      target = 'uc' + group.id;
+    if (!target.startsWith(`uc`)) {
+      target = `uc` + group.id;
     }
     this.call(target, false);
   };
@@ -308,8 +308,8 @@ class View extends Component {
   callVideoConference = () => {
     const { group } = this.props;
     let target = group.id;
-    if (!target.startsWith('uc')) {
-      target = 'uc' + group.id;
+    if (!target.startsWith(`uc`)) {
+      target = `uc` + group.id;
     }
     this.call(target, true);
   };

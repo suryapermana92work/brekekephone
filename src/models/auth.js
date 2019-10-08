@@ -3,7 +3,7 @@ import pick from 'lodash/pick';
 import { createModel } from 'redux-model';
 
 export default createModel({
-  prefix: 'auth',
+  prefix: `auth`,
   origin: {
     pbx: {
       started: false,
@@ -50,59 +50,59 @@ export default createModel({
   },
   action: {
     setUserExtensionProperties: (prevState, props) =>
-      immutable.on(prevState)(immutable.vset('userExtensionProperties', props)),
+      immutable.on(prevState)(immutable.vset(`userExtensionProperties`, props)),
 
     setProfile: (prevState, profile) =>
       immutable.on(prevState)(
         immutable.vset(
-          'profile',
+          `profile`,
           pick(profile, [
-            'id',
-            'pbxHostname',
-            'pbxPort',
-            'pbxTenant',
-            'pbxUsername',
-            'pbxPassword',
-            'pbxPhoneIndex',
-            'pbxTurnEnabled',
-            'parks',
-            'ucEnabled',
-            'ucHostname',
-            'ucPort',
-            'accessToken',
+            `id`,
+            `pbxHostname`,
+            `pbxPort`,
+            `pbxTenant`,
+            `pbxUsername`,
+            `pbxPassword`,
+            `pbxPhoneIndex`,
+            `pbxTurnEnabled`,
+            `parks`,
+            `ucEnabled`,
+            `ucHostname`,
+            `ucPort`,
+            `accessToken`,
           ]),
         ),
       ),
 
     pbx: {
       onStarted: prevState =>
-        immutable.on(prevState)(immutable.vset('pbx', { started: true })),
+        immutable.on(prevState)(immutable.vset(`pbx`, { started: true })),
       onSuccess: prevState =>
-        immutable.on(prevState)(immutable.vset('pbx', { success: true })),
+        immutable.on(prevState)(immutable.vset(`pbx`, { success: true })),
       onFailure: prevState =>
-        immutable.on(prevState)(immutable.vset('pbx', { failure: true })),
+        immutable.on(prevState)(immutable.vset(`pbx`, { failure: true })),
       onStopped: prevState =>
-        immutable.on(prevState)(immutable.vset('pbx', { stopped: true })),
+        immutable.on(prevState)(immutable.vset(`pbx`, { stopped: true })),
     },
     sip: {
       onStarted: prevState =>
-        immutable.on(prevState)(immutable.vset('sip', { started: true })),
+        immutable.on(prevState)(immutable.vset(`sip`, { started: true })),
       onSuccess: prevState =>
-        immutable.on(prevState)(immutable.vset('sip', { success: true })),
+        immutable.on(prevState)(immutable.vset(`sip`, { success: true })),
       onFailure: prevState =>
-        immutable.on(prevState)(immutable.vset('sip', { failure: true })),
+        immutable.on(prevState)(immutable.vset(`sip`, { failure: true })),
       onStopped: prevState =>
-        immutable.on(prevState)(immutable.vset('sip', { stopped: true })),
+        immutable.on(prevState)(immutable.vset(`sip`, { stopped: true })),
     },
     uc: {
       onStarted: prevState =>
-        immutable.on(prevState)(immutable.vset('uc', { started: true })),
+        immutable.on(prevState)(immutable.vset(`uc`, { started: true })),
       onSuccess: prevState =>
-        immutable.on(prevState)(immutable.vset('uc', { success: true })),
+        immutable.on(prevState)(immutable.vset(`uc`, { success: true })),
       onFailure: prevState =>
-        immutable.on(prevState)(immutable.vset('uc', { failure: true })),
+        immutable.on(prevState)(immutable.vset(`uc`, { failure: true })),
       onStopped: prevState =>
-        immutable.on(prevState)(immutable.vset('uc', { stopped: true })),
+        immutable.on(prevState)(immutable.vset(`uc`, { stopped: true })),
     },
   },
 });

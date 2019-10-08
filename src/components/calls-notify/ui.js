@@ -10,12 +10,12 @@ import { rem, std } from '../../styleguide';
 
 const st = StyleSheet.create({
   notify: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: `row`,
+    alignItems: `center`,
     width: rem(320),
     backgroundColor: std.color.notify,
     marginBottom: std.gap.lg,
-    alignSelf: 'flex-start',
+    alignSelf: `flex-start`,
     borderTopRightRadius: std.gap.lg,
     borderBottomRightRadius: std.gap.lg,
     shadowColor: std.color.shade9,
@@ -51,8 +51,8 @@ const st = StyleSheet.create({
     color: std.color.shade9,
   },
   accept: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     width: std.iconSize.lg * 2,
     height: std.iconSize.lg * 2,
     borderWidth: StyleSheet.hairlineWidth,
@@ -66,8 +66,8 @@ const st = StyleSheet.create({
     color: std.color.active,
   },
   reject: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     width: std.iconSize.lg * 2,
     height: std.iconSize.lg * 2,
     borderWidth: StyleSheet.hairlineWidth,
@@ -86,7 +86,7 @@ const Notify = p => (
   <View style={st.notify}>
     <View style={st.notifyInfo}>
       <Text style={st.notifyCatalog}>
-        {p.remoteVideoEnabled ? 'Incoming video call' : 'Incoming voice call'}
+        {p.remoteVideoEnabled ? `Incoming video call` : `Incoming voice call`}
       </Text>
       <Text style={st.notifyTitle}>{p.partyName.toUpperCase()}</Text>
       <Text style={st.notifySubtitle}>{p.partyNumber}</Text>

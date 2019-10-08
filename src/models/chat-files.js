@@ -3,30 +3,30 @@ import pickProps from 'lodash/pick';
 import { createModel } from 'redux-model';
 
 const allowedToCreateProps = [
-  'id',
-  'name',
-  'size',
-  'incoming',
-  'transferPercent',
-  'transferWaiting',
-  'transferStarted',
-  'transferSuccess',
-  'transferStopped',
-  'transferFailure',
+  `id`,
+  `name`,
+  `size`,
+  `incoming`,
+  `transferPercent`,
+  `transferWaiting`,
+  `transferStarted`,
+  `transferSuccess`,
+  `transferStopped`,
+  `transferFailure`,
 ];
 const allowedToUpdateProps = [
-  'transferPercent',
-  'transferWaiting',
-  'transferStarted',
-  'transferSuccess',
-  'transferStopped',
-  'transferFailure',
+  `transferPercent`,
+  `transferWaiting`,
+  `transferStarted`,
+  `transferSuccess`,
+  `transferStopped`,
+  `transferFailure`,
 ];
 const validateCreatingFile = file => pickProps(file, allowedToCreateProps);
 const validateUpdatingFile = file => pickProps(file, allowedToUpdateProps);
 
 export default createModel({
-  prefix: 'chatFiles',
+  prefix: `chatFiles`,
   origin: {
     byId: {},
   },
@@ -47,7 +47,7 @@ export default createModel({
       ),
     remove: (prevState, id) =>
       immutable.on(prevState)(
-        immutable.fset('byId', ({ [id]: removed, ...rest }) => rest),
+        immutable.fset(`byId`, ({ [id]: removed, ...rest }) => rest),
       ),
   },
 });

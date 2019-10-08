@@ -13,8 +13,8 @@ const st = {
   notFound: {
     flex: 1,
     backgroundColor: std.color.shade3,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
   },
   notFoundMessage: {
     fontFamily: std.font.text,
@@ -28,8 +28,8 @@ const st = {
   },
   navbar: {
     backgroundColor: std.color.shade1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: `center`,
+    justifyContent: `center`,
     paddingVertical: std.gap.sm,
     borderColor: std.color.shade4,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -41,18 +41,18 @@ const st = {
     color: std.color.shade9,
   },
   navbarOptLeft: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
+    alignItems: `center`,
+    justifyContent: `center`,
+    position: `absolute`,
     left: std.gap.lg,
     top: 0,
     bottom: 0,
     paddingRight: std.gap.lg,
   },
   navbarOptRight: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
+    alignItems: `center`,
+    justifyContent: `center`,
+    position: `absolute`,
     right: std.gap.lg,
     top: 0,
     bottom: 0,
@@ -118,10 +118,10 @@ const Form = p => (
   <View style={st.form}>
     <View style={st.profile}>
       <Text style={st.profileTitle}>
-        {p.tenant ? p.tenant + '/' : ''}
+        {p.tenant ? p.tenant + `/` : ``}
         {p.username}
       </Text>
-      <Text style={st.profileCaption}>{p.hostname + ':' + p.port}</Text>
+      <Text style={st.profileCaption}>{p.hostname + `:` + p.port}</Text>
     </View>
     <TextInput
       style={st.passwordInput}

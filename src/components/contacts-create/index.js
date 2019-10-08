@@ -23,21 +23,21 @@ class View extends Component {
 
   state = {
     saving: false,
-    firtName: '',
-    lastName: '',
-    workNumber: '',
-    cellNumber: '',
-    homeNumber: '',
-    job: '',
-    company: '',
-    address: '',
-    email: '',
+    firtName: ``,
+    lastName: ``,
+    workNumber: ``,
+    cellNumber: ``,
+    homeNumber: ``,
+    job: ``,
+    company: ``,
+    address: ``,
+    email: ``,
   };
 
   render() {
     return (
       <UI
-        book={routerUtils.getQuery().book || ''}
+        book={routerUtils.getQuery().book || ``}
         firstName={this.state.firstName}
         lastName={this.state.lastName}
         workNumber={this.state.workNumber}
@@ -76,15 +76,15 @@ class View extends Component {
 
   save = () => {
     if (!routerUtils.getQuery().book) {
-      this.props.showToast('The phonebook name is required');
+      this.props.showToast(`The phonebook name is required`);
       return;
     }
     if (!this.state.firstName) {
-      this.props.showToast('The first name is required');
+      this.props.showToast(`The first name is required`);
       return;
     }
     if (!this.state.lastName) {
-      this.props.showToast('The last name is required');
+      this.props.showToast(`The last name is required`);
       return;
     }
     this.context.pbx
@@ -110,7 +110,7 @@ class View extends Component {
 
   onSaveFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to save the contact');
+    this.props.showToast(`Failed to save the contact`);
   };
 }
 

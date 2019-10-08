@@ -63,7 +63,7 @@ class View extends Component {
     const members = Object.keys(selectedBuddy);
 
     if (!members.length) {
-      showToast('No buddy selectedBuddy');
+      showToast(`No buddy selectedBuddy`);
       return;
     }
 
@@ -76,7 +76,7 @@ class View extends Component {
   onInviteFailure = err => {
     console.error(err);
     const { showToast } = this.props;
-    showToast(err.message || 'Failed with unknown error');
+    showToast(err.message || `Failed with unknown error`);
   };
 
   back = () => {

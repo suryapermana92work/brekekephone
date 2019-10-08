@@ -9,13 +9,13 @@ export const getPnToken = async () => {
     }));
   return {
     endpoint: sub.endpoint,
-    p256dh: uint8ArrayToUrlBase64(sub.getKey('p256dh')),
-    auth: uint8ArrayToUrlBase64(sub.getKey('auth')),
+    p256dh: uint8ArrayToUrlBase64(sub.getKey(`p256dh`)),
+    auth: uint8ArrayToUrlBase64(sub.getKey(`auth`)),
   };
 };
 
 export const registerPn = () => {
-  if (!window.Notification || window.Notification.permission === 'granted') {
+  if (!window.Notification || window.Notification.permission === `granted`) {
     return;
   }
   Notification.requestPermission();

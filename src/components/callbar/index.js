@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { createModelView } from 'redux-model';
 import createId from 'shortid';
 
-import * as routerUtils from '../../mobx/routerStore';
 import LoudSpeaker from '../../components/calls-manage/LoudSpeaker';
+import * as routerUtils from '../../mobx/routerStore';
 import UI from './ui';
 
 const mapGetter = getter => state => ({
@@ -101,7 +101,7 @@ class View extends Component {
 
   onHoldFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to hold the call');
+    this.props.showToast(`Failed to hold the call`);
   };
 
   unhold = () => {
@@ -125,9 +125,9 @@ class View extends Component {
 
   onUnholdFailure = err => {
     const activecallid = this.state.activecallid;
-    console.error('onUnholdFailure activecallid=' + activecallid);
+    console.error(`onUnholdFailure activecallid=` + activecallid);
     console.error(err);
-    this.props.showToast('Failed to unhold the call');
+    this.props.showToast(`Failed to unhold the call`);
   };
 
   findActiveCallByRunids_s(runids, props) {

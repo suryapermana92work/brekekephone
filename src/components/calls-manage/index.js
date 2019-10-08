@@ -197,7 +197,7 @@ class View extends Component {
 
   onHoldFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to hold the call');
+    this.props.showToast(`Failed to hold the call`);
   };
 
   unhold = () => {
@@ -217,7 +217,7 @@ class View extends Component {
 
   onUnholdFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to unhold the call');
+    this.props.showToast(`Failed to unhold the call`);
   };
 
   startRecording = () => {
@@ -237,7 +237,7 @@ class View extends Component {
 
   onStartRecordingFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to start recording the call');
+    this.props.showToast(`Failed to start recording the call`);
   };
 
   stopRecording = () => {
@@ -257,7 +257,7 @@ class View extends Component {
 
   onStopRecordingFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to stop recording the call');
+    this.props.showToast(`Failed to stop recording the call`);
   };
 
   transfer = () => {

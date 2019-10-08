@@ -1,5 +1,6 @@
-import Swal from 'sweetalert2/dist/sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
+
+import Swal from 'sweetalert2/dist/sweetalert2';
 
 export default {
   // Only support [cancelBtn, okBtn]

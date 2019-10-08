@@ -12,8 +12,8 @@ const st = StyleSheet.create({
   noCall: {
     flex: 1,
     backgroundColor: std.color.shade3,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
   },
   noCallMessage: {
     fontFamily: std.font.text,
@@ -27,8 +27,8 @@ const st = StyleSheet.create({
   },
   navbar: {
     backgroundColor: std.color.shade1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: `center`,
+    justifyContent: `center`,
     paddingVertical: std.gap.sm,
     borderColor: std.color.shade4,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -40,9 +40,9 @@ const st = StyleSheet.create({
     color: std.color.shade9,
   },
   navbarLeftOpt: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
+    alignItems: `center`,
+    justifyContent: `center`,
+    position: `absolute`,
     left: std.gap.lg,
     top: 0,
     bottom: 0,
@@ -55,7 +55,7 @@ const st = StyleSheet.create({
     color: std.color.action,
   },
   call: {
-    alignItems: 'center',
+    alignItems: `center`,
     padding: std.gap.lg,
     backgroundColor: std.color.shade0,
     marginBottom: std.gap.lg,
@@ -73,18 +73,18 @@ const st = StyleSheet.create({
     color: std.color.shade5,
   },
   keypad: {
-    alignItems: 'center',
+    alignItems: `center`,
     backgroundColor: std.color.shade0,
     paddingTop: std.gap.lg,
     borderColor: std.color.shade4,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   keyRow: {
-    flexDirection: 'row',
+    flexDirection: `row`,
   },
   keyCell: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     width: std.iconSize.md * 2,
     height: std.iconSize.md * 2,
     borderRadius: std.iconSize.md,
@@ -103,16 +103,16 @@ const st = StyleSheet.create({
 
 const Call = p => (
   <View style={st.call}>
-    <Text style={st.callName}>{p.partyName || 'Unnamed'}</Text>
+    <Text style={st.callName}>{p.partyName || `Unnamed`}</Text>
     <Text style={st.callNumber}>{p.partyNumber}</Text>
   </View>
 );
 
 const keys = [
-  ['1', '2', '3'],
-  ['4', '5', '6'],
-  ['7', '8', '9'],
-  ['*', '0', '#'],
+  [`1`, `2`, `3`],
+  [`4`, `5`, `6`],
+  [`7`, `8`, `9`],
+  [`*`, `0`, `#`],
 ];
 
 const Keypad = p => (

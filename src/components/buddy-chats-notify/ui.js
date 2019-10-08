@@ -5,12 +5,12 @@ import { rem, std } from '../../styleguide';
 
 const st = StyleSheet.create({
   notify: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: `row`,
+    alignItems: `center`,
     width: rem(320),
     backgroundColor: std.color.notify,
     marginBottom: std.gap.lg,
-    alignSelf: 'flex-start',
+    alignSelf: `flex-start`,
     borderTopRightRadius: std.gap.lg,
     borderBottomRightRadius: std.gap.lg,
     shadowColor: std.color.shade9,
@@ -46,8 +46,8 @@ const st = StyleSheet.create({
     color: std.color.shade9,
   },
   accept: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     width: std.iconSize.lg * 2,
     height: std.iconSize.lg * 2,
     borderWidth: StyleSheet.hairlineWidth,
@@ -61,8 +61,8 @@ const st = StyleSheet.create({
     color: std.color.active,
   },
   reject: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
     width: std.iconSize.lg * 2,
     height: std.iconSize.lg * 2,
     borderWidth: StyleSheet.hairlineWidth,

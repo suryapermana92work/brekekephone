@@ -54,7 +54,7 @@ class View extends Component {
     const { selectedPark } = this.state;
 
     if (!selectedPark) {
-      this.props.showToast('No selected park');
+      this.props.showToast(`No selected park`);
       return;
     }
 
@@ -74,7 +74,7 @@ class View extends Component {
   };
 
   onParkFailure = err => {
-    this.props.showToast('Failed to park the call');
+    this.props.showToast(`Failed to park the call`);
     console.error(err);
   };
 }

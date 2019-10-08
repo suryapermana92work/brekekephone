@@ -19,7 +19,7 @@ const mapAction = action => emit => ({
 
 const numberOfContactsPerPage = 30;
 
-const formatPhoneNumber = number => number.replace(/\D+/g, '');
+const formatPhoneNumber = number => number.replace(/\D+/g, ``);
 
 @observer
 class View extends Component {
@@ -49,7 +49,7 @@ class View extends Component {
         contactIds={this.state.contactIds}
         resolveContact={this.resolveContact}
         book={routerUtils.getQuery().book}
-        shared={routerUtils.getQuery().shared === 'true'}
+        shared={routerUtils.getQuery().shared === `true`}
         back={routerUtils.goToPhonebooksBrowse}
         goNextPage={this.goNextPage}
         goPrevPage={this.goPrevPage}
@@ -91,11 +91,11 @@ class View extends Component {
   saveContact = id => {
     const contact = this.state.contactById[id];
     if (!contact.firstName) {
-      this.props.showToast('The first name is required');
+      this.props.showToast(`The first name is required`);
       return;
     }
     if (!contact.lastName) {
-      this.props.showToast('The last name is required');
+      this.props.showToast(`The last name is required`);
       return;
     }
 
@@ -123,7 +123,7 @@ class View extends Component {
       );
 
       console.error(err);
-      this.props.showToast('Failed to save the contact');
+      this.props.showToast(`Failed to save the contact`);
     };
 
     pbx.setContact(this.state.contactById[id]).then(onSuccess, onFailure);
@@ -135,7 +135,7 @@ class View extends Component {
         immutable.vset(`contactById.${id}.firstName`, val),
         immutable.vset(
           `contactById.${id}.name`,
-          val + ' ' + this.state.contactById[id].lastName,
+          val + ` ` + this.state.contactById[id].lastName,
         ),
       ),
     );
@@ -147,7 +147,7 @@ class View extends Component {
         immutable.vset(`contactById.${id}.lastName`, val),
         immutable.vset(
           `contactById.${id}.name`,
-          this.state.contactById[id].firstName + ' ' + val,
+          this.state.contactById[id].firstName + ` ` + val,
         ),
       ),
     );
@@ -247,7 +247,7 @@ class View extends Component {
 
   onLoadContactsFailure = err => {
     console.error(err);
-    this.props.showToast('Failed to load contacts');
+    this.props.showToast(`Failed to load contacts`);
   };
 
   loadContactDetails = () => {

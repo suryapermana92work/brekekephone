@@ -62,7 +62,7 @@ class View extends Component {
   onRejectFailure = err => {
     console.error(err);
     const { showToast } = this.props;
-    showToast('Failed to reject the group chat');
+    showToast(`Failed to reject the group chat`);
   };
 
   accept = group => {
@@ -73,7 +73,7 @@ class View extends Component {
   onAcceptFailure = err => {
     console.error(err);
     const { showToast } = this.props;
-    showToast('Failed to accept the group chat');
+    showToast(`Failed to accept the group chat`);
   };
 }
 

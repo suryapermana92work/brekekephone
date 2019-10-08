@@ -23,7 +23,7 @@ class View extends Component {
   constructor(props) {
     super(props);
     this.state = props.profile;
-    this.state.pbxPhoneIndex = this.state.pbxPhoneIndex || '4';
+    this.state.pbxPhoneIndex = this.state.pbxPhoneIndex || `4`;
   }
 
   render() {
@@ -115,13 +115,13 @@ class View extends Component {
     }
 
     if (/[^a-z0-9_]/.test(addingPark)) {
-      this.props.showToast('Invalid park number');
+      this.props.showToast(`Invalid park number`);
       return;
     }
 
     this.setState({
       parks: [addingPark, ...parks.filter(_ => _ !== addingPark)],
-      addingPark: '',
+      addingPark: ``,
     });
   };
 
@@ -140,15 +140,15 @@ class View extends Component {
 
   save = () => {
     if (this.missingRequired()) {
-      this.props.showToast('Missing required fields');
+      this.props.showToast(`Missing required fields`);
       return;
     }
     if (!validateHostname(this.state.pbxHostname)) {
-      this.props.showToast('Host name is invalid');
+      this.props.showToast(`Host name is invalid`);
       return;
     }
     if (!validatePort(this.state.pbxPort)) {
-      this.props.showToast('Port is invalid');
+      this.props.showToast(`Port is invalid`);
       return;
     }
 
@@ -157,7 +157,7 @@ class View extends Component {
     const pbxTenant = this.state.pbxTenant.trim();
     const pbxUsername = this.state.pbxUsername.trim();
     const pbxPassword = this.state.pbxPassword.trim();
-    const pbxPhoneIndex = this.state.pbxPhoneIndex || '4';
+    const pbxPhoneIndex = this.state.pbxPhoneIndex || `4`;
     const pbxTurnEnabled = this.state.pbxTurnEnabled;
     const ucHostname = this.state.ucHostname.trim();
     const ucPort = this.state.ucPort.trim();

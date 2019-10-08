@@ -3,7 +3,7 @@ import InCall from 'react-native-incall-manager';
 
 class IncomingItem extends Component {
   componentDidMount() {
-    InCall.startRingtone('_BUNDLE_');
+    InCall.startRingtone(`_BUNDLE_`);
   }
 
   componentWillUnmount() {
@@ -20,7 +20,7 @@ const IncomingList = p =>
 
 class OutgoingItem extends Component {
   componentDidMount() {
-    InCall.start({ ringback: '_BUNDLE_' });
+    InCall.start({ ringback: `_BUNDLE_` });
   }
 
   componentWillUnmount() {

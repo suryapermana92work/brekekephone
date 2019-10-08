@@ -6,8 +6,13 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "lint": "eslint --ignore-path=.gitignore .",
-    "pret": "js-import-sort --silent=1 --path src{,/**}/*.js && prettier --ignore-path=.gitignore --loglevel=silent --write \"**/*.{html,scss,js,json,md}\""
+    "pret": "eslint --ignore-path=.gitignore --fix . && prettier --ignore-path=.gitignore --loglevel=silent --write \"**/*.{html,scss,json,md}\"",
+    "pret-": "yarn pret && yarn pret-objc && yarn pret-java && yarn pret-xml && yarn pret-img",
+    "pret-objc": "yarn git-ls | egrep -h '.(h|m)$' | xargs clang-format -i -style=file",
+    "pret-java": "yarn git-ls | egrep -h '.(java)$' | xargs google-java-format -i",
+    "pret-xml": "yarn git-ls | egrep -h '.(xml|xib|xccheme|xcworkspacedata|plist)$' | xargs -L1 bash -c 'xmllint --format --output $0 $0'",
+    "pret-img": "yarn git-ls | egrep -h '.(png|jpg|gif|ico)$' | xargs -L1 bash -c 'imagemin $0 --out-dir $(dirname $0)'",
+    "git-ls": "bash -c 'comm -3 <(git ls-files) <(git ls-files -d)'"
   },
   "dependencies": {
     "@mdi/js": "^4.4.95",
@@ -64,26 +69,52 @@
     "@babel/plugin-transform-react-jsx": "7.3.0",
     "@craco/craco": "5.5.0",
     "circular-dependency-plugin": "5.2.0",
-    "js-import-sort": "2.0.3",
+    "husky": "3.0.8",
+    "lint-staged": "9.4.2",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-prettier": "3.1.1",
+    "eslint-plugin-simple-import-sort": "4.0.0",
     "node-sass": "4.12.0",
     "prettier": "1.18.2",
     "react-scripts": "3.2.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{html,scss,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app",
     "parser": "babel-eslint",
-    "settings": {
-      "react": {
-        "version": "latest"
-      }
+    "plugins": [
+      "simple-import-sort",
+      "prettier",
+      "import"
+    ],
+    "rules": {
+      "sort-imports": "off",
+      "simple-import-sort/sort": "error",
+      "import/first": "error",
+      "import/newline-after-import": "error",
+      "import/no-duplicates": "error",
+      "import/no-extraneous-dependencies": "error",
+      "prettier/prettier": "error",
+      "quotes": [
+        "error",
+        "backtick"
+      ]
     }
   },
-  "eslintIgnore": [
-    "node_modules/**",
-    "android/**",
-    "ios/**",
-    "build/**"
-  ],
   "prettier": {
     "printWidth": 80,
     "tabWidth": 2,
@@ -95,16 +126,5 @@
     "jsxBracketSameLine": false,
     "arrowParens": "avoid"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": "ie 10-11"
 }

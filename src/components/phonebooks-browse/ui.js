@@ -13,8 +13,8 @@ import { std } from '../../styleguide';
 const st = StyleSheet.create({
   empty: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
   },
   emptyMessage: {
     fontFamily: std.font.text,
@@ -28,8 +28,8 @@ const st = StyleSheet.create({
   },
   navbar: {
     backgroundColor: std.color.shade1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: `center`,
+    justifyContent: `center`,
     paddingVertical: std.gap.sm,
     borderColor: std.color.shade4,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -41,9 +41,9 @@ const st = StyleSheet.create({
     color: std.color.shade9,
   },
   navbarRightAction: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
+    justifyContent: `center`,
+    alignItems: `center`,
+    position: `absolute`,
     right: std.gap.lg,
     top: 0,
     bottom: 0,
@@ -59,8 +59,8 @@ const st = StyleSheet.create({
     flex: 1,
   },
   book: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: `row`,
+    alignItems: `center`,
     paddingLeft: std.gap.lg,
     paddingRight: std.gap.sm,
     paddingVertical: std.gap.lg,
@@ -82,8 +82,8 @@ const st = StyleSheet.create({
   },
   loading: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
   },
 });
 
@@ -99,7 +99,7 @@ const Navbar = p => (
 const Book = p => (
   <Button style={st.book} onPress={p.select}>
     <Text style={st.bookName}>
-      {p.name} {p.shared && '(Shared)'}
+      {p.name} {p.shared && `(Shared)`}
     </Text>
     <Text style={st.bookChevron}>icon_chevron_right</Text>
   </Button>

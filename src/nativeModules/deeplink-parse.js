@@ -6,13 +6,13 @@ export default location => {
   if (!location) {
     return null;
   }
-  if (typeof location === 'string') {
+  if (typeof location === `string`) {
     location = new Url(location, true);
   }
   //
   const params = Object.assign(
-    qs.parse(location.hash.replace(/^[^?]*\?*/, '')),
-    location.query || qs.parse(location.search.replace(/^\?*/, '')),
+    qs.parse(location.hash.replace(/^[^?]*\?*/, ``)),
+    location.query || qs.parse(location.search.replace(/^\?*/, ``)),
   );
   //
   if (params.url) {
@@ -23,16 +23,16 @@ export default location => {
     if (url.port) {
       params.port = url.port;
     } else if (/^ws:/.test(params.url)) {
-      params.port = '80';
+      params.port = `80`;
     } else {
-      params.port = '443';
+      params.port = `443`;
     }
   }
   if (!params.host) {
     params.host = location.hostname;
   }
   if (!params.port) {
-    params.port = '' + location.port;
+    params.port = `` + location.port;
   }
   return params;
 };

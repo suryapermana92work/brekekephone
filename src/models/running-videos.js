@@ -3,14 +3,14 @@ import pickProps from 'lodash/pick';
 import { createModel } from 'redux-model';
 
 const allowedToCreateProps = [
-  'videoSessionId',
-  'id',
-  'incoming',
-  'partyName',
-  'partyNumber',
-  'localVideoEnabled',
-  'remoteVideoStreamObject',
-  'createdAt',
+  `videoSessionId`,
+  `id`,
+  `incoming`,
+  `partyName`,
+  `partyNumber`,
+  `localVideoEnabled`,
+  `remoteVideoStreamObject`,
+  `createdAt`,
 ];
 const validateCreatingCall = call => pickProps(call, allowedToCreateProps);
 
@@ -31,7 +31,7 @@ const validateCreatingCall = call => pickProps(call, allowedToCreateProps);
 // const validateUpdatingCall = ev => pickProps(ev, allowedToUpdateProps);
 
 export default createModel({
-  prefix: 'runningVideos',
+  prefix: `runningVideos`,
   origin: {
     idsByOrder: [],
     detailMapById: {},
@@ -44,7 +44,7 @@ export default createModel({
   action: {
     create: function(state, call) {
       const newState = immutable.on(state)(
-        immutable.fset('idsByOrder', ids => [...ids, call.videoSessionId]),
+        immutable.fset(`idsByOrder`, ids => [...ids, call.videoSessionId]),
         immutable.vset(
           `detailMapById.${call.videoSessionId}`,
           validateCreatingCall(call),

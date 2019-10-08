@@ -2,11 +2,11 @@ import immutable from 'immutable';
 import pickProps from 'lodash/pick';
 import { createModel } from 'redux-model';
 
-const allowedToCreateProps = ['id', 'message'];
+const allowedToCreateProps = [`id`, `message`];
 const validateCreatingToast = toast => pickProps(toast, allowedToCreateProps);
 
 export default createModel({
-  prefix: 'toasts',
+  prefix: `toasts`,
   origin: {
     idsByOrder: [],
     detailMapById: {},
@@ -18,16 +18,16 @@ export default createModel({
   action: {
     create: (prevState, toast) =>
       immutable.on(prevState)(
-        immutable.fset('idsByOrder', ids => [...ids, toast.id]),
-        immutable.fset('detailMapById', map => ({
+        immutable.fset(`idsByOrder`, ids => [...ids, toast.id]),
+        immutable.fset(`detailMapById`, map => ({
           ...map,
           [toast.id]: validateCreatingToast(toast),
         })),
       ),
     remove: (prevState, id) =>
       immutable.on(prevState)(
-        immutable.fset('idsByOrder', ids => ids.filter(_id => _id !== id)),
-        immutable.fset('detailMapById', ({ [id]: removed, ...rest }) => rest),
+        immutable.fset(`idsByOrder`, ids => ids.filter(_id => _id !== id)),
+        immutable.fset(`detailMapById`, ({ [id]: removed, ...rest }) => rest),
       ),
   },
 });

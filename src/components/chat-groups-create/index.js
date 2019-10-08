@@ -26,7 +26,7 @@ class View extends Component {
   };
 
   state = {
-    name: '',
+    name: ``,
     members: [],
   };
 
@@ -62,7 +62,7 @@ class View extends Component {
     const { name, members } = this.state;
     const { showToast } = this.props;
     if (!name.trim()) {
-      showToast('Group name is required');
+      showToast(`Group name is required`);
       return;
     }
 
@@ -81,7 +81,7 @@ class View extends Component {
   onCreateFailure = err => {
     console.error(err);
     const { showToast } = this.props;
-    showToast('Failed to create the group chat');
+    showToast(`Failed to create the group chat`);
   };
 }
 
