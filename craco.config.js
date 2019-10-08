@@ -16,7 +16,8 @@ module.exports = {
   webpack: {
     alias: {
       'react-native': 'react-native-web',
-      '@react-native-community/async-storage': 'react-native-web/src/exports/AsyncStorage',
+      '@react-native-community/async-storage':
+        'react-native-web/src/exports/AsyncStorage',
     },
     configure: {
       resolve: {

@@ -1,6 +1,6 @@
 import './AppWeb.scss';
 
-import { mdiAndroidHead, mdiApple, mdiWebBox } from '@mdi/js';
+import { mdiAndroidHead, mdiApple, mdiWeb } from '@mdi/js';
 import Icon from '@mdi/react';
 import React from 'react';
 import { isAndroid, isIOS } from 'react-device-detect';
@@ -8,7 +8,6 @@ import { isAndroid, isIOS } from 'react-device-detect';
 import App from './App';
 import brandSrc from './assets/brand.png';
 import iconSrc from './assets/icon.png';
-import mockupSrc from './assets/mockup.png';
 
 class AppWeb extends React.Component {
   state = {
@@ -31,26 +30,21 @@ class AppWeb extends React.Component {
       : `intent://open${q}#Intent;scheme=brekekeapp;package=com.brekeke.phone;end`;
     return (
       <div className="AppWeb">
-        <img className="mockup" src={mockupSrc} alt="Brekeke Phone" />
         <img className="icon" src={iconSrc} alt="Brekeke Phone" />
-        <div className="spacing" />
         <img className="brand" src={brandSrc} alt="Brekeke Phone" />
         <div className="btns">
-          <div className="btns-inner">
-            <a href={appUrl}>
-              <div className="btn app">
-                Open in app
-                <Icon path={isIOS ? mdiApple : mdiAndroidHead} />
-              </div>
-            </a>
-            <div className="spacing" />
-            <a href="." onClick={this.enableWebVersion}>
-              <div className="btn browser">
-                Open in browser
-                <Icon path={mdiWebBox} />
-              </div>
-            </a>
-          </div>
+          <a href={appUrl}>
+            <div className="btn app">
+              Open in app
+              <Icon path={isIOS ? mdiApple : mdiAndroidHead} />
+            </div>
+          </a>
+          <a href="." onClick={this.enableWebVersion}>
+            <div className="btn browser">
+              Open in browser
+              <Icon path={mdiWeb} />
+            </div>
+          </a>
         </div>
       </div>
     );
