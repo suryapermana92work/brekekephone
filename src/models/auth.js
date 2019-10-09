@@ -2,6 +2,8 @@ import immutable from 'immutable';
 import pick from 'lodash/pick';
 import { createModel } from 'redux-model';
 
+import notiStore from '../mobx/notiStore';
+
 export default createModel({
   prefix: `auth`,
   origin: {
@@ -52,8 +54,9 @@ export default createModel({
     setUserExtensionProperties: (prevState, props) =>
       immutable.on(prevState)(immutable.vset(`userExtensionProperties`, props)),
 
-    setProfile: (prevState, profile) =>
-      immutable.on(prevState)(
+    setProfile: (prevState, profile) => {
+      notiStore.removeByProfile(profile);
+      return immutable.on(prevState)(
         immutable.vset(
           `profile`,
           pick(profile, [
@@ -65,6 +68,7 @@ export default createModel({
             `pbxPassword`,
             `pbxPhoneIndex`,
             `pbxTurnEnabled`,
+            `pushNotificationEnabled`,
             `parks`,
             `ucEnabled`,
             `ucHostname`,
@@ -72,7 +76,8 @@ export default createModel({
             `accessToken`,
           ]),
         ),
-      ),
+      );
+    },
 
     pbx: {
       onStarted: prevState =>

@@ -1,14 +1,16 @@
 import get from 'lodash/get';
 import { Platform } from 'react-native';
 
+import { getCurrentAuthProfile } from '../components/pbx-auth/getset';
+import { compareNotiProfile } from '../components/profiles-manage/getset';
 import notiStore from '../mobx/notiStore';
 
 const keysInCustomNoti = [
   `body`,
   `message`, // body fallback
   `title`, // body fallback
-  `tenant`,
   `to`,
+  `tenant`,
   `pbxHostname`,
   `pbxPort`,
   // ...
@@ -79,7 +81,10 @@ const parseCustomNoti = n => {
     return null;
   }
   //
-  notiStore.addNoti(c);
+  const p = getCurrentAuthProfile();
+  if (!compareNotiProfile(c, p)) {
+    notiStore.addNoti(c);
+  }
   return c;
 };
 

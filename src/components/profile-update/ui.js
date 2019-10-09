@@ -252,6 +252,14 @@ const PBX = pure(p => (
         onValueChange={p.setTurnEnabled}
       />
     </View>
+    <View style={st.field}>
+      <Text style={st.fieldLabel}>Push Notification</Text>
+      <Switch
+        style={st.fieldSwitch}
+        value={p.pushNotificationEnabled}
+        onValueChange={p.setPushNotificationEnabled}
+      />
+    </View>
   </Fragment>
 ));
 
@@ -349,6 +357,7 @@ const Main = p => (
         password={p.pbxPassword}
         phoneIndex={p.pbxPhoneIndex}
         turnEnabled={p.pbxTurnEnabled}
+        pushNotificationEnabled={p.pushNotificationEnabled}
         setHostname={p.setPBXHostname}
         setPort={p.setPBXPort}
         setTenant={p.setPBXTenant}
@@ -356,6 +365,7 @@ const Main = p => (
         setPassword={p.setPBXPassword}
         setPhoneIndex={p.setPBXPhoneIndex}
         setTurnEnabled={p.setPBXTurnEnabled}
+        setPushNotificationEnabled={p.setPushNotificationEnabled}
         submit={p.save}
       />
       <UC

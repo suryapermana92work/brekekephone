@@ -30,3 +30,10 @@ export const getProfilesManagerInterval = () => {
     }, 1000);
   });
 };
+
+const compareField = (v1, v2) => !v1 || !v2 || v1 === v2;
+export const compareNotiProfile = (n, p) =>
+  compareField(n.tenant, p.pbxTenant) &&
+  compareField(n.to, p.pbxUsername) &&
+  compareField(n.pbxHostname, p.pbxHostname) &&
+  compareField(n.pbxPort, p.pbxPort);

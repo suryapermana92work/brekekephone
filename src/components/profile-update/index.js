@@ -37,6 +37,7 @@ class View extends Component {
         setPBXPassword={this.setPBXPassword}
         setPBXPhoneIndex={this.setPBXPhoneIndex}
         setPBXTurnEnabled={this.setPBXTurnEnabled}
+        setPushNotificationEnabled={this.setPushNotificationEnabled}
         setAddingPark={this.setAddingPark}
         submitAddingPark={this.submitAddingPark}
         setUCEnabled={this.setUCEnabled}
@@ -69,6 +70,9 @@ class View extends Component {
   };
   setPBXTurnEnabled = pbxTurnEnabled => {
     this.setState({ pbxTurnEnabled });
+  };
+  setPushNotificationEnabled = pushNotificationEnabled => {
+    this.setState({ pushNotificationEnabled });
   };
 
   _isStringEmpty = s => {
@@ -159,6 +163,7 @@ class View extends Component {
     const pbxPassword = this.state.pbxPassword.trim();
     const pbxPhoneIndex = this.state.pbxPhoneIndex || `4`;
     const pbxTurnEnabled = this.state.pbxTurnEnabled;
+    const pushNotificationEnabled = this.state.pushNotificationEnabled;
     const ucHostname = this.state.ucHostname.trim();
     const ucPort = this.state.ucPort.trim();
     const parks = [];
@@ -175,6 +180,7 @@ class View extends Component {
       pbxPassword: pbxPassword,
       pbxPhoneIndex: pbxPhoneIndex,
       pbxTurnEnabled: pbxTurnEnabled,
+      pushNotificationEnabled: pushNotificationEnabled,
       parks: parks,
       ucEnabled: this.state.ucEnabled,
       ucHostname: ucHostname,

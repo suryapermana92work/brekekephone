@@ -16,7 +16,6 @@ const st = {
     alignItems: `center`,
     backgroundColor: std.color.shade1,
     borderColor: std.color.shade4,
-    borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   tab: {
@@ -223,21 +222,21 @@ const st = {
 
 const Callbar = function(p) {
   const bVisible = p.activecallid && p.pathname !== `/auth/calls/manage`;
-
+  if (!bVisible) {
+    return null;
+  }
   return (
     <View style={st.main}>
-      {bVisible && (
-        <RunningItem
-          hangup={p.hangup}
-          hold={p.hold}
-          unhold={p.unhold}
-          activecallid={p.activecallid}
-          activecall={p.runningById[p.activecallid]}
-          pressCallsManage={p.pressCallsManage}
-          onOpenLoudSpeaker={p.onOpenLoudSpeaker}
-          onCloseLoudSpeaker={p.onCloseLoudSpeaker}
-        />
-      )}
+      <RunningItem
+        hangup={p.hangup}
+        hold={p.hold}
+        unhold={p.unhold}
+        activecallid={p.activecallid}
+        activecall={p.runningById[p.activecallid]}
+        pressCallsManage={p.pressCallsManage}
+        onOpenLoudSpeaker={p.onOpenLoudSpeaker}
+        onCloseLoudSpeaker={p.onCloseLoudSpeaker}
+      />
     </View>
   );
 };

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { AppState } from 'react-native';
 import { createModelView } from 'redux-model';
 import createId from 'shortid';
 
+import notiStore from '../../mobx/notiStore';
 import * as routerUtils from '../../mobx/routerStore';
 import { getUrlParams, setUrlParams } from '../../nativeModules/deeplink';
 import { resetBadgeNumber } from '../../nativeModules/pushNotification';
-import { setProfilesManager } from './getset';
+import { compareNotiProfile, setProfilesManager } from './getset';
 import UI from './ui';
 
 const mapGetter = getter => (state, props) => ({
@@ -39,25 +41,43 @@ const mapAction = action => emit => ({
   },
 });
 
+let signinAtLeastOnce = false;
+
 class View extends Component {
   async componentDidMount() {
     setProfilesManager(this);
-    this.handleUrlParams();
+    AppState.addEventListener(`change`, this.onAppStateChange);
+    await this.handleUrlParams();
   }
   componentWillUnmount() {
     setProfilesManager(null);
     setUrlParams(null);
+    AppState.removeEventListener(`change`, this.onAppStateChange);
   }
+
+  onAppStateChange = () => {
+    if (
+      AppState.currentState === `active` &&
+      !signinAtLeastOnce &&
+      notiStore.notiArr.length
+    ) {
+      const n = notiStore.notiArr[0];
+      const diff = Date.now() - new Date(n.createdAt).getTime();
+      if (diff < 180000) {
+        this.signinByCustomNoti(n);
+      }
+    }
+  };
 
   handleUrlParams = async () => {
     //
     const urlParams = await getUrlParams();
     if (!urlParams) {
-      return;
+      return false;
     }
     const { tenant, user, _wn, host, port } = urlParams;
     if (!user || !tenant) {
-      return;
+      return false;
     }
     //
     const u = this.getProfileByCustomNoti({
@@ -82,7 +102,7 @@ class View extends Component {
       } else {
         routerUtils.goToProfileUpdate(u.id);
       }
-      return;
+      return true;
     }
     //
     const newU = {
@@ -96,6 +116,7 @@ class View extends Component {
       pbxPassword: ``,
       pbxPhoneIndex: `4`,
       pbxTurnEnabled: false,
+      pushNotificationEnabled: true,
       parks: [],
       ucEnabled: false,
       ucHostname: ``,
@@ -110,22 +131,16 @@ class View extends Component {
     } else {
       routerUtils.goToProfileUpdate(newU.id);
     }
+    return true;
   };
 
   getProfileByCustomNoti = n => {
-    // Compare utils
-    const c = (v1, v2) => !v1 || !v2 || v1 === v2;
-    const cp = p =>
-      c(n.tenant, p.pbxTenant) &&
-      c(n.to, p.pbxUsername) &&
-      c(n.pbxHostname, p.pbxHostname) &&
-      c(n.pbxPort, p.pbxPort);
     //
     const ids = Object.keys(this.props.profileById);
     for (let i = 0; i < ids.length; i++) {
       const id = ids[i];
       const profile = this.props.profileById[id];
-      if (cp(profile)) {
+      if (compareNotiProfile(n, profile)) {
         return profile;
       }
     }
@@ -149,6 +164,7 @@ class View extends Component {
   };
 
   signin = id => {
+    signinAtLeastOnce = true;
     const u = this.props.profileById[id];
     if (!u) {
       return false;
@@ -178,4 +194,5 @@ class View extends Component {
   }
 }
 
+export { compareNotiProfile };
 export default createModelView(mapGetter, mapAction)(View);

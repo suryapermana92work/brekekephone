@@ -25,6 +25,7 @@ import ContactsBrowse from './components/contacts-browse';
 import ContactsCreate from './components/contacts-create';
 import GroupChatsRecent from './components/group-chats-recent';
 import Notifications from './components/notifications';
+import Noti from './components/notifications/Noti';
 import PBXAuth from './components/pbx-auth';
 import PhonebooksBrowse from './components/phonebooks-browse';
 import ProfileSignin from './components/profile-signin';
@@ -42,6 +43,7 @@ import UsersBrowse from './components/users-browse';
 const Routes = () => (
   <View style={StyleSheet.absoluteFill}>
     <StatusBar />
+    <Noti />
     <WithoutStatusBar>
       <Route exact path="/" render={() => <Redirect to="/profiles/manage" />} />
       <Route exact path="/profiles/manage" component={ProfilesManage} />

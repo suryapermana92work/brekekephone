@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react';
 import React from 'react';
 import {
   ScrollView as Scroll,
@@ -7,7 +8,9 @@ import {
   View,
 } from 'react-native';
 
+import notiStore from '../../mobx/notiStore';
 import { std } from '../../styleguide';
+import { compareNotiProfile } from './getset';
 
 const st = StyleSheet.create({
   main: {
@@ -99,6 +102,15 @@ const st = StyleSheet.create({
     fontSize: std.textSize.md,
     color: std.color.shade5,
   },
+  loginWithNoti: {
+    position: `absolute`,
+    top: 0,
+    right: 0,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: `red`,
+  },
 });
 
 const Navbar = p => (
@@ -110,7 +122,7 @@ const Navbar = p => (
   </View>
 );
 
-const ProfileItem = p => (
+const ProfileItem = observer(p => (
   <View style={st.profile}>
     <View style={st.profileInfo}>
       {p.pbxTenant ? (
@@ -132,9 +144,12 @@ const ProfileItem = p => (
     </Button>
     <Button style={st.profileAction} onPress={p.signin}>
       <Text style={st.actionIcon}>icon_log_in</Text>
+      {!!notiStore.notiArr.filter(n => compareNotiProfile(n, p)).length && (
+        <View style={st.loginWithNoti} />
+      )}
     </Button>
   </View>
-);
+));
 
 const Profiles = p =>
   p.ids.length ? (
@@ -158,7 +173,6 @@ const Profiles = p =>
 const ProfilesManage = p => (
   <View style={st.main}>
     <Navbar create={p.create} />
-
     <Profiles
       ids={p.profileIds}
       resolve={p.resolveProfile}

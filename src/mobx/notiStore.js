@@ -2,44 +2,70 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { action, observable, runInAction } from 'mobx';
 import shortid from 'shortid';
 
+import { compareNotiProfile } from '../components/profiles-manage/getset';
+
 class NotiStore {
   @observable notiArr = [];
-  @action addNoti = n => {
+
+  addNoti = n => {
+    this.loadNotiFromStorage().then(() => this._addNoti(n));
+  };
+  @action _addNoti = n => {
     if (!n) {
       return;
     }
     if (!n.id) {
       n.id = shortid();
     }
-    n.read = false;
+    if (!n.createdAt) {
+      n.createdAt = new Date();
+    }
     this.notiArr.unshift(n);
-    while (this.notiArr.length > 20) {
+    while (this.notiArr.length > 100) {
       this.notiArr.pop();
     }
-    AsyncStorage.set(`NotiStore.notiArr`, JSON.stringify(this.notiArr));
+    this.saveNotiToStorage();
   };
-  @action markAsRead = id => {
-    const n = this.notiArr.find(n => n.id === id);
-    if (n) {
-      n.read = true;
-      AsyncStorage.set(`NotiStore.notiArr`, JSON.stringify(this.notiArr));
-    }
+
+  remove = id => {
+    this.loadNotiFromStorage().then(() => this._remove(id));
   };
-  loadNotiFromStorage = async () => {
+  @action _remove = id => {
+    this.notiArr = this.notiArr.filter(n => n.id !== id);
+    this.saveNotiToStorage();
+  };
+
+  @action removeByProfile = p => {
+    this.notiArr = this.notiArr.filter(n => !compareNotiProfile(n, p));
+    this.saveNotiToStorage();
+  };
+
+  _loadingPromise = null;
+  _loadNotiFromStorage = async () => {
     let arr = null;
     try {
-      arr = await AsyncStorage.get(`NotiStore.notiArr`);
+      arr = await AsyncStorage.getItem(`NotiStore.notiArr`);
       arr = JSON.parse(arr);
     } catch (err) {
       arr = null;
     }
     if (!Array.isArray(arr)) {
       arr = [];
-      await AsyncStorage.set(`NotiStore.notiArr`, JSON.stringify(arr));
+      await this.saveNotiToStorage(arr);
     }
     runInAction(() => {
       this.notiArr = arr;
     });
+  };
+  loadNotiFromStorage = () => {
+    if (!this._loadingPromise) {
+      this._loadingPromise = this._loadNotiFromStorage();
+    }
+    return this._loadingPromise;
+  };
+
+  saveNotiToStorage = (arr = this.notiArr) => {
+    return AsyncStorage.setItem(`NotiStore.notiArr`, JSON.stringify(arr));
   };
 }
 
