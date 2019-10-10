@@ -37,3 +37,9 @@ export const compareNotiProfile = (n, p) =>
   compareField(n.to, p.pbxUsername) &&
   compareField(n.pbxHostname, p.pbxHostname) &&
   compareField(n.pbxPort, p.pbxPort);
+
+let profiles = [];
+export const getProfiles = () => profiles;
+export const setProfiles = arr => {
+  profiles = arr;
+};

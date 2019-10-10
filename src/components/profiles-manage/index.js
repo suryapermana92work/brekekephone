@@ -7,7 +7,7 @@ import notiStore from '../../mobx/notiStore';
 import * as routerUtils from '../../mobx/routerStore';
 import { getUrlParams, setUrlParams } from '../../nativeModules/deeplink';
 import { resetBadgeNumber } from '../../nativeModules/pushNotification';
-import { compareNotiProfile, setProfilesManager } from './getset';
+import { compareNotiProfile, setProfiles, setProfilesManager } from './getset';
 import UI from './ui';
 
 const mapGetter = getter => (state, props) => ({
@@ -181,6 +181,7 @@ class View extends Component {
   };
 
   render() {
+    setProfiles(this.props.profileIds.map(id => this.props.profileById[id]));
     return (
       <UI
         profileIds={this.props.profileIds}

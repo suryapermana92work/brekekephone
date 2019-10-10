@@ -2,7 +2,10 @@ import get from 'lodash/get';
 import { Platform } from 'react-native';
 
 import { getCurrentAuthProfile } from '../components/pbx-auth/getset';
-import { compareNotiProfile } from '../components/profiles-manage/getset';
+import {
+  compareNotiProfile,
+  getProfiles,
+} from '../components/profiles-manage/getset';
 import notiStore from '../mobx/notiStore';
 
 const keysInCustomNoti = [
@@ -81,10 +84,15 @@ const parseCustomNoti = n => {
     return null;
   }
   //
-  const p = getCurrentAuthProfile();
-  if (!compareNotiProfile(c, p)) {
-    notiStore.addNoti(c);
+  const p1 = getCurrentAuthProfile();
+  const p2 = getProfiles().find(p => compareNotiProfile(c, p));
+  if (
+    (p1 && compareNotiProfile(c, p1)) ||
+    (p2 && !p2.pushNotificationEnabled)
+  ) {
+    return null;
   }
+  notiStore.addNoti(c);
   return c;
 };
 
