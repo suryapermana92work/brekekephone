@@ -44,6 +44,7 @@ body,
   display: flex;
   flex-direction: column;
   font-family: 'RobotoLight';
+  font-size: 14.4px;
 }
 
 input {
@@ -62,4 +63,15 @@ a {
 }
 body.swal2-height-auto.swal2-height-auto {
   height: 100% !important;
+}
+
+select {
+  font-family: 'RobotoLight' !important;
+  font-size: inherit !important;
+  color: black !important;
+  background-color: white !important;
+  border-style: none !important;
+  direction: rtl !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
 }

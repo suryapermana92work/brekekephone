@@ -17,17 +17,17 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
   signingConfigs {
-    development {
-      storeFile file(DEV_STORE_FILE)
-      keyAlias DEV_KEY_ALIAS
-      storePassword DEV_STORE_PASSWORD
-      keyPassword DEV_KEY_PASSWORD
+    debug {
+      storeFile file("../keystores/debug.keystore")
+      storePassword "android"
+      keyAlias "androiddebugkey"
+      keyPassword "android"
     }
     release {
-      storeFile file(RELEASE_STORE_FILE)
-      keyAlias RELEASE_KEY_ALIAS
-      storePassword RELEASE_STORE_PASSWORD
-      keyPassword RELEASE_KEY_PASSWORD
+      storeFile file("../keystores/release.keystore")
+      storePassword "android"
+      keyAlias "androiddebugkey"
+      keyPassword "android"
     }
   }
   //
@@ -39,7 +39,7 @@ android {
     ndk {
       abiFilters "armeabi-v7a", "x86"
     }
-    signingConfig signingConfigs.development
+    signingConfig signingConfigs.debug
   }
   //
   splits {

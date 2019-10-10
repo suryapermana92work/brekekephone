@@ -1,4 +1,5 @@
 import humanizeDuration from 'humanize-duration';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity as Btn, View } from 'react-native';
@@ -114,11 +115,32 @@ class Noti extends React.Component {
     notiStore.remove(n.id);
   };
 
+  updateStoreTimeoutId = 0;
+  @action updateStore = a => {
+    this.updateStoreTimeoutId = 0;
+    notiStore.notiArr = a;
+    notiStore.saveNotiToStorage();
+  };
+
   render() {
-    if (!notiStore.notiArr.length) {
+    let a = notiStore.notiArr;
+    this.props.profileIds.forEach(id => {
+      const p = this.props.profileById[id];
+      if (!p.pushNotificationEnabled) {
+        a = a.filter(n => !compareNotiProfile(n, p));
+      }
+    });
+    if (a.length !== notiStore.notiArr.length) {
+      if (this.updateStoreTimeoutId) {
+        clearTimeout(this.updateStoreTimeoutId);
+      }
+      this.updateStoreTimeoutId = setTimeout(() => this.updateStore(a), 300);
+    }
+    //
+    if (!a.length) {
       return null;
     }
-    const n = notiStore.notiArr[0];
+    const n = a[0];
     return (
       <View style={s.Noti}>
         <View style={s.Noti_Item}>

@@ -121,17 +121,6 @@ const st = StyleSheet.create({
     paddingVertical: 0,
     paddingHorizontal: 0,
     height: std.textSize.md + std.gap.md * 2,
-    ...Platform.select({
-      web: {
-        fontFamily: std.font.text,
-        fontSize: std.textSize.md,
-        color: std.color.shade9,
-        appearance: `none`,
-        backgroundColor: `white`,
-        borderStyle: `none`,
-        direction: `rtl`,
-      },
-    }),
   },
   fieldSwitch: {
     marginLeft: `auto`,

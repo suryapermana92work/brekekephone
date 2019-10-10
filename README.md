@@ -21,8 +21,8 @@ react-native start --reset-cache
 ### Keystores and other credentials keys
 
 - You need to contact us to download or generate your own following files:
-  - `android/src/google-services.json`
-  - `android/keystores/development.keystore`
+  - `android/google-services.json`
+  - `android/keystores/debug.keystore`
   - `android/keystores/release.keystore`
   - `app/apis/turn.js`
 

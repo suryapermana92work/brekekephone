@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -22,6 +23,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		27141DD80BEC4685B9D9C2E0 /* feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1C95106384D42D7BBDFB985 /* feather.ttf */; };
 		2CA7EE2DB0E140D38A238382 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 85551F28DB7E4D349CE40F41 /* libz.tbd */; };
+		5C1C4CE1BEAE468C9FB9CEBA /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19417A47D146441BBD3FDD67 /* libRNCAsyncStorage.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8437F373202F82CA00536C99 /* text-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8437F372202F82B600536C99 /* text-bold.ttf */; };
 		846C98D91F160BF500696596 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846C98D71F160A9500696596 /* WebRTC.framework */; };
@@ -58,7 +60,6 @@
 		B0A77634B35A41BDAF7154B5 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C532534351421E930084E7 /* libSplashScreen.a */; };
 		E255C6F22251B9B700BA5410 /* libLoudSpeaker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E255C6C32251B8F100BA5410 /* libLoudSpeaker.a */; };
 		E30FDAC95B2B435BB3FC1893 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F63568131D9F4F2CAC6E9C5E /* libKCKeepAwake.a */; };
-		5C1C4CE1BEAE468C9FB9CEBA /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19417A47D146441BBD3FDD67 /* libRNCAsyncStorage.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -307,6 +308,13 @@
 			remoteGlobalIDString = 23D512051CC765E500845BEE;
 			remoteInfo = RNVoipPushNotification;
 		};
+		9C3B822B234F2E1600059CD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAD66EF29A8E4ACD8D71D7B5 /* RNCAsyncStorage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCAsyncStorage;
+		};
 		9C740744221FFC7400AC17B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9C740740221FFC7400AC17B9 /* RNCamera.xcodeproj */;
@@ -466,6 +474,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Phone/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Phone/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		19417A47D146441BBD3FDD67 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		51632CEE6866414D8DE669E7 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -505,11 +514,10 @@
 		A0C5A45A60174E9D9CC6A735 /* libRNVoipPushNotification.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVoipPushNotification.a; sourceTree = "<group>"; };
 		A1C95106384D42D7BBDFB985 /* feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = feather.ttf; path = ../src/fonts/feather.ttf; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		BAD66EF29A8E4ACD8D71D7B5 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		E255C6BD2251B8F100BA5410 /* LoudSpeaker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LoudSpeaker.xcodeproj; path = "../node_modules/react-native-loud-speaker/ios/LoudSpeaker.xcodeproj"; sourceTree = "<group>"; };
 		F63568131D9F4F2CAC6E9C5E /* libKCKeepAwake.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libKCKeepAwake.a; sourceTree = "<group>"; };
 		F7979DB2467C4F8889418A63 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
-		BAD66EF29A8E4ACD8D71D7B5 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; name = "RNCAsyncStorage.xcodeproj"; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		19417A47D146441BBD3FDD67 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; name = "libRNCAsyncStorage.a"; path = "libRNCAsyncStorage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -788,6 +796,7 @@
 				85551F28DB7E4D349CE40F41 /* libz.tbd */,
 				84D1D10E1EA9B99000BC7305 /* VideoToolbox.framework */,
 				846C98D71F160A9500696596 /* WebRTC.framework */,
+				19417A47D146441BBD3FDD67 /* libRNCAsyncStorage.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -812,6 +821,14 @@
 			isa = PBXGroup;
 			children = (
 				9C31A4B021D5098F000CB78F /* libRNVoipPushNotification.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C3B8228234F2E1600059CD8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C3B822C234F2E1600059CD8 /* libRNCAsyncStorage.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1056,6 +1073,10 @@
 				{
 					ProductGroup = 9C740741221FFC7400AC17B9 /* Products */;
 					ProjectRef = 9C740740221FFC7400AC17B9 /* RNCamera.xcodeproj */;
+				},
+				{
+					ProductGroup = 9C3B8228234F2E1600059CD8 /* Products */;
+					ProjectRef = BAD66EF29A8E4ACD8D71D7B5 /* RNCAsyncStorage.xcodeproj */;
 				},
 				{
 					ProductGroup = 9CBF729D221160B800A93F01 /* Products */;
@@ -1329,6 +1350,13 @@
 			fileType = archive.ar;
 			path = libRNVoipPushNotification.a;
 			remoteRef = 9C31A4AF21D5098F000CB78F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9C3B822C234F2E1600059CD8 /* libRNCAsyncStorage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCAsyncStorage.a;
+			remoteRef = 9C3B822B234F2E1600059CD8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9C740745221FFC7400AC17B9 /* libRNCamera.a */ = {
