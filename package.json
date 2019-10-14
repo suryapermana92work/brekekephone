@@ -24,7 +24,7 @@
     "history": "4.10.1",
     "humanize-duration": "3.21.0",
     "immutable": "github:brekekesoftware/immutable#5a11cd2523dcd6a951e447a4dfa6d772a1e655e0",
-    "jssip": "github:brekekesoftware/jssip#93940bcc89214d410a63435d6da00cbfe790313c",
+    "jssip": "github:brekekesoftware/jssip#1e8446f930647bf9ebb1c2e642a38684db5729fd",
     "lodash": "4.17.15",
     "mobx": "5.14.0",
     "mobx-react": "6.1.3",
@@ -64,7 +64,7 @@
     "use-interval": "1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.6.3",
+    "@babel/core": "7.6.4",
     "@babel/plugin-proposal-class-properties": "7.5.5",
     "@babel/plugin-proposal-decorators": "7.6.0",
     "@babel/plugin-transform-flow-strip-types": "7.6.3",
@@ -74,7 +74,7 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-prettier": "3.1.1",
     "eslint-plugin-simple-import-sort": "4.0.0",
-    "husky": "3.0.8",
+    "husky": "3.0.9",
     "lint-staged": "9.4.2",
     "node-sass": "4.12.0",
     "prettier": "1.18.2",

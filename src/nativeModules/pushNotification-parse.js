@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import { Platform } from 'react-native';
+import { AppState, Platform } from 'react-native';
 
 import { getCurrentAuthProfile } from '../components/pbx-auth/getset';
 import {
@@ -87,7 +87,7 @@ const parseCustomNoti = n => {
   const p1 = getCurrentAuthProfile();
   const p2 = getProfiles().find(p => compareNotiProfile(c, p));
   if (
-    (p1 && compareNotiProfile(c, p1)) ||
+    (AppState.currentState === `active` && p1 && compareNotiProfile(c, p1)) ||
     (p2 && !p2.pushNotificationEnabled)
   ) {
     return null;
