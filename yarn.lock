@@ -8110,27 +8110,27 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   dependencies:
     minimist "0.0.8"
 
-mobx-react-lite@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-1.4.0.tgz#193beb5fdddf17ae61542f65ff951d84db402351"
-  integrity sha512-5xCuus+QITQpzKOjAOIQ/YxNhOl/En+PlNJF+5QU4Qxn9gnNMJBbweAdEW3HnuVQbfqDYEUnkGs5hmkIIStehg==
+mobx-react-lite@^1.4.2:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-1.5.0.tgz#a5867fa1114b19056cf8159e8d64766596ae85a0"
+  integrity sha512-Ss8RLKKGn+QhKbfCHvQ4+RPEVKR8AnPW1wNyWzZAS3wYw7UP4FX6GdRn64sdOhrP646o/JtXbLuDuc4RH3Bqyg==
 
 mobx-react-router@4.0.7:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/mobx-react-router/-/mobx-react-router-4.0.7.tgz#d248a0e0525049f0e37e94f2fb1ab09563be4c35"
   integrity sha512-x7eza70EimFyvF0VPyj5X2MYo9jksy61UVwz5ERXWnXVE911XRTL/V2kXiX7fvVtMHzp5m2q/kxBoti9uNixEw==
 
-mobx-react@6.1.3:
-  version "6.1.3"
-  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-6.1.3.tgz#ad07880ea60cdcdb2a7e2a0d54e01379710cf00a"
-  integrity sha512-eT/jO9dYIoB1AlZwI2VC3iX0gPOeOIqZsiwg7tDJV1B7Z69h+TZZL3dgOE0UeS2zoHhGeKbP+K+OLeLMnnkGnA==
+mobx-react@6.1.4:
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-6.1.4.tgz#818e7991c321c05bd9b8156d94be17dad165501e"
+  integrity sha512-wzrJF1RflhyLh8ne4FJfMbG8ZgRFmZ62b4nbyhJzwQpAmrkSnSsAWG9mIff4ffV/Q7OU+uOYf7rXvSmiuUe4cw==
   dependencies:
-    mobx-react-lite "1.4.0"
+    mobx-react-lite "^1.4.2"
 
-mobx@5.14.0:
-  version "5.14.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.14.0.tgz#357c1023aca2851df357fa0cb9a6eaaab3a57793"
-  integrity sha512-GhDSZV9rGlCeVBpFPVYaYSn7UjgkD3158Njailp4IJhKqbT5iiEtiRyr76b7gPj3wpUSl+NHREQqBXzc1I8jpQ==
+mobx@5.14.2:
+  version "5.14.2"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.14.2.tgz#608b8ee9bc9f9e406b48da676e677b150e901eba"
+  integrity sha512-yx5Xe6o2WSYFgeytzZt6jGaYghJdQbd1ElR7S2s93x7/+5SYfJBfutvZF1O5gPEsUyTAFZ5IMYGu1KyhkPk+oQ==
 
 morgan@^1.9.0:
   version "1.9.1"
@@ -10319,7 +10319,15 @@ react-native-exception-handler@2.10.8:
   version "16.2.4"
   resolved "https://codeload.github.com/brekekesoftware/react-native-fcm/tar.gz/f9ce0351f68db62b2295a55c44430d0066d0f3ae"
 
-react-native-fs@2.14.1, react-native-fs@^2.13.3:
+react-native-fs@2.15.3:
+  version "2.15.3"
+  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.15.3.tgz#1a7757759bfba5b08d4087433bf068fb5fe9a699"
+  integrity sha512-fKCfFOiRPLj/Pj8G70Qm0kRU51g40uYOee9aqjkY6yZeMG8uD+4rz1/WRi8r9QdJawxZomyhEc/60hVgLVgE3g==
+  dependencies:
+    base-64 "^0.1.0"
+    utf8 "^3.0.0"
+
+react-native-fs@^2.13.3:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.14.1.tgz#61c70a865b5b5bcb020dd4e4befd60a2c20c836f"
   integrity sha512-ZcfiwNP+FBgvv2eRk0B62/NI58mbjszjjYvQlP352HLkUqVsK4Ld6X8fdBO1lZAz6SgitUk8WEc9NEciRIt31g==
@@ -10346,10 +10354,10 @@ react-native-general-actionsheet@1.0.4:
     react-native-root-siblings "^3.1.6"
     react-native-safe-area-utility "^1.0.0"
 
-react-native-incall-manager@3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/react-native-incall-manager/-/react-native-incall-manager-3.2.5.tgz#8f482542d3437fef5642bc7e6c63617be9f57473"
-  integrity sha512-LZdM/7DFegi1ZVUF5tyyh7igHeABsL1lJpQMPw0yrlC+RgRE8f+EnS3QqkFzm0UoZAPGz9O65hXIxtmnIiorCg==
+react-native-incall-manager@3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/react-native-incall-manager/-/react-native-incall-manager-3.2.6.tgz#033747fb6324ff2d7742f5b0a49c43bf71f03842"
+  integrity sha512-BAul4D3KhVIlnG9ZKS/dNcnjuHA1C8vvLQxCe272iGPDSQ7SWj9aI0nyRb5Az5p5uYuraes6pL0HrZRfvQUVQQ==
 
 react-native-iphone-x-helper@1.2.1:
   version "1.2.1"
@@ -10458,10 +10466,10 @@ react-native-web@0.11.7:
     prop-types "^15.6.0"
     react-timer-mixin "^0.13.4"
 
-react-native-webrtc@1.75.0:
-  version "1.75.0"
-  resolved "https://registry.yarnpkg.com/react-native-webrtc/-/react-native-webrtc-1.75.0.tgz#df163fcba74646d4dd65cd0a0951d3bfc5ceed07"
-  integrity sha512-vYzgMVDBeMrTtT6vv3MG2rvtG1yMoJoCYxk5cFF52Y8rxEP1nc5mQ2w28MstouxvIYnvbh7Tn0L0rkWFq+XMDA==
+react-native-webrtc@1.75.1:
+  version "1.75.1"
+  resolved "https://registry.yarnpkg.com/react-native-webrtc/-/react-native-webrtc-1.75.1.tgz#73662607a8aa7ae3913a25dd21eabe56de29bd6b"
+  integrity sha512-BAe2MK5SCtxGXRuzOA+2SBy5FNMgfMTwNvi5po/TglrA8WER6+v3X3AFFPyriD41Lg2MQzZ3GFqy4NLtccRZVQ==
   dependencies:
     base64-js "^1.1.2"
     event-target-shim "^1.0.5"
@@ -12091,10 +12099,10 @@ svgo@^1.0.0, svgo@^1.2.2:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2@8.18.3:
-  version "8.18.3"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.18.3.tgz#1cb6b5b0f28fe4b125cb7f8a9110315f5458b748"
-  integrity sha512-ptDszEk0q8pUorWAXiVj1aafbG6IAO8kAZepeyfphSwb4vaM5JSXnqek/s8ZyIkPcH9M/l3QaoR2X9V0KD0VHA==
+sweetalert2@8.18.5:
+  version "8.18.5"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.18.5.tgz#ed6a9e4647026333de8e7cc0df02f61ec5bb850f"
+  integrity sha512-GTP24XbiLqdT/Sd+lYac/bQLEJKqzWldV63hvyqPdWcqRimsDRSsumhWL3yyzLvqXMIwzoVbqpa1kWgg2/fm0g==
 
 symbol-observable@^1.1.0, symbol-observable@^1.2.0:
   version "1.2.0"
@@ -12588,6 +12596,11 @@ utf8@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/utf8/-/utf8-2.1.2.tgz#1fa0d9270e9be850d9b05027f63519bf46457d96"
   integrity sha1-H6DZJw6b6FDZsFAn9jUZv0ZFfZY=
+
+utf8@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/utf8/-/utf8-3.0.0.tgz#f052eed1364d696e769ef058b183df88c87f69d1"
+  integrity sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==
 
 util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"

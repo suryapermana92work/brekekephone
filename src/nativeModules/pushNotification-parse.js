@@ -7,6 +7,7 @@ import {
   getProfiles,
 } from '../components/profiles-manage/getset';
 import notiStore from '../mobx/notiStore';
+import { waitReduxPersist } from '../util/reduxPersist';
 
 const keysInCustomNoti = [
   `body`,
@@ -46,7 +47,7 @@ const parse = (...p) => {
     }, {});
 };
 
-const parseCustomNoti = n => {
+const parseCustomNoti = async n => {
   let c = {};
   if (Platform.OS === `android`) {
     c = parse(
@@ -84,15 +85,21 @@ const parseCustomNoti = n => {
     return null;
   }
   //
+  await waitReduxPersist();
+  //
   const p1 = getCurrentAuthProfile();
+  const isCurrentProfile = p1 && compareNotiProfile(c, p1);
   const p2 = getProfiles().find(p => compareNotiProfile(c, p));
+  const isPushNotificationDisabled = p2 && !p2.pushNotificationEnabled;
   if (
-    (AppState.currentState === `active` && p1 && compareNotiProfile(c, p1)) ||
-    (p2 && !p2.pushNotificationEnabled)
+    (AppState.currentState === `active` && isCurrentProfile) ||
+    isPushNotificationDisabled
   ) {
     return null;
   }
-  notiStore.addNoti(c);
+  if (!isCurrentProfile) {
+    notiStore.addNoti(c);
+  }
   return c;
 };
 

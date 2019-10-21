@@ -13,6 +13,7 @@ import APIProvider from './apis';
 import { history } from './mobx/routerStore';
 import * as models from './models';
 import Routes from './Routes';
+import { Loading } from './util/reduxPersist';
 
 const { getter, action, reduce } = combineModels(models);
 
@@ -29,7 +30,7 @@ const storePersistor = persistStore(store);
 
 const App = () => (
   <StoreProvider store={store}>
-    <PersistGate persistor={storePersistor}>
+    <PersistGate loading={<Loading />} persistor={storePersistor}>
       <ModelProvider getter={getter} action={action}>
         <APIProvider>
           <Router history={history}>

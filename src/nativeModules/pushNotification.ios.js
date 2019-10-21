@@ -18,8 +18,8 @@ const onVoipRegister = token => {
   voipApnsToken = token;
 };
 
-const onVoipNotification = noti => {
-  const n = parseCustomNoti(noti);
+const onVoipNotification = async noti => {
+  const n = noti && (await parseCustomNoti(noti));
   if (!n || AppState.currentState === `active`) {
     return;
   }

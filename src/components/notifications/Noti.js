@@ -11,8 +11,9 @@ import notiStore from '../../mobx/notiStore';
 import * as routerUtils from '../../mobx/routerStore';
 import Alert from '../../nativeModules/alert';
 import { std } from '../../styleguide';
+import { getCurrentAuthProfile } from '../pbx-auth/getset';
 import { st } from '../pbx-auth/ui';
-import { compareNotiProfile } from '../profiles-manage/getset';
+import { compareNotiProfile, compareProfile } from '../profiles-manage/getset';
 
 const formatDuration = d =>
   humanizeDuration(Date.now() - d.getTime(), { round: true, largest: 1 });
@@ -83,12 +84,17 @@ class Noti extends React.Component {
       return;
     }
     //
+    const profile = getCurrentAuthProfile();
+    if (profile && compareProfile(found, profile)) {
+      return;
+    }
+    //
     const fn = () => {
       notiStore.remove(n.id);
       this.props.setAuthProfile(found);
       routerUtils.goToAuth();
     };
-    if (this.props.profile) {
+    if (profile) {
       Alert.alert(
         `Switch profile`,
         `Do you want to sign out from current profile and sign in to ${n.to}`,

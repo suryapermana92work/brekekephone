@@ -44,7 +44,7 @@ const onFcmToken = token => {
 };
 
 const onFcmNotification = async noti => {
-  const n = noti && parseCustomNoti(noti);
+  const n = noti && (await parseCustomNoti(noti));
   if (!n || AppState.currentState === `active`) {
     return;
   }
@@ -64,7 +64,7 @@ const onFcmNotification = async noti => {
     show_in_foreground: true,
     local_notification: true,
     wake_screen: true,
-    ongoing: true,
+    ongoing: false,
     lights: true,
     channel: `default`,
     icon: `ic_launcher`,
