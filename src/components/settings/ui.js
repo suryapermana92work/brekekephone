@@ -142,9 +142,11 @@ const pure = Component =>
     }
   };
 
+const string = t => `${t || ``}`;
+
 const Divider = pure(({ children }) => (
   <View style={st.divider}>
-    <Text style={st.dividerTitle}>{children || ``}</Text>
+    <Text style={st.dividerTitle}>{string(children)}</Text>
   </View>
 ));
 
@@ -155,25 +157,25 @@ const PBXProfile = pure(p => (
     <Divider>PBX</Divider>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Hostname</Text>
-      <Text style={st.fieldValueText}>{p.hostname || ``}</Text>
+      <Text style={st.fieldValueText}>{string(p.hostname)}</Text>
     </View>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Port</Text>
-      <Text style={st.fieldValueText}>{p.port || ``}</Text>
+      <Text style={st.fieldValueText}>{string(p.port)}</Text>
     </View>
-    {p.tenant && (
+    {!!p.tenant && (
       <View style={st.field}>
         <Text style={st.fieldLabelNormal}>Tenant</Text>
-        <Text style={st.fieldValueText}>{p.tenant || ``}</Text>
+        <Text style={st.fieldValueText}>{string(p.tenant)}</Text>
       </View>
     )}
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Username</Text>
-      <Text style={st.fieldValueText}>{p.username || ``}</Text>
+      <Text style={st.fieldValueText}>{string(p.username)}</Text>
     </View>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Phone</Text>
-      <Text style={st.fieldValueText}>Phone {p.phoneIndex || ``}</Text>
+      <Text style={st.fieldValueText}>{string(`Phone ` + p.phoneIndex)}</Text>
     </View>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>TURN enabled</Text>
@@ -193,11 +195,11 @@ const UCProfile = pure(p => (
     <Divider>UC</Divider>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Hostname</Text>
-      <Text style={st.fieldValueText}>{p.hostname || ``}</Text>
+      <Text style={st.fieldValueText}>{string(p.hostname)}</Text>
     </View>
     <View style={st.field}>
       <Text style={st.fieldLabelNormal}>Port</Text>
-      <Text style={st.fieldValueText}>{p.port || ``}</Text>
+      <Text style={st.fieldValueText}>{string(p.port)}</Text>
     </View>
   </NopParent>
 ));
