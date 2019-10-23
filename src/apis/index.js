@@ -239,12 +239,12 @@ class ApiProvider extends Component {
     }
     this.pbxAndSipStarted = 0;
     //
-    const webPhone = await this.updatePhoneIndex();
-    if (!webPhone) {
+    const phone = await this.updatePhoneIndex();
+    if (!phone) {
       return;
     }
     //
-    this.addPnToken(webPhone);
+    this.addPnToken(phone);
   };
   updatePhoneIndex = async () => {
     try {
@@ -257,15 +257,14 @@ class ApiProvider extends Component {
   };
   _updatePhoneIndex = async () => {
     //
-    let phoneIndex = this.props.profile.pbxPhoneIndex;
-    phoneIndex = parseInt(phoneIndex) || 4;
-    phoneIndex = phoneIndex - 1;
+    const phoneIndex = parseInt(this.props.profile.pbxPhoneIndex) || 4;
     const extProps = this.props.userExtensionProperties;
-    const phone = extProps.phones[phoneIndex];
+    const phone = extProps.phones[phoneIndex - 1];
     const phoneTypeCorrect = phone.type === `Web Phone`;
-    const hasPhoneId = !!phone.id;
-    //
     const { pbxTenant, pbxUsername } = this.props.profile;
+    const expectedPhoneId = `${pbxTenant}_${pbxUsername}_index${phoneIndex}_webphone`;
+    const phoneIdCorrect = phone.id === expectedPhoneId;
+    //
     const setExtensionProperties = async () => {
       await pbx.pal(`setExtensionProperties`, {
         tenant: pbxTenant,
@@ -273,21 +272,19 @@ class ApiProvider extends Component {
         properties: {
           // See ./pbx getExtensionProperties for the detail of parameters
           pnumber: extProps.phones.map(p => p.id).join(`,`),
-          [`p${phoneIndex + 1}_ptype`]: phone.type,
+          [`p${phoneIndex}_ptype`]: phone.type,
         },
       });
       this.props.setAuthUserExtensionProperties(extProps);
     };
     //
-    phone.index = phoneIndex;
-    //
-    if (phoneTypeCorrect && hasPhoneId) {
+    if (phoneTypeCorrect && phoneIdCorrect) {
       // Do nothing
-    } else if (phoneTypeCorrect && !hasPhoneId) {
-      phone.id = `${pbxTenant}_${pbxUsername}_webphone`;
+    } else if (phoneTypeCorrect && !phoneIdCorrect) {
+      phone.id = expectedPhoneId;
       await setExtensionProperties();
-    } else if (!phoneTypeCorrect && !hasPhoneId) {
-      phone.id = `${pbxTenant}_${pbxUsername}_webphone`;
+    } else if (!phoneTypeCorrect && !phoneIdCorrect) {
+      phone.id = expectedPhoneId;
       phone.type = `Web Phone`;
       await setExtensionProperties();
     } else {
@@ -327,28 +324,26 @@ class ApiProvider extends Component {
     }
     return phone;
   };
-  addPnToken = async webPhone => {
+  addPnToken = async phone => {
     //
     const t = await getPnToken();
     if (!t) {
       return;
     }
     //
-    const username = `${webPhone.id}_index${webPhone.index}`;
-    //
     if (Platform.OS === `ios`) {
-      pbx.addApnsToken({
-        username,
+      await pbx.addApnsToken({
+        username: phone.id,
         device_id: t,
       });
     } else if (Platform.OS === `android`) {
-      pbx.addFcmPnToken({
-        username,
+      await pbx.addFcmPnToken({
+        username: phone.id,
         device_id: t,
       });
     } else if (Platform.OS === `web`) {
-      pbx.addWebPnToken({
-        user: username,
+      await pbx.addWebPnToken({
+        user: phone.id,
         endpoint: t.endpoint,
         auth_secret: t.auth,
         key: t.p256dh,
@@ -371,16 +366,14 @@ class ApiProvider extends Component {
   };
 
   loadPbxUsers = async () => {
-    const { profile } = this.props;
-    if (!profile) {
+    if (!this.props.profile) {
       return;
     }
-    const tenant = profile.pbxTenant;
-    const username = profile.pbxUsername;
+    const { pbxTenant, pbxUsername } = this.props.profile;
     const userIds = await pbx
-      .getUsers(tenant)
-      .then(ids => ids.filter(id => id !== username));
-    const users = await pbx.getOtherUsers(tenant, userIds);
+      .getUsers(pbxTenant)
+      .then(ids => ids.filter(id => id !== pbxUsername));
+    const users = await pbx.getOtherUsers(pbxTenant, userIds);
     this.props.fillPbxUsers(users);
   };
 
