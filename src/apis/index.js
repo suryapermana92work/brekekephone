@@ -279,6 +279,8 @@ class ApiProvider extends Component {
       this.props.setAuthUserExtensionProperties(extProps);
     };
     //
+    phone.index = phoneIndex;
+    //
     if (phoneTypeCorrect && hasPhoneId) {
       // Do nothing
     } else if (phoneTypeCorrect && !hasPhoneId) {
@@ -332,19 +334,21 @@ class ApiProvider extends Component {
       return;
     }
     //
+    const username = `${webPhone.id}_index${webPhone.index}`;
+    //
     if (Platform.OS === `ios`) {
       pbx.addApnsToken({
-        username: webPhone.id,
+        username,
         device_id: t,
       });
     } else if (Platform.OS === `android`) {
       pbx.addFcmPnToken({
-        username: webPhone.id,
+        username,
         device_id: t,
       });
     } else if (Platform.OS === `web`) {
       pbx.addWebPnToken({
-        user: webPhone.id,
+        user: username,
         endpoint: t.endpoint,
         auth_secret: t.auth,
         key: t.p256dh,
