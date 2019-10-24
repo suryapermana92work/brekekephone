@@ -262,7 +262,7 @@ class ApiProvider extends Component {
     const phone = extProps.phones[phoneIndex - 1];
     const phoneTypeCorrect = phone.type === `Web Phone`;
     const { pbxTenant, pbxUsername } = this.props.profile;
-    const expectedPhoneId = `${pbxTenant}_${pbxUsername}_index${phoneIndex}_webphone`;
+    const expectedPhoneId = `${pbxTenant}_${pbxUsername}_phone${phoneIndex}_webphone`;
     const phoneIdCorrect = phone.id === expectedPhoneId;
     //
     const setExtensionProperties = async () => {
