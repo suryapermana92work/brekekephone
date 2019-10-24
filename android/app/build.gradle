@@ -25,20 +25,17 @@ android {
     }
     release {
       storeFile file("../keystores/release.keystore")
-      storePassword "android"
-      keyAlias "androiddebugkey"
-      keyPassword "android"
+      storePassword "my-release-keyPw"
+      keyAlias "my-key-alias"
+      keyPassword "my-release-keyPw"
     }
   }
   //
   defaultConfig {
     applicationId "com.brekeke.phone"
-    versionCode 30001
-    versionName "3.0.0"
+    versionCode 30002
+    versionName "3.0.1"
     targetSdkVersion rootProject.ext.targetSdkVersion
-    ndk {
-      abiFilters "armeabi-v7a", "x86"
-    }
     signingConfig signingConfigs.debug
   }
   //
@@ -47,7 +44,7 @@ android {
       reset()
       enable enableSeparateBuildPerCPUArchitecture
       universalApk false // If true, also generate a universal APK
-      include "armeabi-v7a", "x86"
+      include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
     }
   }
   buildTypes {
@@ -61,7 +58,7 @@ android {
   applicationVariants.all { variant ->
     variant.outputs.each { output ->
       // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-      def versionCodes = ["armeabi-v7a": 1, "x86": 2]
+      def versionCodes = ["x86":1,"x86_64":2,"armeabi-v7a":3,"arm64-v8a":4]
       def abi = output.getFilter(OutputFile.ABI)
       if (abi != null) {
         output.versionCodeOverride = versionCodes.get(abi) * 1048576 + defaultConfig.versionCode

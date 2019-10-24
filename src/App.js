@@ -22,7 +22,7 @@ const persistConfig = {
   key: `brekeke-phone`,
   storage: AsyncStorage,
   whitelist: persistedReducers,
-  version: `3.0.0`,
+  version: `1.0.1`,
 };
 const storeReducer = persistReducer(persistConfig, reduce);
 const store = createStore(storeReducer);
