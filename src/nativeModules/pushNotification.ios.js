@@ -12,6 +12,7 @@ export const registerPn = () => {
   VoipPushNotification.addEventListener(`register`, onVoipRegister);
   VoipPushNotification.addEventListener(`notification`, onVoipNotification);
   VoipPushNotification.requestPermissions();
+  VoipPushNotification.registerVoipToken();
 };
 
 const onVoipRegister = token => {
