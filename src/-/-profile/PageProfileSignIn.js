@@ -1,7 +1,9 @@
 import { mdiDotsHorizontal, mdiLadybug, mdiUnfoldMoreHorizontal } from '@mdi/js'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import api from '../../api'
 import g from '../global'
 import intl from '../intl/intl'
 import {
@@ -72,7 +74,7 @@ const css = StyleSheet.create({
 })
 
 const PageProfileSignIn = observer(() => {
-  const l = g.profiles.length
+  const l = api.accounts.length
   return (
     <BrekekeGradient>
       <Layout
@@ -85,7 +87,7 @@ const PageProfileSignIn = observer(() => {
         <View style={css.PageProfileSignIn_Spacing} />
         {!!l && (
           <FlatList
-            data={g.profiles.toJS() /* Fix observable inside FlatList */}
+            data={toJS(api.accounts) /* Fix observable inside FlatList */}
             horizontal
             keyExtractor={item => item.id}
             renderItem={({ index, item }) => (

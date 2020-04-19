@@ -3,6 +3,7 @@ import { observer } from 'mobx-react'
 import React from 'react'
 
 import UserItem from '../-contact/UserItem'
+import Rn from '../../Rn'
 import uc from '../api/uc'
 import g from '../global'
 import chatStore from '../global/chatStore'
@@ -75,7 +76,7 @@ class PageChatGroupCreate extends React.Component {
   create = () => {
     const { members, name } = this.state
     if (!name.trim()) {
-      g.showError({
+      Rn.showError({
         message: intlDebug`Group name is required`,
       })
       return
@@ -90,7 +91,7 @@ class PageChatGroupCreate extends React.Component {
     g.goToPageChatRecents()
   }
   onCreateFailure = err => {
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to create the group chat`,
       err,
     })

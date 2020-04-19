@@ -4,7 +4,7 @@ import RNFS from 'react-native-fs'
 import * as ImagePicker from 'react-native-full-image-picker'
 import { v4 as uuid } from 'react-native-uuid'
 
-import g from '../global'
+import Rn from '../../Rn'
 import { onPickFileNativeError, pickFileNativeOptions } from './pickFile.web'
 
 ImagePicker.AlbumView.autoConvertPath = true
@@ -38,7 +38,7 @@ const actionSheetHandlers = [
 ]
 
 const pickFile = cb =>
-  g.openPicker({
+  Rn.openPicker({
     options: pickFileNativeOptions(),
     onSelect: i => pickFileOnSelect(i, cb),
   })

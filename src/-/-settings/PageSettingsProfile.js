@@ -2,6 +2,8 @@ import { observer } from 'mobx-react'
 import React from 'react'
 
 import ProfileCreateForm from '../-profile/ProfileCreateForm'
+import api from '../../api'
+import Rn from '../../Rn'
 import g from '../global'
 import authStore from '../global/authStore'
 import intl from '../intl/intl'
@@ -14,11 +16,11 @@ const PageSettingsProfile = observer(p => (
       if (!hasUnsavedChanges) {
         g.backToPageContactPhonebook()
       }
-      g.showPrompt({
+      Rn.prompt({
         title: intl`Save Account`,
         message: intl`Do you want to update your account?\nYou'll need to sign out and then sign in again.`,
         onConfirm: () => {
-          g.upsertProfile(p)
+          api.updateAccount(p.id, p)
           g.goToPageProfileSignIn()
           setTimeout(() => authStore.signIn(p.id), 300)
         },

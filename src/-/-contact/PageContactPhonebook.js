@@ -7,13 +7,14 @@ import {
 } from '@mdi/js'
 import debounce from 'lodash/debounce'
 import orderBy from 'lodash/orderBy'
-import { computed } from 'mobx'
+import { computed, runInAction } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import api from '../../api'
+import Rn from '../../Rn'
 import pbx from '../api/pbx'
 import g from '../global'
-import authStore from '../global/authStore'
 import callStore from '../global/callStore'
 import contactStore from '../global/contactStore'
 import intl, { intlDebug } from '../intl/intl'
@@ -76,7 +77,7 @@ class PageContactPhonebook extends React.Component {
         contactStore.setPhonebook(contacts)
       })
       .catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to load contact list`,
           err,
         })
@@ -97,7 +98,7 @@ class PageContactPhonebook extends React.Component {
   }
   update = id => {
     const contact = contactStore.getPhonebook(id)
-    if (!!contact.loaded) {
+    if (contact.loaded) {
       g.goToPagePhonebookUpdate({
         contact: contact,
       })
@@ -112,7 +113,7 @@ class PageContactPhonebook extends React.Component {
           })
         })
         .catch(err => {
-          g.showError({
+          Rn.showError({
             message: intlDebug`Failed to load contact detail for ${id}`,
             err,
           })
@@ -124,7 +125,7 @@ class PageContactPhonebook extends React.Component {
       this.call(number)
     } else {
       this.update(contact)
-      g.showError({
+      Rn.showError({
         message: intlDebug`This contact doesn't have any phone number`,
       })
     }
@@ -163,7 +164,7 @@ class PageContactPhonebook extends React.Component {
       this.callRequest(numbers[0].value, u)
       return
     }
-    g.openPicker({
+    Rn.openPicker({
       options: numbers.map(i => ({
         key: i.value,
         label: i.value,
@@ -175,7 +176,7 @@ class PageContactPhonebook extends React.Component {
 
   render() {
     let phonebooks = contactStore.phoneBooks
-    if (!authStore.currentProfile.displaySharedContacts) {
+    if (!api.displaySharedContacts) {
       phonebooks = phonebooks.filter(i => i.shared !== true)
     }
     const map = {}
@@ -217,13 +218,12 @@ class PageContactPhonebook extends React.Component {
         <Field
           label={intl`SHOW SHARED CONTACTS`}
           onValueChange={v => {
-            g.upsertProfile({
-              id: authStore.currentProfile.id,
-              displaySharedContacts: v,
+            runInAction(() => {
+              api.displaySharedContacts = v
             })
           }}
           type="Switch"
-          value={authStore.currentProfile.displaySharedContacts}
+          value={api.displaySharedContacts}
         />
         {this.state.loading && (
           <Text

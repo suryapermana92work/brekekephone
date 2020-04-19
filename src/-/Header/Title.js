@@ -1,8 +1,8 @@
 import React from 'react'
 
+import { useAnimation } from '../../Rn'
 import g from '../global'
 import { Animated, StyleSheet, Text } from '../Rn'
-import { useAnimation } from '../utils/animation'
 
 const css = StyleSheet.create({
   Container: {

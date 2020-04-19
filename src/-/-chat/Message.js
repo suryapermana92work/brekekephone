@@ -4,6 +4,7 @@ import React from 'react'
 import Hyperlink from 'react-native-hyperlink'
 import Share from 'react-native-share'
 
+import Rn from '../../Rn'
 import g from '../global'
 import intl, { intlDebug } from '../intl/intl'
 import {
@@ -168,7 +169,7 @@ class Message extends React.Component {
       return
     }
     if (!Linking.canOpenURL(url)) {
-      g.showError({
+      Rn.showError({
         message: intlDebug`Can not open the url`,
       })
     } else {
@@ -176,7 +177,7 @@ class Message extends React.Component {
     }
   }
   onLinkLongPress = url => {
-    g.openPicker({
+    Rn.openPicker({
       options: [
         {
           key: 2,
@@ -203,7 +204,7 @@ class Message extends React.Component {
     })
   }
   onMessagePress = () => {
-    g.openPicker({
+    Rn.openPicker({
       options: [
         {
           key: 0,

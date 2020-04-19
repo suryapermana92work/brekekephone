@@ -9,6 +9,7 @@ import omit from 'lodash/omit'
 import { observer } from 'mobx-react'
 import React, { useRef } from 'react'
 
+import Rn from '../../Rn'
 import g from '../global'
 import intl from '../intl/intl'
 import {
@@ -228,7 +229,7 @@ const Field = observer(({ ...props }) => {
       Object.assign(props, {
         valueRender: v => props.options.find(o => o.key === v)?.label || v,
         onTouchPress: () => {
-          g.openPicker({
+          Rn.openPicker({
             options: props.options,
             selectedKey: props.value,
             onSelect: props.onValueChange,

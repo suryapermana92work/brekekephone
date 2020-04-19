@@ -2,6 +2,7 @@ import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import Rn from '../../Rn'
 import g from '../global'
 import callStore from '../global/callStore'
 import intl, { intlDebug } from '../intl/intl'
@@ -21,7 +22,7 @@ class PageCallKeypad extends React.Component {
   callVoice = () => {
     this.txt = this.txt.trim()
     if (!this.txt) {
-      g.showError({
+      Rn.showError({
         message: intlDebug`No target to call`,
       })
       return
@@ -62,7 +63,7 @@ class PageCallKeypad extends React.Component {
             onPressNumber={v => {
               const { end, start } = this.txtSelection
               let min = Math.min(start, end)
-              let max = Math.max(start, end)
+              const max = Math.max(start, end)
               const isDelete = v === ''
               if (isDelete) {
                 if (start === end && start) {

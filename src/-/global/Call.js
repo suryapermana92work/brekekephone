@@ -1,5 +1,6 @@
 import { action, computed, observable } from 'mobx'
 
+import Rn from '../../Rn'
 import pbx from '../api/pbx'
 import sip from '../api/sip'
 import { intlDebug } from '../intl/intl'
@@ -52,7 +53,7 @@ export default class Call {
     const message = this.recording
       ? intlDebug`Failed to stop recording the call`
       : intlDebug`Failed to start recording the call`
-    g.showError({ message, err })
+    Rn.showError({ message, err })
   }
 
   @observable holding = false
@@ -68,7 +69,7 @@ export default class Call {
     const message = this.holding
       ? intlDebug`Failed to unhold the call`
       : intlDebug`Failed to hold the call`
-    g.showError({ message, err })
+    Rn.showError({ message, err })
   }
 
   @observable transferring = ''
@@ -88,7 +89,7 @@ export default class Call {
   }
   @action _onTransferFailure = err => {
     this.transferring = ''
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to transfer the call`,
       err,
     })
@@ -103,7 +104,7 @@ export default class Call {
   }
   @action _onStopTransferringFailure = err => {
     this.transferring = this._prevTransferring
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to stop the transfer`,
       err,
     })
@@ -118,7 +119,7 @@ export default class Call {
   }
   @action _onConferenceTransferringFailure = err => {
     this.transferring = this._prevTransferring
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to make conference for the transfer`,
       err,
     })
@@ -130,9 +131,17 @@ export default class Call {
       .catch(this._onParkFailure)
   }
   _onParkFailure = err => {
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to park the call`,
       err,
     })
   }
 }
+
+// recentCalls?[]
+//    id: string
+//    incoming: boolean
+//    answered: boolean
+//    partyName: string
+//    partyNumber: string
+//    created: Date

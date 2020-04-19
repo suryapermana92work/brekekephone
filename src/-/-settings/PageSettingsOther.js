@@ -2,6 +2,7 @@ import { mdiCheck, mdiTranslate } from '@mdi/js'
 import { observer } from 'mobx-react'
 import React, { Component } from 'react'
 
+import Rn from '../../Rn'
 import uc from '../api/uc'
 import g from '../global'
 import authStore from '../global/authStore'
@@ -41,7 +42,7 @@ class PageSettingsOther extends Component {
         })
       })
       .catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to change UC status`,
           err,
         })

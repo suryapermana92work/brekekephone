@@ -1,3 +1,5 @@
+import api from '../../api'
+import Rn from '../../Rn'
 import g from '../global'
 import authStore from '../global/authStore'
 import intl, { intlDebug } from '../intl/intl'
@@ -5,7 +7,7 @@ import pbx from './pbx'
 
 const updatePhoneIndex = () =>
   updatePhoneIndexWithoutCatch().catch(err => {
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to update phone index`,
       err,
     })
@@ -16,7 +18,7 @@ const updatePhoneIndex = () =>
 const updatePhoneIndexWithoutCatch = async () => {
   //
   const phoneIndex = parseInt(authStore.currentProfile.pbxPhoneIndex) || 4
-  const extProps = authStore.userExtensionProperties
+  const extProps = api.signedInAccount.data.props
   const phone = extProps.phones[phoneIndex - 1]
   const phoneTypeCorrect = phone.type === 'Web Phone'
   const { pbxTenant, pbxUsername } = authStore.currentProfile
@@ -33,7 +35,7 @@ const updatePhoneIndexWithoutCatch = async () => {
         [`p${phoneIndex}_ptype`]: phone.type,
       },
     })
-    authStore.userExtensionProperties = extProps
+    api.signedInAccount.data.props = extProps
   }
   //
   if (phoneTypeCorrect && phoneIdCorrect) {
@@ -47,7 +49,7 @@ const updatePhoneIndexWithoutCatch = async () => {
     await setExtensionProperties()
   } else {
     return new Promise(resolve => {
-      g.showPrompt({
+      Rn.prompt({
         title: intl`Warning`,
         message: intl`This phone index is already in use. Do you want to continue?`,
         onConfirm: () => {
@@ -57,7 +59,7 @@ const updatePhoneIndexWithoutCatch = async () => {
               resolve(phone)
             })
             .catch(err => {
-              g.showError({
+              Rn.showError({
                 message: intlDebug`Failed to set extension properties`,
                 err,
               })

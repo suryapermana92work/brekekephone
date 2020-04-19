@@ -2,6 +2,7 @@ import flow from 'lodash/flow'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import Rn, { useAnimationOnDidMount } from '../../Rn'
 import g from '../global'
 import intl from '../intl/intl'
 import {
@@ -12,7 +13,6 @@ import {
   TouchableOpacity,
   View,
 } from '../Rn'
-import { useAnimationOnDidMount } from '../utils/animation'
 
 const css = StyleSheet.create({
   RootAlert: {
@@ -85,8 +85,8 @@ const Alert = ({ error, prompt, ...props }) => {
         ),
       dismissText: intl`CANCEL`,
       confirmText: intl`REMOVE`,
-      onConfirm: flow([g.dismissAlert, onConfirm].filter(f => f)),
-      onDismiss: flow([g.dismissAlert, onDismiss].filter(f => f)),
+      onConfirm: flow([Rn.dismissAlert, onConfirm].filter(f => f)),
+      onDismiss: flow([Rn.dismissAlert, onDismiss].filter(f => f)),
       ...rest,
     })
   } else if (error) {
@@ -103,8 +103,8 @@ const Alert = ({ error, prompt, ...props }) => {
         </React.Fragment>
       ),
       confirmText: intl`OK`,
-      onConfirm: g.dismissAlert,
-      onDismiss: g.dismissAlert,
+      onConfirm: Rn.dismissAlert,
+      onDismiss: Rn.dismissAlert,
       ...rest,
     })
   } else {
@@ -157,10 +157,10 @@ const Alert = ({ error, prompt, ...props }) => {
 }
 
 const RootAlert = observer(() => {
-  if (!g.alertsCount || !g.alerts[0]) {
+  if (!Rn.alertsCount || !Rn.alerts[0]) {
     return null
   }
-  return <Alert {...g.alerts[0]} />
+  return <Alert {...Rn.alerts[0]} />
 })
 
 export default RootAlert

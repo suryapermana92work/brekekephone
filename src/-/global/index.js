@@ -1,9 +1,7 @@
-import './__alert'
 import './__keyboard'
-import './__picker'
 import './__stacker'
-import './_profiles'
 
+import Rn from '../../Rn'
 import { BackHandler, Keyboard } from '../Rn'
 import v from '../variables'
 import g from './_'
@@ -16,12 +14,12 @@ BackHandler.addEventListener('hardwareBackPress', () => {
     Keyboard.dismiss()
     return true
   }
-  if (g.alerts.length) {
-    g.dismissAlert()
+  if (Rn.alerts.length) {
+    Rn.dismissAlert()
     return true
   }
-  if (g.currentPicker) {
-    g.dismissPicker()
+  if (Rn.picker) {
+    Rn.dismissPicker()
     return true
   }
   if (g.stacks.length > 1) {

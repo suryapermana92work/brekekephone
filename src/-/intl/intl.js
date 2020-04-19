@@ -1,10 +1,11 @@
 import Handlebars from 'handlebars/dist/handlebars'
 import HandlebarsMoment from 'helper-moment'
 
+import Rn from '../../Rn'
+import { waitTimeout } from '../../utils/timeout'
 import g from '../global/_'
 import { AsyncStorage } from '../Rn'
 import { arrToMap } from '../utils/toMap'
-import waitTimeout from '../utils/waitTimeout'
 import en from './en.json'
 import ja from './ja.json'
 import vi from './vi.json'
@@ -64,7 +65,7 @@ g.extends({
     g.localeLoading = false
   },
   selectLocale: () => {
-    g.openPicker({
+    Rn.openPicker({
       options: localeOptions,
       selectedKey: g.locale,
       onSelect: g.setLocale,

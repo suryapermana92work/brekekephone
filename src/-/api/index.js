@@ -2,10 +2,11 @@ import moment from 'moment'
 import { Platform } from 'react-native'
 import { v4 as uuid } from 'react-native-uuid'
 
+import api from '../../api'
+import Rn from '../../Rn'
 import pbx from '../api/pbx'
 import sip from '../api/sip'
 import uc from '../api/uc'
-import g from '../global'
 import authStore from '../global/authStore'
 import callStore from '../global/callStore'
 import chatStore from '../global/chatStore'
@@ -97,7 +98,7 @@ class Api {
 
   onPBXConnectionStarted = () => {
     this.loadPBXUsers().catch(err => {
-      g.showError({
+      Rn.showError({
         message: intlDebug`Failed to load PBX users`,
         err,
       })
@@ -107,11 +108,11 @@ class Api {
   }
 
   onPBXConnectionStopped = () => {
-    authStore.pbxState = 'stopped'
+    api.pbxSignInState = 'stopped'
   }
 
   onPBXConnectionTimeout = () => {
-    authStore.pbxState = 'failure'
+    api.pbxSignInState = 'failure'
     authStore.pbxTotalFailure += 1
   }
 
@@ -149,17 +150,20 @@ class Api {
   }
 
   onSIPConnectionStarted = () => {
-    authStore.sipState = 'success'
+    api.sipSignInState = 'success'
     setTimeout(this.onPBXAndSipStarted, 170)
   }
 
   onSIPConnectionStopped = () => {
-    authStore.sipState = 'stopped'
+    api.sipSignInState = 'failure'
+    authStore.sipTotalFailure += 1
+    setTimeout(() => sip.disconnect(), 300)
   }
 
   onSIPConnectionTimeout = () => {
-    authStore.sipState = 'failure'
+    api.sipSignInState = 'failure'
     authStore.sipTotalFailure += 1
+    sip.disconnect()
   }
 
   onSIPSessionStarted = call => {
@@ -190,11 +194,11 @@ class Api {
   }
 
   onUCConnectionStopped = () => {
-    authStore.ucState = 'stopped'
+    api.ucSignInState = 'stopped'
   }
 
   onUCConnectionTimeout = () => {
-    authStore.ucState = 'failure'
+    api.ucSignInState = 'failure'
     authStore.ucTotalFailure += 1
   }
 

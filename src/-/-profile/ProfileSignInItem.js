@@ -9,6 +9,8 @@ import {
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import api from '../../api'
+import Rn from '../../Rn'
 import FooterActions from '../Footer/Actions'
 import g from '../global'
 import authStore from '../global/authStore'
@@ -58,7 +60,7 @@ const ProfileSignInItem = observer(props => {
       </View>
     )
   }
-  const p = g.profilesMap[props.id]
+  const p = api.accounts.find(a => a.id === props.id)
   return (
     <View
       style={[css.ProfileSignInItem, props.last && css.ProfileSignInItem__last]}
@@ -75,22 +77,20 @@ const ProfileSignInItem = observer(props => {
       </TouchableOpacity>
       <Field
         label={intl`PUSH NOTIFICATION`}
-        onValueChange={v =>
-          g.upsertProfile({ id: p.id, pushNotificationEnabled: v })
-        }
+        onValueChange={v => api.updateAccount(p.id, { notificationEnabled: v })}
         type="Switch"
-        value={p.pushNotificationEnabled}
+        value={p.notificationEnabled}
       />
       <Field
         label={intl`UC`}
-        onValueChange={v => g.upsertProfile({ id: p.id, ucEnabled: v })}
+        onValueChange={v => api.updateAccount(p.id, { ucEnabled: v })}
         type="Switch"
         value={p.ucEnabled}
       />
       <View style={css.ProfileSignInItem_Btns}>
         <FooterActions
           onBack={() => {
-            g.showPrompt({
+            Rn.prompt({
               title: intl`Remove Account`,
               message: (
                 <React.Fragment>
@@ -103,7 +103,7 @@ const ProfileSignInItem = observer(props => {
                 </React.Fragment>
               ),
               onConfirm: () => {
-                g.removeProfile(p.id)
+                api.removeAccount(p.id)
               },
             })
           }}

@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import { useAnimationOnDidMount } from '../../Rn'
 import g from '../global'
 import { Animated, Dimensions, StyleSheet, View } from '../Rn'
-import { useAnimationOnDidMount } from '../utils/animation'
 
 const css = StyleSheet.create({
   Stack: {

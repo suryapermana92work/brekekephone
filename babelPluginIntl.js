@@ -1,5 +1,8 @@
 const path = require('path')
 const fs = require('fs-extra')
+const baseX = require('base-x')
+
+const base52 = baseX('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 const jsonOutputPath = path.join(__dirname, './src/intl/en2.json')
 
@@ -37,34 +40,15 @@ const babelPluginIntl = () => ({
       if (!tl || (tl.indexOf('intl') < 0 && tl.indexOf('debug') < 0)) {
         return
       }
-      // Get raw expressions from source code
+      // Get raw expressions from source code and build
+      //    expression names with using base52
       const exprs = p.node.quasi.expressions.map(e =>
         s.file.code.substring(e.start, e.end),
       )
-      // Build data keys from expressions with their name as camelCase
-      const exprNames = exprs.map(e =>
-        e
-          .split(/\W+/g)
-          .filter(w => w)
-          .map((w, i) => (!i ? w : w.charAt(0).toUpperCase() + w.substr(1)))
-          .join(''),
-      )
-      // Check invalid/duplicated fields
-      const duplicatedMap = {}
-      exprNames.forEach((v, i) => {
-        if (!v) {
-          throw p.buildCodeFrameError(
-            `Can not build identifier for expression ${exprs[i]}`,
-          )
-        }
-        if (v in duplicatedMap) {
-          throw p.buildCodeFrameError(
-            `Duplicated identifier for expression ${
-              exprs[duplicatedMap[v]]
-            } and ${exprs[i]}`,
-          )
-        }
-        duplicatedMap[v] = i
+      const exprNames = exprs.map((e, i) => {
+        const b = Buffer.alloc(1)
+        b.writeUInt8(i)
+        return base52.encode(b)
       })
       // Build the locations to automatically add brackets for fields
       const quasis = p.node.quasi.quasis.map(q => q.value.raw)

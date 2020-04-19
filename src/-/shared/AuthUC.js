@@ -4,8 +4,9 @@ import { observe } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import api from '../../api'
+import Rn from '../../Rn'
 import uc from '../api/uc'
-import g from '../global'
 import authStore from '../global/authStore'
 import chatStore from '../global/chatStore'
 import contactStore from '../global/contactStore'
@@ -23,14 +24,13 @@ class AuthUC extends React.Component {
   componentWillUnmount() {
     this.clearObserve()
     uc.disconnect()
-    authStore.ucState = 'stopped'
+    api.ucSignInState = 'stopped'
     uc.off('connection-stopped', this.onConnectionStopped)
   }
 
   auth = () => {
     uc.disconnect()
-    authStore.ucState = 'connecting'
-    authStore.ucLoginFromAnotherPlace = false
+    api.ucSignInState = 'connecting'
     uc.connect(authStore.currentProfile)
       .then(this.onAuthSuccess)
       .catch(this.onAuthFailure)
@@ -42,22 +42,24 @@ class AuthUC extends React.Component {
   onAuthSuccess = () => {
     this.loadUsers()
     this.loadUnreadChats().then(() => {
-      authStore.ucState = 'success'
+      api.ucSignInState = 'success'
     })
   }
   onAuthFailure = err => {
-    authStore.ucState = 'failure'
+    api.ucSignInState = 'failure'
     authStore.ucTotalFailure += 1
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to connect to UC`,
       err,
     })
   }
   onConnectionStopped = e => {
-    authStore.ucState = 'failure'
+    api.ucSignInState = 'failure'
     authStore.ucTotalFailure += 1
-    authStore.ucLoginFromAnotherPlace =
+    api.ucSignInState =
       e.code === UCClient.Errors.PLEONASTIC_LOGIN
+        ? 'signed-in-from-other-place'
+        : api.ucSignInState
   }
   loadUsers = () => {
     const users = uc.getUsers()
@@ -74,7 +76,7 @@ class AuthUC extends React.Component {
     })
   }
   onLoadUnreadChatsFailure = err => {
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to load unread chat messages`,
       err,
     })

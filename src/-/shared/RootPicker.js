@@ -2,6 +2,7 @@ import { mdiClose, mdiRadioboxBlank, mdiRadioboxMarked } from '@mdi/js'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import Rn, { useAnimationOnDidMount } from '../../Rn'
 import g from '../global'
 import intl from '../intl/intl'
 import {
@@ -13,7 +14,6 @@ import {
   TouchableOpacity,
   View,
 } from '../Rn'
-import { useAnimationOnDidMount } from '../utils/animation'
 
 const css = StyleSheet.create({
   Picker: {
@@ -82,7 +82,7 @@ const Picker = p => {
         style={[StyleSheet.absoluteFill, css.Picker_Backdrop, backdropCss]}
       >
         <TouchableOpacity
-          onPress={g.dismissPicker}
+          onPress={Rn.dismissPicker}
           style={StyleSheet.absoluteFill}
         />
       </Animated.View>
@@ -95,7 +95,7 @@ const Picker = p => {
                 key={i}
                 onPress={() => {
                   p.onSelect(o.key)
-                  g.dismissPicker()
+                  Rn.dismissPicker()
                 }}
                 style={[
                   css.Picker_Option,
@@ -119,7 +119,7 @@ const Picker = p => {
           })}
         </View>
         <TouchableOpacity
-          onPress={g.dismissPicker}
+          onPress={Rn.dismissPicker}
           style={[css.Picker_Option, css.Picker_Option__cancel]}
         >
           <Text style={css.Picker_Text__cancel}>
@@ -136,8 +136,6 @@ const Picker = p => {
   )
 }
 
-const RootPicker = observer(
-  () => g.currentPicker && <Picker {...g.currentPicker} />,
-)
+const RootPicker = observer(() => Rn.picker && <Picker {...Rn.picker} />)
 
 export default RootPicker

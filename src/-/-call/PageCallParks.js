@@ -31,7 +31,7 @@ class PageCallParks extends React.Component {
   }
 
   render() {
-    const ps = authStore.currentProfile.parks
+    const ps = authStore.currentProfile.pbxParks
     const p = this.state.selectedPark
     const p2 = this.props.callParks2
     return (

@@ -2,8 +2,9 @@ import { observe } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import api from '../../api'
+import Rn from '../../Rn'
 import pbx from '../api/pbx'
-import g from '../global'
 import authStore from '../global/authStore'
 import { intlDebug } from '../intl/intl'
 
@@ -18,20 +19,20 @@ class AuthPBX extends React.Component {
   componentWillUnmount() {
     this.clearObserve()
     pbx.disconnect()
-    authStore.pbxState = 'stopped'
+    api.pbxSignInState = 'stopped'
   }
   auth = () => {
     pbx.disconnect()
-    authStore.pbxState = 'connecting'
+    api.pbxSignInState = 'connecting'
     pbx
       .connect(authStore.currentProfile)
       .then(() => {
-        authStore.pbxState = 'success'
+        api.pbxSignInState = 'success'
       })
       .catch(err => {
-        authStore.pbxState = 'failure'
+        api.pbxSignInState = 'failure'
         authStore.pbxTotalFailure += 1
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to connect to pbx`,
           err,
         })

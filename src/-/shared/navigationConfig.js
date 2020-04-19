@@ -4,6 +4,8 @@ import {
   mdiPhoneOutline,
 } from '@mdi/js'
 
+import api from '../../api'
+import Rn from '../../Rn'
 import g from '../global'
 import authStore from '../global/authStore'
 import intl from '../intl/intl'
@@ -93,7 +95,7 @@ const genMenus = () => {
       }
     })
     m.navFn = () => {
-      let k = authStore.currentProfile.navSubMenus?.[i]
+      let k = api.nav.subMenus[i]
       if (!(k in m.subMenusMap)) {
         k = m.defaultSubMenuKey
       }
@@ -125,23 +127,21 @@ const saveNavigation = (i, k) => {
   }
   normalizeSavedNavigation()
   if (m.key !== 'settings') {
-    p.navIndex = i
+    api.nav.index = i
   }
-  p.navSubMenus[i] = k
-  g.saveProfilesToLocalStorage()
+  api.nav.subMenus[i] = k
 }
 const normalizeSavedNavigation = () => {
   const arr = menus()
-  const p = authStore.currentProfile
-  if (!arr[p.navIndex]) {
-    p.navIndex = 0
+  if (!arr[api.nav.index]) {
+    api.nav.index = 0
   }
-  if (p.navSubMenus?.length !== arr.length) {
-    p.navSubMenus = arr.map(m => null)
+  if (api.nav.subMenus?.length !== arr.length) {
+    api.nav.subMenus = arr.map(m => null)
   }
   arr.forEach((m, i) => {
-    if (!(p.navSubMenus[i] in m.subMenusMap)) {
-      p.navSubMenus[i] = m.defaultSubMenuKey
+    if (!(api.nav.subMenus[i] in m.subMenusMap)) {
+      api.nav.subMenus[i] = m.defaultSubMenuKey
     }
   })
 }
@@ -153,9 +153,8 @@ g.goToPageIndex = () => {
   }
   const arr = menus()
   normalizeSavedNavigation()
-  const p = authStore.currentProfile
-  const i = p.navIndex
-  const k = p.navSubMenus[i]
+  const i = api.nav.index
+  const k = api.nav.subMenus[i]
   arr[i].subMenusMap[k].navFn()
 }
 
@@ -163,7 +162,7 @@ export const getSubMenus = menu => {
   const arr = menus()
   const m = arr.find(m => m.key === menu)
   if (!m) {
-    g.showError({
+    Rn.showError({
       unexpectedErr: new Error(`Can not find sub menus for ${menu}`),
     })
     return []

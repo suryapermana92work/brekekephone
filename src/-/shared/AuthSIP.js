@@ -2,10 +2,11 @@ import { observe } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import api from '../../api'
+import Rn from '../../Rn'
 import pbx from '../api/pbx'
 import sip from '../api/sip'
 import updatePhoneIndex from '../api/updatePhoneIndex'
-import g from '../global'
 import authStore from '../global/authStore'
 import { intlDebug } from '../intl/intl'
 
@@ -19,13 +20,12 @@ class AuthSIP extends React.Component {
   }
   componentWillUnmount() {
     this.clearObserve()
+    api.sipSignInState = 'stopped'
     sip.disconnect()
-    authStore.sipState = 'stopped'
   }
 
   _auth = async () => {
-    sip.disconnect()
-    authStore.sipState = 'connecting'
+    api.sipSignInState = 'connecting'
     //
     const pbxConfig = await pbx.getConfig()
     if (!pbxConfig) {
@@ -47,7 +47,7 @@ class AuthSIP extends React.Component {
       console.error('Invalid PBX user config')
       return
     }
-    authStore.userExtensionProperties = pbxUserConfig
+    api.signedInAccount.data.props = pbxUserConfig
     //
     const language = pbxUserConfig.language
     void language
@@ -69,14 +69,15 @@ class AuthSIP extends React.Component {
       tenant: authStore.currentProfile.pbxTenant,
       username: webPhone.id,
       accessToken: sipAccessToken,
-      pbxTurnEnabled: authStore.currentProfile.pbxTurnEnabled,
+      sipTurnEnabled: authStore.currentProfile.sipTurnEnabled,
     })
   }
   auth = () => {
     this._auth().catch(err => {
-      authStore.sipState = 'failure'
+      api.sipSignInState = 'failure'
       authStore.sipTotalFailure += 1
-      g.showError({
+      sip.disconnect()
+      Rn.showError({
         message: intlDebug`Failed to connect to SIP`,
         err,
       })

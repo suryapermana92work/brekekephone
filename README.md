@@ -28,9 +28,9 @@ yarn cache clean && yarn --check-files && react-native start --reset-cache
   - `android/src/google-services.json`
   - `android/keystores/development.keystore`
   - `android/keystores/release.keystore`
-  - `src/api/turnConfig.js`
+  - `src/api/turnConfig.ts`
 
-- Most of the cases you don't need to use TURN to establish the call. You can put `export default null;` in `turnConfig.js` and keep the TURN feature turned off. Example of real config:
+- Most of the cases you don't need to use TURN to establish the call. You can put `export default null;` in `turnConfig.ts` and keep the TURN feature turned off. Example of real config:
 
 ```js
 export default {

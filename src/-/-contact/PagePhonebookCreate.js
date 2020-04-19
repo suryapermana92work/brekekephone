@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import Rn from '../../Rn'
 import pbx from '../api/pbx'
 import g from '../global'
 import contactStore from '../global/contactStore'
@@ -42,7 +43,7 @@ class PagePhonebookCreate extends React.Component {
     g.goToPageContactPhonebook()
   }
   onSaveFailure = err => {
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to save the contact`,
       err,
     })

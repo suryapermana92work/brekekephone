@@ -3,6 +3,7 @@ import { observer } from 'mobx-react'
 import React from 'react'
 
 import UserItem from '../-contact/UserItem'
+import Rn from '../../Rn'
 import uc from '../api/uc'
 import g from '../global'
 import chatStore from '../global/chatStore'
@@ -97,7 +98,7 @@ class PageChatGroupInvite extends React.Component {
     const { selectedBuddy } = this.state
     const members = Object.keys(selectedBuddy)
     if (!members.length) {
-      g.showError({
+      Rn.showError({
         message: intlDebug`No buddy selected`,
       })
       return
@@ -107,7 +108,7 @@ class PageChatGroupInvite extends React.Component {
       .then(this.back)
   }
   onInviteFailure = err => {
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to invite group chat`,
       err,
     })

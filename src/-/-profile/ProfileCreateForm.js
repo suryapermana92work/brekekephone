@@ -1,9 +1,12 @@
 import cloneDeep from 'lodash/cloneDeep'
 import isEqual from 'lodash/isEqual'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
 
-import g from '../global'
+import api from '../../api'
+import Account from '../../api/Account'
+import Rn from '../../Rn'
 import authStore from '../global/authStore'
 import intl from '../intl/intl'
 import { Text, View } from '../Rn'
@@ -15,18 +18,18 @@ const ProfileCreateForm = observer(props => {
   const $ = useStore(() => ({
     observable: {
       profile: {
-        ...g.genEmptyProfile(),
+        ...toJS(new Account(api)),
         ...cloneDeep(props.updatingProfile),
       },
       addingPark: '',
     },
     resetAllFields: () => {
-      g.showPrompt({
+      Rn.prompt({
         title: intl`Reset`,
         message: intl`Do you want to reset the form to the original data?`,
         onConfirm: () => {
           $.set('profile', p => ({
-            ...g.genEmptyProfile(),
+            ...toJS(new Account(api)),
             ...cloneDeep(props.updatingProfile),
             id: p.id,
           }))
@@ -39,19 +42,19 @@ const ProfileCreateForm = observer(props => {
       $.set('profile', p => {
         $.addingPark = $.addingPark.trim()
         if ($.addingPark) {
-          p.parks.push($.addingPark)
+          p.pbxParks.push($.addingPark)
           $.addingPark = ''
         }
         return p
       })
     },
     onAddingParkRemove: i => {
-      g.showPrompt({
+      Rn.prompt({
         title: intl`Remove Park`,
         message: (
           <React.Fragment>
             <Text small>
-              Park {i + 1}: {$.profile.parks[i]}
+              Park {i + 1}: {$.profile.pbxParks[i]}
             </Text>
             <View />
             <Text>{intl`Do you want to remove this park?`}</Text>
@@ -59,7 +62,7 @@ const ProfileCreateForm = observer(props => {
         ),
         onConfirm: () => {
           $.set('profile', p => {
-            p.parks = p.parks.filter((p, _i) => _i !== i)
+            p.pbxParks = p.pbxParks.filter((p, _i) => _i !== i)
             return p
           })
         },
@@ -67,7 +70,7 @@ const ProfileCreateForm = observer(props => {
     },
     //
     hasUnsavedChanges: () => {
-      const p = props.updatingProfile || g.genEmptyProfile()
+      const p = props.updatingProfile || toJS(new Account(api))
       if (!props.updatingProfile) {
         Object.assign(p, {
           id: $.profile.id,
@@ -80,7 +83,7 @@ const ProfileCreateForm = observer(props => {
         props.onBack()
         return
       }
-      g.showPrompt({
+      Rn.prompt({
         title: intl`Discard Changes`,
         message: intl`Do you want to discard all unsaved changes and go back?`,
         onConfirm: props.onBack,
@@ -183,13 +186,13 @@ const ProfileCreateForm = observer(props => {
           {
             disabled: props.footerLogout,
             type: 'Switch',
-            name: 'pbxTurnEnabled',
+            name: 'sipTurnEnabled',
             label: intl`TURN`,
           },
           {
             disabled: props.footerLogout,
             type: 'Switch',
-            name: 'pushNotificationEnabled',
+            name: 'notificationEnabled',
             label: intl`PUSH NOTIFICATION`,
           },
           {
@@ -232,12 +235,12 @@ const ProfileCreateForm = observer(props => {
           },
           {
             isGroup: true,
-            label: intl`PARKS (${$.profile.parks.length})`,
+            label: intl`PARKS (${$.profile.pbxParks.length})`,
             hasMargin: true,
           },
-          ...$.profile.parks.map((p, i) => ({
+          ...$.profile.pbxParks.map((p, i) => ({
             disabled: true,
-            name: `parks[${i}]`,
+            name: `pbxParks[${i}]`,
             value: p,
             label: intl`PARK ${i + 1}`,
             onRemoveBtnPress: props.footerLogout
@@ -248,7 +251,7 @@ const ProfileCreateForm = observer(props => {
             ? []
             : [
                 {
-                  name: 'parks[new]',
+                  name: 'pbxParks[new]',
                   label: intl`NEW PARK`,
                   value: $.addingPark,
                   onValueChange: v => $.set('addingPark', v),

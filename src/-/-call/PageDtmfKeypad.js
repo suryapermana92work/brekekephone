@@ -2,6 +2,7 @@ import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import Rn from '../../Rn'
 import sip from '../api/sip'
 import g from '../global'
 import intl, { intlDebug } from '../intl/intl'
@@ -26,7 +27,7 @@ class PageDtmfKeypad extends React.Component {
   callVoice = () => {
     this.txt = this.txt.trim()
     if (!this.txt) {
-      g.showError({
+      Rn.showError({
         message: intlDebug`No target`,
       })
       return
@@ -68,7 +69,7 @@ class PageDtmfKeypad extends React.Component {
               this.sendKey(v)
               const { end, start } = this.txtSelection
               let min = Math.min(start, end)
-              let max = Math.max(start, end)
+              const max = Math.max(start, end)
               const isDelete = v === ''
               if (isDelete) {
                 if (start === end && start) {

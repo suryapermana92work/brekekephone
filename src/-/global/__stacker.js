@@ -33,7 +33,7 @@ $.extends({
           }, 1000)
         }
         //
-        let _stack = {}
+        const _stack = {}
         // It fails if the param is an event
         //    or something not enumerable
         if (stack && !stack.nativeEvent) {

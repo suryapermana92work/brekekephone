@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
+import { useAnimationOnDidMount } from '../../Rn'
 import { Animated, StyleSheet, View } from '../Rn'
-import { useAnimationOnDidMount } from '../utils/animation'
 
 const css = StyleSheet.create({
   Getter: {

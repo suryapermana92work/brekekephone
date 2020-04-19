@@ -6,10 +6,10 @@ import moment from 'moment'
 import RNFS from 'react-native-fs'
 import Share from 'react-native-share'
 
+import Rn from '../../Rn'
 import intl, { intlDebug } from '../intl/intl'
 import { AsyncStorage, Linking, Platform } from '../Rn'
 import { currentVersion } from '../variables'
-import g from '.'
 
 let debugStore
 
@@ -71,7 +71,7 @@ if (Platform.OS !== 'web') {
     }
     writeFile = () =>
       this.writeFileWithoutCatch().catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to write debug log to file`,
           err,
         })
@@ -100,7 +100,7 @@ if (Platform.OS !== 'web') {
 
     openLogFile = () =>
       this.openLogFileWithoutCatch().catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to build and open log file`,
           err,
         })
@@ -126,7 +126,7 @@ if (Platform.OS !== 'web') {
     }
 
     clearLogFiles = () => {
-      g.showPrompt({
+      Rn.prompt({
         title: intl`Clear Logs`,
         message: intl`Do you want to clear all the log files?`,
         onConfirm: this.clearLogFilesWithoutPrompt,
@@ -135,7 +135,7 @@ if (Platform.OS !== 'web') {
     }
     clearLogFilesWithoutPrompt = () =>
       this.clearLogFilesWithoutCatch().catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to clear the log files`,
           err,
         })
@@ -191,7 +191,7 @@ if (Platform.OS !== 'web') {
         })
         .then(this.saveRemoteVersionToStorage)
         .catch(err => {
-          g.showError({
+          Rn.showError({
             message: intlDebug`Failed to get app version from app store`,
             err,
           })
@@ -206,7 +206,7 @@ if (Platform.OS !== 'web') {
           lastCheck: this.remoteVersionLastCheck,
         }),
       ).catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to save app version to storage`,
           err,
         })
@@ -235,7 +235,7 @@ if (Platform.OS !== 'web') {
           .then(e => e && RNFS.stat(l))
           .then(e => (this.logSizes[i] = Number(e.size) || 0))
           .catch(err => {
-            g.showError({
+            Rn.showError({
               message: intlDebug`Failed to read debug log file size`,
               err,
             })
@@ -248,7 +248,7 @@ if (Platform.OS !== 'web') {
         RNFS.exists(log)
           .then(e => e && RNFS.unlink(log))
           .catch(err => {
-            g.showError({
+            Rn.showError({
               message: intlDebug`Failed to delete unused debug log file`,
               err,
             })
@@ -259,7 +259,7 @@ if (Platform.OS !== 'web') {
         AsyncStorage.getItem('captureDebugLog')
           .then(v => v && (this.captureDebugLog = JSON.parse(v)))
           .catch(err => {
-            g.showError({
+            Rn.showError({
               message: intlDebug`Failed to read debug log settings from storage`,
               err,
             })
@@ -277,7 +277,7 @@ if (Platform.OS !== 'web') {
             this.autoCheckForUpdate()
           })
           .catch(err => {
-            g.showError({
+            Rn.showError({
               message: intlDebug`Failed to read app version from storage`,
               err,
             })

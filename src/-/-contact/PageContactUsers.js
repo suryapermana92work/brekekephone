@@ -1,9 +1,11 @@
 import { mdiMagnify, mdiPhone, mdiVideo } from '@mdi/js'
 import orderBy from 'lodash/orderBy'
 import uniq from 'lodash/uniq'
+import { runInAction } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
 
+import api from '../../api'
 import g from '../global'
 import authStore from '../global/authStore'
 import callStore from '../global/callStore'
@@ -73,9 +75,9 @@ class PageContactUsers extends React.Component {
     const allUsers = this.getMatchUserIds().map(this.resolveUser)
     const onlineUsers = allUsers.filter(i => i.status && i.status !== 'offline')
 
-    const { displayOfflineUsers, ucEnabled } = authStore.currentProfile
+    const { ucEnabled } = authStore.currentProfile
     const displayUsers =
-      !displayOfflineUsers && ucEnabled ? onlineUsers : allUsers
+      !api.displayOfflineUsers && ucEnabled ? onlineUsers : allUsers
 
     const map = {}
     displayUsers.forEach(u => {
@@ -126,13 +128,12 @@ class PageContactUsers extends React.Component {
           <Field
             label={intl`SHOW OFFLINE USERS`}
             onValueChange={v => {
-              g.upsertProfile({
-                id: authStore.currentProfile.id,
-                displayOfflineUsers: v,
+              runInAction(() => {
+                api.displayOfflineUsers = v
               })
             }}
             type="Switch"
-            value={authStore.currentProfile.displayOfflineUsers}
+            value={api.displayOfflineUsers}
           />
         )}
         {groups.map(_g => (

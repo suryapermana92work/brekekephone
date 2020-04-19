@@ -8,6 +8,8 @@ import React, { useEffect } from 'react'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import SplashScreen from 'react-native-splash-screen'
 
+import api from '../api'
+import Rn from '../Rn'
 import PageBackgroundCalls from './-call/PageBackgroundCalls'
 import PageCallKeypad from './-call/PageCallKeypad'
 import PageCallManage from './-call/PageCallManage'
@@ -31,7 +33,7 @@ import PageProfileUpdate from './-profile/PageProfileUpdate'
 import PageSettingsDebug from './-settings/PageSettingsDebug'
 import PageSettingsOther from './-settings/PageSettingsOther'
 import PageSettingsProfile from './-settings/PageSettingsProfile'
-import api from './api'
+import api2 from './api'
 import g from './global'
 import authStore from './global/authStore'
 import chatStore from './global/chatStore'
@@ -50,13 +52,13 @@ import RootStacks from './shared/RootStacks'
 //    there's no state change when rendering
 setTimeout(() => {
   registerOnUnhandledError(unexpectedErr => {
-    g.showError({ unexpectedErr })
+    Rn.showError({ unexpectedErr })
     return false
   })
 
   // Must load accounts here because when app wake
   //    from notification, there's no rendering
-  g.loadProfilesFromLocalStorage()
+  api.init()
 
   PushNotification.register()
   authStore.handleUrlParams()
@@ -73,7 +75,7 @@ observe(authStore, 'signedInId', () => {
 // PushNotification.resetBadgeNumber();
 
 // TODO
-void api
+void api2
 
 g.registerStacks({
   isRoot: true,
@@ -135,7 +137,6 @@ const App = observer(() => {
     shouldShowConnStatus,
     sipConnectingOrFailure,
     ucConnectingOrFailure,
-    ucLoginFromAnotherPlace,
   } = authStore
   let service = ''
   if (pbxConnectingOrFailure) {
@@ -150,7 +151,11 @@ const App = observer(() => {
     (isConnFailure
       ? intl`${service} connection failed`
       : intl`Connecting to ${service}`)
-  if (isConnFailure && ucConnectingOrFailure && ucLoginFromAnotherPlace) {
+  if (
+    isConnFailure &&
+    ucConnectingOrFailure &&
+    api.ucSignInState === 'signed-in-from-other-place'
+  ) {
     connMessage = intl`UC signed in from another location`
   }
 

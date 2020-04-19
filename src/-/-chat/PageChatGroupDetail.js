@@ -3,6 +3,7 @@ import { observer } from 'mobx-react'
 import React from 'react'
 import { Platform } from 'react-native'
 
+import Rn from '../../Rn'
 import uc from '../api/uc'
 import ChatInput from '../Footer/ChatInput'
 import g from '../global'
@@ -134,7 +135,9 @@ class PageChatGroupDetail extends React.Component {
 
   me = uc.me()
   resolveBuddy = creator => {
-    if (creator === this.me.id) return this.me
+    if (creator === this.me.id) {
+      return this.me
+    }
     return contactStore.getUCUser(creator) || {}
   }
   resolveChat = (id, index) => {
@@ -164,7 +167,7 @@ class PageChatGroupDetail extends React.Component {
         setTimeout(this.onContentSizeChange, 170)
       })
       .catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to get recent chats`,
           err,
         })
@@ -189,7 +192,7 @@ class PageChatGroupDetail extends React.Component {
         chatStore.pushMessages(this.props.groupId, chats)
       })
       .catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to get more chats`,
           err,
         })
@@ -221,7 +224,7 @@ class PageChatGroupDetail extends React.Component {
         this.setState({ editingText: '' })
       })
       .catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to send the message`,
           err,
         })
@@ -238,7 +241,7 @@ class PageChatGroupDetail extends React.Component {
         g.goToPageChatRecents()
       })
       .catch(err => {
-        g.showError({
+        Rn.showError({
           message: intlDebug`Failed to leave the group`,
           err,
         })
@@ -301,7 +304,7 @@ class PageChatGroupDetail extends React.Component {
     chatStore.pushMessages(groupId, res.chat)
   }
   onSendFileFailure = err => {
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to send file`,
       err,
     })
@@ -332,7 +335,7 @@ class PageChatGroupDetail extends React.Component {
   }
 
   onAcceptFileFailure = err => {
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to accept file`,
       err,
     })
@@ -341,7 +344,7 @@ class PageChatGroupDetail extends React.Component {
     uc.rejectFile(file).catch(this.onRejectFileFailure)
   }
   onRejectFileFailure = err => {
-    g.showError({
+    Rn.showError({
       message: intlDebug`Failed to reject file`,
       err,
     })
