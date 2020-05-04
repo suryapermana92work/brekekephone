@@ -373,7 +373,7 @@ class PBX extends EventEmitter {
       const params = {
         command: 'set',
         service_id: '11',
-        application_id: 'com.brekeke.phonedev',
+        application_id: 'com.brekeke.phone',
         user_agent: 'react-native',
         username,
         device_id,
