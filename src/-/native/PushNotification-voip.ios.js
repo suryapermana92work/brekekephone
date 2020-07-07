@@ -1,24 +1,18 @@
 import './callkeep'
 
-import PushNotificationIOS from '@react-native-community/push-notification-ios'
-import { AppState } from 'react-native'
+import { PushNotificationIOS } from 'react-native'
+import VoipPushNotification from 'react-native-voip-push-notification'
 
-import g from '../global'
 import parse from './PushNotification-parse'
 
-let apnsToken = ''
+let voipApnsToken = ''
 const onToken = t => {
   if (t) {
-    console.error(t)
-    apnsToken = t
+    voipApnsToken = t
   }
 }
 const onNotification = async (n, initApp) => {
   initApp()
-  const msg = JSON.stringify(n)
-  g.showError({
-    message: msg,
-  })
   n = await parse(n)
   if (!n) {
     return
@@ -26,10 +20,7 @@ const onNotification = async (n, initApp) => {
   //
   PushNotificationIOS.getApplicationIconBadgeNumber(badge => {
     badge = (badge || 0) + 1
-    if (AppState.currentState === 'active') {
-      badge = 0
-    }
-    PushNotificationIOS.presentLocalNotification({
+    VoipPushNotification.presentLocalNotification({
       alertBody: n.body,
       alertAction: n.isCall ? 'Answer' : 'View',
       soundName: n.isCall ? 'incallmanager_ringtone.mp3' : undefined,
@@ -42,17 +33,15 @@ const onNotification = async (n, initApp) => {
 const PushNotification = {
   register: initApp => {
     setTimeout(initApp)
-    PushNotificationIOS.addEventListener('register', onToken)
-    PushNotificationIOS.addEventListener('notification', n =>
+    VoipPushNotification.addEventListener('register', onToken)
+    VoipPushNotification.addEventListener('notification', n =>
       onNotification(n, initApp),
     )
-    PushNotificationIOS.addEventListener('localNotification', n =>
-      onNotification(n, initApp),
-    )
-    PushNotificationIOS.requestPermissions()
+    VoipPushNotification.requestPermissions()
+    VoipPushNotification.registerVoipToken()
   },
   getToken: () => {
-    return Promise.resolve(apnsToken)
+    return Promise.resolve(voipApnsToken)
   },
   resetBadgeNumber: () => {
     PushNotificationIOS.setApplicationIconBadgeNumber(0)
